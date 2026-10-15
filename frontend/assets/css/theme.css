@@ -1,0 +1,322 @@
+   /* ============================================================
+   Laserya — Thème CLAIR « Noir & Or » : sur-couches CSS
+   Chargé EN DERNIER dans <head> → écrase les <style> inline
+   sombres de chaque page (body, glass, lueurs néon…).
+   ============================================================ */
+
+/* Fond global clair (ivoire chaud) + texte sombre */
+html, body {
+  background-color: #FAF8F4 !important;
+  color: #1A150C;
+}
+
+/* Verre dépoli : translucide CLAIR au lieu de sombre */
+.glass-panel,
+.glass-card,
+.glass,
+.glass-acrylic {
+  background: rgba(255, 255, 255, 0.80) !important;
+  border: 1px solid rgba(20, 17, 12, 0.07) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 2px rgba(20, 17, 12, 0.04), 0 10px 28px rgba(20, 17, 12, 0.05);
+}
+
+/* Lueurs « néon » → ombres douces + accent or au survol */
+.neon-glow-cyan        { box-shadow: 0 8px 24px rgba(20, 17, 12, 0.06) !important; }
+.neon-glow-cyan-hover:hover {
+  box-shadow: 0 14px 34px rgba(138, 106, 18, 0.18) !important;
+  border-color: rgba(138, 106, 18, 0.40) !important;
+}
+.neon-glow-hover:hover { box-shadow: 0 14px 32px rgba(138, 106, 18, 0.16) !important; }
+.neon-text-cyan        { text-shadow: none !important; }
+
+/* Barres de défilement : pouce doré */
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #B58A1E !important; }
+
+/* En-tête / pied de page restent sombres (noir chaud) : le
+   texte clair qu'ils contiennent reste donc lisible — on ne
+   touche pas à ces zones. */
+
+/* ------------------------------------------------------------
+   Texte « blanc en dur » : sur le thème clair il doit devenir
+   SOMBRE par défaut, SAUF :
+   - dans l'en-tête / le pied de page (fond noir) ;
+   - posé par-dessus une image (conteneur .absolute).
+   ------------------------------------------------------------ */
+.text-white { color: #1A150C !important; }
+/* …reste BLANC uniquement dans le pied de page (fond noir) ou posé
+   par-dessus une image (conteneur .absolute). */
+footer .text-white,
+.absolute .text-white,
+.text-white.absolute { color: #FFFFFF !important; }
+
+/* ------------------------------------------------------------
+   En-tête : barre fixe claire translucide + fine bordure.
+   ------------------------------------------------------------ */
+header.fixed, nav.fixed {
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(20, 17, 12, 0.07) !important;
+  box-shadow: 0 1px 14px rgba(20, 17, 12, 0.05) !important;
+}
+
+/* ------------------------------------------------------------
+   Pied de page : noir chaud (contraste « noir & or » premium).
+   ------------------------------------------------------------ */
+footer { background-color: #14110C !important; }
+footer .text-on-surface,
+footer .text-on-surface-variant,
+footer .text-secondary,
+footer p, footer li, footer span, footer a:not(.text-primary) { color: #CFC8BA !important; }
+footer h5, footer .text-white { color: #FFFFFF !important; }
+footer .border-glass,
+footer [class*="border-glass"] { border-color: rgba(255, 255, 255, 0.10) !important; }
+footer a:hover { color: #E8C766 !important; }
+/* Footer sombre : on utilise la version BLANCHE du logo (logo-white.png),
+   donc pas de pastille — juste le logo à pleine opacité. */
+footer img[alt*="Laserya"], footer img[alt*="Logo"] { opacity: 1 !important; }
+/* Petites pastilles « verre » du footer (icônes réseaux) : translucides
+   SOMBRES sur le footer noir (sinon tuiles claires délavées). */
+footer .glass-panel, footer .glass-card, footer .glass {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: none !important;
+}
+
+/* Cartes « choix » (custom-order) : verre clair au lieu de sombre */
+.choice-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(20, 17, 12, 0.08) !important;
+  box-shadow: 0 1px 2px rgba(20, 17, 12, 0.04), 0 10px 28px rgba(20, 17, 12, 0.05) !important;
+}
+.choice-card:hover { border-color: rgba(138, 106, 18, 0.40) !important; }
+
+/* Titres en dégradé « bg-clip-text » (souvent un stop blanc invisible
+   sur fond clair) → OR plein, lisible et cohérent. */
+.bg-clip-text.text-transparent {
+  background-image: none !important;
+  -webkit-text-fill-color: #8A6A12 !important;
+  color: #8A6A12 !important;
+}
+
+/* Boutons à dégradé custom (cyan→violet en dur) → dégradé OR */
+.gradient-button {
+  background: linear-gradient(135deg, #8A6A12 0%, #C8A13A 100%) !important;
+  color: #1A150C !important;
+}
+.gradient-button:hover { box-shadow: 0 10px 26px rgba(138, 106, 18, 0.30) !important; }
+
+/* Cartes catégories de l'accueil : filtre CHAUD uniforme (sépia/ambre)
+   pour harmoniser les photos avec le thème or — option B. */
+.cat-img {
+  filter: sepia(0.42) saturate(1.35) hue-rotate(-12deg) brightness(0.9) contrast(1.03);
+}
+
+/* Section héros avec photo de fond sombre : le texte y repasse en CLAIR
+   (le reste de la page garde son texte foncé). */
+.hero-photo .text-on-surface { color: #FFFFFF !important; }
+.hero-photo .text-on-surface-variant { color: rgba(255, 255, 255, 0.82) !important; }
+
+/* Héros « Idées cadeaux » : photo cadeau sombre → texte clair. */
+.hero-gift .text-text-primary { color: #FFFFFF !important; }
+.hero-gift .text-on-surface-variant { color: rgba(255, 255, 255, 0.85) !important; }
+
+/* ------------------------------------------------------------
+   Contraste : les textes « clairs en dur » (blanc / gris clair /
+   cyan pâle) deviennent SOMBRES ou OR sur le fond ivoire.
+   Corrige les titres invisibles (ex. h1 « Boutique »).
+   Exceptions plus bas : pied de page (fond noir) + texte sur image.
+   ------------------------------------------------------------ */
+.text-text-primary        { color: #1A150C !important; }  /* titres principaux */
+.text-on-surface          { color: #1A150C !important; }
+.text-on-surface-variant  { color: #5C5546 !important; }  /* texte secondaire chaud */
+.text-secondary           { color: #5C5546 !important; }
+/* Accent cyan pâle illisible sur fond clair → OR (cohérent « noir & or »). */
+.text-primary             { color: #8A6A12 !important; }
+.border-primary           { border-color: #8A6A12 !important; }
+
+/* Fonds de boutons cyan (bg-primary / bg-primary-container) → OR plein,
+   texte blanc. Couvre « Ajouter au panier », « Créer mon design », etc. */
+.bg-primary,
+.bg-primary-container        { background-color: #8A6A12 !important; }
+.text-on-primary             { color: #FFFFFF !important; }
+.hover\:bg-primary:hover,
+.hover\:bg-primary-container:hover { background-color: #A6801A !important; }
+/* Teintes translucides cyan (pastilles, états actifs) → teinte OR. */
+.bg-primary\/10              { background-color: rgba(138, 106, 18, 0.10) !important; }
+.bg-primary\/20              { background-color: rgba(138, 106, 18, 0.18) !important; }
+
+/* Famille « secondary » VIOLETTE (badges catégorie, bordures, dégradés) → OR.
+   (text-secondary = texte gris du corps, déjà géré plus bas — pas concerné.) */
+.bg-secondary,
+.bg-secondary-container {
+  background-color: #C8A13A !important;
+  color: #1A150C !important;          /* texte du badge en noir → lisible sur l'or */
+}
+.border-secondary,
+.border-secondary-container,
+.border-secondary\/30        { border-color: rgba(138, 106, 18, 0.40) !important; }
+.text-secondary-fixed,
+.text-secondary-fixed-dim    { color: #8A6A12 !important; }
+.to-secondary,
+.to-secondary-container      { --tw-gradient-to: #C8A13A !important; }
+
+/* ------------------------------------------------------------
+   Panneaux / cartes au fond sombre gris-bleu (bg-surface-*) → fond
+   CLAIR sur le thème ivoire (récap panier, boîtes quantité, encarts).
+   Le texte intérieur est déjà rendu sombre plus haut → lisible.
+   Exception : le pied de page (fond noir) garde ses fonds sombres.
+   ------------------------------------------------------------ */
+.bg-surface-container,
+.bg-surface-container-high,
+.bg-surface-container-highest,
+.bg-surface-container-low,
+.bg-surface-container-lowest,
+.bg-surface-card,
+.bg-surface-medium,
+.bg-surface-variant,
+.bg-surface-bright {
+  background-color: #FFFFFF !important;
+  border-color: rgba(20, 17, 12, 0.08) !important;
+}
+/* Pied de page : on restaure des fonds sombres translucides. */
+footer .bg-surface-container,
+footer .bg-surface-card,
+footer .bg-surface-variant,
+footer .bg-surface-medium { background-color: rgba(255, 255, 255, 0.06) !important; }
+
+/* Effets « néon » cyan codés en dur dans les <style> de page (lueurs,
+   bordures, focus, dégradés) → OR / neutres, pour éliminer tout reste de cyan. */
+.neon-glow-primary,
+.neon-glow-primary-hover:hover,
+.neon-glow-hover:hover,
+.neon-glow-cyan-hover:hover { box-shadow: 0 12px 30px rgba(138, 106, 18, 0.18) !important; }
+.neon-border-active,
+.neon-border-focus:focus,
+.active-thumb,
+.active-step,
+.chip-active {
+  border-color: #8A6A12 !important;
+  box-shadow: 0 0 0 2px rgba(138, 106, 18, 0.28) !important;
+}
+.glow-line       { background: linear-gradient(90deg, transparent, #C8A13A, transparent) !important; }
+.custom-gradient-btn { background: linear-gradient(135deg, #8A6A12, #C8A13A) !important; color: #1A150C !important; }
+/* Boutons dégradés cyan→violet des pages checkout → dégradé OR. */
+.primary-gradient,
+.gradient-btn {
+  background: linear-gradient(135deg, #8A6A12 0%, #B58A1E 100%) !important;
+  box-shadow: 0 10px 26px rgba(138, 106, 18, 0.30) !important;
+  color: #FFFFFF !important;
+}
+/* Lueurs / bordures cyan d'étape (checkout-review) → OR. */
+.active-step-glow { box-shadow: 0 0 0 2px rgba(138, 106, 18, 0.30) !important; border-color: #8A6A12 !important; }
+.neon-border-cyan { border-color: rgba(138, 106, 18, 0.40) !important; }
+/* Bordure de focus cyan (input:focus en dur dans plusieurs pages) → OR. */
+input:focus, textarea:focus, select:focus {
+  border-color: #8A6A12 !important;
+  box-shadow: 0 0 0 3px rgba(138, 106, 18, 0.15) !important;
+}
+
+/* Exception 1 — pied de page (fond noir chaud) : le texte reste clair. */
+footer .text-text-primary { color: #FFFFFF !important; }
+footer .text-primary      { color: #E8C766 !important; }
+
+/* Exception 2 — texte posé par-dessus une image (badges, héros) : reste clair. */
+.absolute .text-text-primary,
+.absolute .text-on-surface,
+.absolute .text-on-surface-variant,
+.hero-photo .text-text-primary,
+.hero-gift .text-text-primary { color: #FFFFFF !important; }
+
+/* ============================================================
+   ANTI-CYAN — tout bleu/cyan résiduel → OR (« noir & or »).
+   Couvre les utilitaires Tailwind *-primary + les classes
+   néon/glow/active des <style> inline de chaque page.
+   ============================================================ */
+
+/* — Texte / bordures « primary » et « primary-container » (cyan) → OR — */
+.text-primary, .text-primary-container,
+.text-primary-fixed, .text-primary-fixed-dim   { color: #8A6A12 !important; }
+.border-primary, .border-primary-container      { border-color: #8A6A12 !important; }
+.hover\:text-primary:hover,
+.hover\:text-primary-container:hover            { color: #A6801A !important; }
+.decoration-primary                             { text-decoration-color: #8A6A12 !important; }
+
+/* — Ombres/lueurs cyan ARBITRAIRES (shadow-[…rgba(0,212,255…)]) → or doux.
+     Sélecteur d'attribut : cible toute classe contenant la couleur cyan. */
+[class*="0,212,255"], [class*="168,232,255"], [class*="60,215,255"] {
+  box-shadow: 0 6px 20px rgba(138,106,18,0.14) !important;
+}
+
+/* — Anneaux de focus (ring) — */
+.ring-primary, .ring-primary-container,
+.focus\:ring-primary:focus, .focus\:ring-primary-container:focus,
+.hover\:ring-primary:hover            { --tw-ring-color: #8A6A12 !important; }
+
+/* — Dégradés (from/via/to) — */
+.from-primary, .from-primary-container { --tw-gradient-from: #8A6A12 !important;
+  --tw-gradient-to: rgba(138,106,18,0) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
+.via-primary, .via-\[\#7fe6ff\]        { --tw-gradient-stops: var(--tw-gradient-from), #A6801A, var(--tw-gradient-to, rgba(138,106,18,0)) !important; }
+.to-primary, .to-primary-container     { --tw-gradient-to: #C8A13A !important; }
+
+/* — Ombres colorées — */
+.shadow-primary, .shadow-primary-container { --tw-shadow-color: #8A6A12 !important; --tw-shadow: var(--tw-shadow-colored) !important; }
+
+/* — fill / stroke / outline / divide — */
+.fill-primary    { fill: #8A6A12 !important; }
+.stroke-primary  { stroke: #8A6A12 !important; }
+.outline-primary { outline-color: #8A6A12 !important; }
+.divide-primary > * + * { border-color: #8A6A12 !important; }
+
+/* — Lueurs « néon » nommées (box-shadow cyan → or doux) — */
+.neon-glow, .neon-glow-cyan, .neon-glow-cyan-strong, .neon-glow-cyan-active,
+.neon-glow-primary, .neon-glow-focus, .neon-glow-purple,
+.glow-cyan, .glow, .glow-hover, .glow-line, .glow-production, .neon-text-glow {
+  box-shadow: 0 8px 24px rgba(138,106,18,0.10) !important;
+}
+.neon-glow-cyan-hover:hover, .neon-glow-primary-hover:hover,
+.glow-hover:hover, .neon-glow-hover:hover {
+  box-shadow: 0 14px 34px rgba(138,106,18,0.20) !important;
+}
+
+/* — Textes/lignes lumineux cyan → neutralisés — */
+.neon-text-cyan, .glow-text-cyan, .neon-text-glow { text-shadow: none !important; }
+
+/* — Bordures / états actifs cyan → or — */
+.neon-border-cyan, .neon-border, .neon-border-active, .neon-border-pulse,
+.active-thumb, .active-nav, .active-chip, .active-quiz {
+  border-color: #8A6A12 !important;
+}
+.neon-border-focus:focus, .active-step {
+  border-color: #8A6A12 !important;
+  box-shadow: 0 0 0 2px rgba(138,106,18,0.30) !important;
+}
+
+/* — Boutons à dégradé néon → dégradé or — */
+.neon-gradient, .neon-gradient-button {
+  background: linear-gradient(135deg, #8A6A12 0%, #C8A13A 100%) !important;
+  color: #1A150C !important;
+}
+
+/* — Focus des champs (bordure cyan en dur dans certains <style>) → or — */
+input:focus, textarea:focus, select:focus {
+  border-color: #8A6A12 !important;
+  box-shadow: 0 0 0 3px rgba(138,106,18,0.15) !important;
+}
+
+/* Champs de formulaire qui utilisaient un fond sombre : on les
+   repasse en clair (fond blanc, texte sombre, bord discret). */
+input.bg-surface-deep,
+select.bg-surface-deep,
+textarea.bg-surface-deep,
+input.bg-surface-card,
+select.bg-surface-card,
+textarea.bg-surface-card {
+  background: #FFFFFF !important;
+  color: #1A150C !important;
+  border-color: rgba(20, 17, 12, 0.15) !important;
+}
+input::placeholder, textarea::placeholder { color: #8A8174 !important; }

@@ -1,0 +1,349 @@
+<!DOCTYPE html><html class="dark" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Stock bobines | Laserya.tn Admin</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+  body { background-color: #070A0F; color: #e0e2ea; -webkit-font-smoothing: antialiased; }
+  .glass-panel { background: rgba(17,24,39,.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.08); }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b0e13; }
+  ::-webkit-scrollbar-thumb { background: #3c494e; border-radius: 10px; }
+  .modal-bg { background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+  input, select, textarea { color-scheme: dark; }
+</style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<aside id="admin-sidebar" data-active="spools"></aside>
+
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+  <div>
+    <h2 class="font-headline-sm text-headline-sm text-on-surface">Stock bobines</h2>
+    <p class="font-label-sm text-label-sm text-on-surface-variant">Filaments d'impression 3D — inventaire & alertes</p>
+  </div>
+  <div class="flex items-center gap-3">
+    <div class="relative w-full max-w-xs">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+      <input id="search" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-4 py-1.5 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary transition-all" placeholder="Nom, marque, couleur…" type="text">
+    </div>
+    <button onclick="openModal()" class="flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap">
+      <span class="material-symbols-outlined text-lg">add</span> Nouvelle bobine
+    </button>
+  </div>
+</header>
+
+<main class="ml-[260px] pt-[88px] min-h-screen p-container_padding">
+
+  <!-- Mini stats -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-stack_md mb-stack_lg">
+    <div class="glass-panel p-5 rounded-xl">
+      <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Bobines</p>
+      <h3 id="stat-count" class="font-display-lg text-display-lg mt-1 text-on-surface">—</h3>
+    </div>
+    <div class="glass-panel p-5 rounded-xl">
+      <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Stock bas</p>
+      <h3 id="stat-low" class="font-display-lg text-display-lg mt-1 text-warning">—</h3>
+    </div>
+    <div class="glass-panel p-5 rounded-xl">
+      <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Poids total</p>
+      <h3 id="stat-weight" class="font-display-lg text-display-lg mt-1 text-primary">—</h3>
+    </div>
+    <div class="glass-panel p-5 rounded-xl">
+      <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Valeur du stock</p>
+      <h3 id="stat-value" class="font-display-lg text-display-lg mt-1 text-success">—</h3>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+    <div id="tabs" class="flex items-center bg-surface-container-low p-1 rounded-xl border border-outline-variant/10 w-fit flex-wrap">
+      <button data-status="all" class="px-5 py-2 rounded-lg font-label-md text-label-md bg-primary/10 text-primary border border-primary/20">Toutes</button>
+      <button data-status="ok" class="px-5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Stock OK</button>
+      <button data-status="low" class="px-5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Stock bas</button>
+      <button data-status="empty" class="px-5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Épuisées</button>
+    </div>
+    <select id="filter-material" class="bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      <option value="all">Toutes les matières</option>
+    </select>
+  </div>
+
+  <!-- Table -->
+  <div class="glass-panel rounded-xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-surface-container-high/50 border-b border-outline-variant/20">
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Bobine</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Matière</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Stock restant</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Ajuster</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Prix</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Emplacement</th>
+            <th class="p-4 w-20"></th>
+          </tr>
+        </thead>
+        <tbody id="tbody" class="divide-y divide-outline-variant/10">
+          <tr><td colspan="7" class="p-10 text-center text-on-surface-variant">Chargement…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Modal ajout / édition -->
+<div id="modal" class="modal-bg fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="glass-panel rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div class="flex items-center justify-between p-5 border-b border-outline-variant/15 sticky top-0 bg-surface-container/95 backdrop-blur-md">
+      <h3 id="modal-title" class="font-headline-sm text-headline-sm text-on-surface">Nouvelle bobine</h3>
+      <button onclick="closeModal()" class="p-1 hover:bg-surface-variant/40 rounded transition-colors"><span class="material-symbols-outlined">close</span></button>
+    </div>
+    <form id="spool-form" class="p-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="hidden" id="f-id">
+      <div class="md:col-span-2">
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Nom / Référence *</label>
+        <input id="f-name" required placeholder="Ex : PLA Blanc Sunlu" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Marque</label>
+        <input id="f-brand" placeholder="Sunlu, eSun…" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Matière</label>
+        <select id="f-material" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary"></select>
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Couleur</label>
+        <input id="f-color" placeholder="Blanc, Rouge, Galaxy…" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Pastille couleur</label>
+        <input id="f-color_hex" type="color" value="#cccccc" class="w-full h-[42px] bg-surface-container-low border border-outline-variant/30 rounded-lg px-1 outline-none focus:border-primary cursor-pointer">
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Poids total (g)</label>
+        <input id="f-weight_total" type="number" min="0" step="50" value="1000" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Poids restant (g)</label>
+        <input id="f-weight_remaining" type="number" min="0" step="10" placeholder="= poids total si vide" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Prix d'achat (TND)</label>
+        <input id="f-price" type="number" min="0" step="0.5" value="0" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Seuil d'alerte (g)</label>
+        <input id="f-threshold" type="number" min="0" step="10" value="150" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      </div>
+      <div>
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Emplacement</label>
+        <input id="f-location" placeholder="Étagère A, bac 2…" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary">
+      </div>
+      <div class="md:col-span-2">
+        <label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Notes</label>
+        <textarea id="f-notes" rows="2" placeholder="Remarques (fournisseur, qualité…)" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface outline-none focus:border-primary resize-none"></textarea>
+      </div>
+      <div class="md:col-span-2 flex items-center justify-end gap-3 pt-2">
+        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant/40 transition-colors">Annuler</button>
+        <button type="submit" class="flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-5 py-2 rounded-lg hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-lg">save</span> Enregistrer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+if (!Auth.isAdmin()) window.location.href = '/admin/dashboard.html';
+
+const MATERIALS = ['PLA', 'PLA+', 'PETG', 'ABS', 'ASA', 'TPU', 'Nylon', 'Bois', 'Résine', 'Autre'];
+let activeStatus = 'all';
+
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+// Remplir les <select> de matières
+(function fillMaterials() {
+  const fSel = document.getElementById('f-material');
+  const filterSel = document.getElementById('filter-material');
+  MATERIALS.forEach(m => {
+    fSel.insertAdjacentHTML('beforeend', `<option value="${m}">${m}</option>`);
+    filterSel.insertAdjacentHTML('beforeend', `<option value="${m}">${m}</option>`);
+  });
+})();
+
+function barColor(pct, low, empty) {
+  if (empty) return '#ffb4ab';
+  if (low)   return '#F59E0B';
+  if (pct < 50) return '#3cd7ff';
+  return '#22C55E';
+}
+
+function rowHtml(s) {
+  const remaining = Math.max(0, Number(s.weight_remaining) || 0);
+  const total = Number(s.weight_total) || 0;
+  const pct = Number(s.remaining_pct) || 0;
+  const col = barColor(pct, s.low_stock, s.empty);
+  const badge = s.empty
+    ? '<span class="ml-2 px-1.5 py-0.5 rounded-full border border-error/30 bg-error/10 text-error text-[10px] uppercase font-bold">Épuisée</span>'
+    : (s.low_stock ? '<span class="ml-2 px-1.5 py-0.5 rounded-full border border-warning/30 bg-warning/10 text-warning text-[10px] uppercase font-bold">Stock bas</span>' : '');
+
+  return `<tr class="hover:bg-surface-variant/20 transition-colors align-middle" data-id="${s.id}">
+    <td class="p-4">
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full border border-outline-variant/40 flex-shrink-0" style="background:${esc(s.color_hex || '#ccc')}"></span>
+        <div>
+          <p class="font-label-md text-label-md text-on-surface">${esc(s.name)}${badge}</p>
+          <p class="text-[11px] text-on-surface-variant">${[esc(s.brand), esc(s.color)].filter(Boolean).join(' · ') || '—'}</p>
+        </div>
+      </div>
+    </td>
+    <td class="p-4"><span class="px-2 py-0.5 bg-surface-container-high rounded text-[11px]">${esc(s.material)}</span></td>
+    <td class="p-4 min-w-[180px]">
+      <div class="flex items-center justify-between mb-1">
+        <span class="font-mono-ui text-mono-ui text-on-surface">${remaining} g</span>
+        <span class="text-[11px] text-on-surface-variant">/ ${total} g · ${pct}%</span>
+      </div>
+      <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+        <div class="h-full rounded-full transition-all" style="width:${pct}%;background:${col}"></div>
+      </div>
+    </td>
+    <td class="p-4">
+      <div class="flex items-center gap-1">
+        <button onclick="adjust('${s.id}',-250)" class="px-2 py-1 rounded bg-surface-container-high hover:bg-error/10 hover:text-error text-xs transition-colors" title="-250 g">-250</button>
+        <button onclick="adjust('${s.id}',-100)" class="px-2 py-1 rounded bg-surface-container-high hover:bg-error/10 hover:text-error text-xs transition-colors" title="-100 g">-100</button>
+        <button onclick="adjust('${s.id}',1000)" class="px-2 py-1 rounded bg-surface-container-high hover:bg-success/10 hover:text-success text-xs transition-colors" title="+1 bobine (1000 g)">+1kg</button>
+      </div>
+    </td>
+    <td class="p-4 text-sm text-on-surface">${Number(s.price) ? Number(s.price).toFixed(0) + ' TND' : '—'}</td>
+    <td class="p-4 text-sm text-on-surface-variant">${esc(s.location) || '—'}</td>
+    <td class="p-4">
+      <div class="flex items-center gap-1">
+        <button onclick='editSpool(${JSON.stringify(s.id)})' class="p-1 hover:bg-primary/10 hover:text-primary rounded transition-colors" title="Modifier">
+          <span class="material-symbols-outlined text-[18px]">edit</span></button>
+        <button onclick="del('${s.id}')" class="p-1 hover:bg-error/10 hover:text-error rounded transition-colors" title="Supprimer">
+          <span class="material-symbols-outlined text-[18px]">delete</span></button>
+      </div>
+    </td>
+  </tr>`;
+}
+
+let CACHE = [];
+
+async function load() {
+  const tbody = document.getElementById('tbody');
+  try {
+    const params = {};
+    if (activeStatus !== 'all') params.status = activeStatus;
+    const mat = document.getElementById('filter-material').value;
+    if (mat && mat !== 'all') params.material = mat;
+    const search = document.getElementById('search').value.trim();
+    if (search) params.search = search;
+
+    const [list, stats] = await Promise.all([ SpoolsAPI.getAll(params), SpoolsAPI.stats() ]);
+    CACHE = list;
+
+    document.getElementById('stat-count').textContent  = stats.count;
+    document.getElementById('stat-low').textContent    = stats.low;
+    document.getElementById('stat-weight').textContent = (stats.total_weight / 1000).toFixed(2) + ' kg';
+    document.getElementById('stat-value').textContent  = stats.total_value.toFixed(0) + ' TND';
+
+    tbody.innerHTML = list.length
+      ? list.map(rowHtml).join('')
+      : `<tr><td colspan="7" class="p-12 text-center text-on-surface-variant">
+          <span class="material-symbols-outlined text-5xl block mb-3 opacity-50">database</span>
+          Aucune bobine ${activeStatus !== 'all' ? 'dans ce filtre' : 'enregistrée'}. Cliquez sur « Nouvelle bobine » pour commencer.</td></tr>`;
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="7" class="p-10 text-center text-error">${esc(e.message)}</td></tr>`;
+  }
+}
+
+async function adjust(id, delta) {
+  try { await SpoolsAPI.adjust(id, delta); load(); }
+  catch (e) { showToast(e.message, 'error'); }
+}
+
+async function del(id) {
+  if (!confirm('Supprimer cette bobine du stock ?')) return;
+  try { await SpoolsAPI.delete(id); showToast('Bobine supprimée', 'success'); load(); }
+  catch (e) { showToast(e.message, 'error'); }
+}
+
+// ── Modal ──────────────────────────────────────────────────
+function openModal() {
+  document.getElementById('modal-title').textContent = 'Nouvelle bobine';
+  document.getElementById('spool-form').reset();
+  document.getElementById('f-id').value = '';
+  document.getElementById('f-color_hex').value = '#cccccc';
+  document.getElementById('f-weight_total').value = '1000';
+  document.getElementById('f-threshold').value = '150';
+  document.getElementById('f-price').value = '0';
+  show();
+}
+
+function editSpool(id) {
+  const s = CACHE.find(x => x.id === id);
+  if (!s) return;
+  document.getElementById('modal-title').textContent = 'Modifier la bobine';
+  document.getElementById('f-id').value = s.id;
+  document.getElementById('f-name').value = s.name || '';
+  document.getElementById('f-brand').value = s.brand || '';
+  document.getElementById('f-material').value = MATERIALS.includes(s.material) ? s.material : 'Autre';
+  document.getElementById('f-color').value = s.color || '';
+  document.getElementById('f-color_hex').value = s.color_hex || '#cccccc';
+  document.getElementById('f-weight_total').value = s.weight_total ?? 1000;
+  document.getElementById('f-weight_remaining').value = s.weight_remaining ?? '';
+  document.getElementById('f-price').value = s.price ?? 0;
+  document.getElementById('f-threshold').value = s.threshold ?? 150;
+  document.getElementById('f-location').value = s.location || '';
+  document.getElementById('f-notes').value = s.notes || '';
+  show();
+}
+
+function show() { const m = document.getElementById('modal'); m.classList.remove('hidden'); m.classList.add('flex'); }
+function closeModal() { const m = document.getElementById('modal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+
+document.getElementById('spool-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const id = document.getElementById('f-id').value;
+  const data = {
+    name: document.getElementById('f-name').value,
+    brand: document.getElementById('f-brand').value,
+    material: document.getElementById('f-material').value,
+    color: document.getElementById('f-color').value,
+    color_hex: document.getElementById('f-color_hex').value,
+    weight_total: document.getElementById('f-weight_total').value,
+    weight_remaining: document.getElementById('f-weight_remaining').value,
+    price: document.getElementById('f-price').value,
+    threshold: document.getElementById('f-threshold').value,
+    location: document.getElementById('f-location').value,
+    notes: document.getElementById('f-notes').value,
+  };
+  try {
+    if (id) { await SpoolsAPI.update(id, data); showToast('Bobine mise à jour', 'success'); }
+    else    { await SpoolsAPI.create(data);     showToast('Bobine ajoutée', 'success'); }
+    closeModal(); load();
+  } catch (err) { showToast(err.message, 'error'); }
+});
+
+// ── Filtres ────────────────────────────────────────────────
+document.querySelectorAll('#tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#tabs button').forEach(b => { b.classList.remove('bg-primary/10','text-primary','border','border-primary/20'); b.classList.add('text-on-surface-variant'); });
+    btn.classList.add('bg-primary/10','text-primary','border','border-primary/20'); btn.classList.remove('text-on-surface-variant');
+    activeStatus = btn.getAttribute('data-status');
+    load();
+  });
+});
+document.getElementById('filter-material').addEventListener('change', load);
+
+let t;
+document.getElementById('search').addEventListener('input', () => { clearTimeout(t); t = setTimeout(load, 300); });
+
+load();
+</script>
+</body></html>

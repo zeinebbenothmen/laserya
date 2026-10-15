@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#161B22"/>
+  <rect width="600" height="600" fill="url(#g)"/>
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#161B22" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g fill="none" stroke="#a8e8ff" stroke-opacity="0.35" stroke-width="6">
+    <rect x="210" y="210" width="180" height="150" rx="12"/>
+    <circle cx="258" cy="262" r="16"/>
+    <path d="M222 348 L282 296 L318 332 L356 288 L378 348 Z" fill="#a8e8ff" fill-opacity="0.18" stroke-linejoin="round"/>
+  </g>
+  <text x="300" y="420" fill="#a8e8ff" fill-opacity="0.55" font-family="Sora, sans-serif" font-size="30" font-weight="700" text-anchor="middle">Laserya.tn</text>
+</svg>

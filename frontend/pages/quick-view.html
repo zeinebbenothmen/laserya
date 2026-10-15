@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Laserya.tn - Premium Shop</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        .neon-glow-hover:hover {
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+            transform: scale(1.02);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md overflow-hidden">
+<!-- Background Shop Page Content (Mockup for Depth) -->
+<div class="fixed inset-0 z-0 overflow-y-auto filter blur-md opacity-40 pointer-events-none">
+<header class="fixed top-0 left-0 w-full z-50 bg-surface-deep/80 backdrop-blur-xl border-b border-border-glass px-gutter py-4">
+<div class="max-w-container-max-width mx-auto flex items-center justify-between">
+<a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<nav class="hidden md:flex gap-8">
+<span class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md">Shop</span>
+<span class="text-on-surface-variant font-medium font-label-md">Home</span>
+<span class="text-on-surface-variant font-medium font-label-md">3D Print</span>
+</nav>
+</div>
+</header>
+<main class="max-w-container-max-width mx-auto pt-32 px-gutter grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-card h-80 rounded-xl"></div>
+<div class="bg-surface-card h-80 rounded-xl"></div>
+<div class="bg-surface-card h-80 rounded-xl"></div>
+<div class="bg-surface-card h-80 rounded-xl border border-primary"></div>
+<div class="bg-surface-card h-80 rounded-xl"></div>
+<div class="bg-surface-card h-80 rounded-xl"></div>
+</main>
+</div>
+<!-- Overlay & Modal Container -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-surface-deep/60 backdrop-blur-sm" id="modal-root">
+<!-- Modal Surface -->
+<div class="relative w-full max-w-5xl bg-surface-container-low/95 backdrop-blur-2xl rounded-2xl border border-border-glass shadow-[0_0_40px_rgba(0,212,255,0.15)] flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Close Button -->
+<button class="absolute top-4 right-4 z-[110] p-2 rounded-full bg-surface-container-high/50 hover:bg-surface-container-highest transition-colors group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">close</span>
+</button>
+<!-- Left Column: Media -->
+<div class="w-full md:w-1/2 p-gutter flex flex-col items-center justify-center bg-surface-container-lowest/30">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden glass-panel flex items-center justify-center mb-6">
+<img alt="Custom Anime LED Lamp" class="w-full h-full object-cover" data-alt="A high-end, premium laser-etched acrylic lamp featuring a detailed anime character design, glowing with a vibrant electric cyan neon light. The lamp sits on a sleek, minimalist black RGB base that radiates a soft blue light onto the dark, reflective surface of a modern workshop table. The overall aesthetic is futuristic, high-contrast, and professional." src="/assets/images/placeholder.svg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-deep/40 to-transparent pointer-events-none"></div>
+</div>
+<!-- Thumbnails Carousel -->
+<div class="flex gap-3 w-full justify-start overflow-x-auto no-scrollbar pb-2">
+<div class="flex-shrink-0 w-20 h-20 rounded-lg border-2 border-primary overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="Close up view of the cyan glowing acrylic edge with fine laser-etched details of an anime face." src="/assets/images/placeholder.svg"/>
+</div>
+<div class="flex-shrink-0 w-20 h-20 rounded-lg border border-border-glass overflow-hidden cursor-pointer hover:border-primary/50 transition-colors">
+<img class="w-full h-full object-cover" data-alt="An angle shot of the custom anime lamp in a dark room setting, showing the multi-color RGB glow capabilities." src="/assets/images/placeholder.svg"/>
+</div>
+<div class="flex-shrink-0 w-20 h-20 rounded-lg border border-border-glass overflow-hidden cursor-pointer hover:border-primary/50 transition-colors">
+<img class="w-full h-full object-cover" data-alt="Detailed view of the sleek black wooden lamp base with the glowing touch button control." src="/assets/images/placeholder.svg"/>
+</div>
+<div class="flex-shrink-0 w-20 h-20 rounded-lg border border-border-glass overflow-hidden cursor-pointer hover:border-primary/50 transition-colors">
+<img class="w-full h-full object-cover" data-alt="Packaging view of the custom lamp set, including the remote control and USB cable on a dark background." src="/assets/images/placeholder.svg"/>
+</div>
+</div>
+</div>
+<!-- Right Column: Product Details -->
+<div class="w-full md:w-1/2 p-gutter md:pl-0 flex flex-col justify-center">
+<div class="mb-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-label-sm bg-primary-container/20 text-primary border border-primary/30 backdrop-blur-md">
+                        Customizable
+                    </span>
+</div>
+<h1 class="font-display-lg text-headline-md text-on-surface mb-2 leading-tight">
+                    Custom Anime LED Acrylic Lamp
+                </h1>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex text-warning">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-on-surface-variant font-label-md">(48 Reviews)</span>
+</div>
+<div class="text-headline-sm font-bold text-primary mb-6">
+                    45.00 TND
+                </div>
+<p class="text-on-surface-variant font-body-md mb-8 leading-relaxed">
+                    Personalized laser-etched anime lamp with 16-color RGB base and remote control. Precision-crafted acrylic plate with your favorite character or custom design.
+                </p>
+<!-- Options -->
+<div class="space-y-6 mb-8">
+<div>
+<span class="block text-label-md text-on-surface mb-3 uppercase tracking-wider">Select Size</span>
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-lg border-2 border-primary bg-primary/10 text-primary font-bold transition-all">S</button>
+<button class="px-4 py-2 rounded-lg border border-border-glass bg-surface-container hover:border-primary/50 text-on-surface transition-all">M</button>
+<button class="px-4 py-2 rounded-lg border border-border-glass bg-surface-container hover:border-primary/50 text-on-surface transition-all">L</button>
+</div>
+</div>
+<div>
+<span class="block text-label-md text-on-surface mb-3 uppercase tracking-wider">Base Color</span>
+<div class="flex gap-3">
+<button class="w-8 h-8 rounded-full bg-surface-deep border-2 border-primary ring-2 ring-primary/20 ring-offset-2 ring-offset-surface-container-low"></button>
+<button class="w-8 h-8 rounded-full bg-white border border-border-glass"></button>
+<button class="w-8 h-8 rounded-full bg-surface-variant border border-border-glass"></button>
+</div>
+</div>
+</div>
+<!-- Quantity & Actions -->
+<div class="flex flex-wrap items-center gap-4 mb-8">
+<div class="flex items-center bg-surface-container-high rounded-xl border border-border-glass overflow-hidden">
+<button class="w-12 h-12 flex items-center justify-center hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface">remove</span>
+</button>
+<span class="w-10 text-center font-bold font-body-lg">1</span>
+<button class="w-12 h-12 flex items-center justify-center hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface">add</span>
+</button>
+</div>
+<div class="flex gap-2 flex-grow">
+<button class="flex-grow bg-primary text-on-primary font-bold py-3 px-6 rounded-xl neon-glow-hover flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined">edit_square</span>
+                            Customize Now
+                        </button>
+<button class="p-3 rounded-xl border border-border-glass bg-surface-container-highest/20 hover:bg-surface-container-highest transition-colors flex items-center justify-center group">
+<span class="material-symbols-outlined text-on-surface group-hover:text-error transition-colors">favorite</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full py-3 rounded-xl border border-primary/50 text-primary font-bold hover:bg-primary/10 transition-colors">
+                        Add to Cart
+                    </button>
+<a class="inline-flex items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+                        View Full Details
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple scale and glow animations on primary buttons
+        const primaryBtns = document.querySelectorAll('.neon-glow-hover');
+        primaryBtns.forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1.02)';
+            });
+        });
+
+        // Toggle heart fill
+        const heartBtn = document.querySelector('.group .material-symbols-outlined');
+        heartBtn.parentElement.addEventListener('click', () => {
+            const isFilled = heartBtn.style.fontVariationSettings.includes("'FILL' 1");
+            heartBtn.style.fontVariationSettings = isFilled ? "'FILL' 0" : "'FILL' 1";
+        });
+    </script>
+</body></html>

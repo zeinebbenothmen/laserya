@@ -1,0 +1,32 @@
+{
+  "name": "laserya-backend",
+  "version": "1.0.0",
+  "description": "Laserya.tn - Custom Laser Engraving & 3D Printing E-Commerce",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "build:css:public": "tailwindcss -c tailwind.config.public.js -i src/tailwind-input.css -o frontend/assets/css/tailwind-public.css --minify",
+    "build:css:admin": "tailwindcss -c tailwind.config.admin.js -i src/tailwind-input.css -o frontend/assets/css/tailwind-admin.css --minify",
+    "build:css": "npm run build:css:public && npm run build:css:admin"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.18.3",
+    "jsonwebtoken": "^9.0.2",
+    "mqtt": "^5.15.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^8.0.11",
+    "sql.js": "^1.12.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "nodemon": "^3.1.0",
+    "puppeteer-core": "^25.1.0",
+    "tailwindcss": "^3.4.19"
+  }
+}

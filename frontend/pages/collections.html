@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nos collections | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Thème clair « Noir & Or » (theme.js fournit toute la config Tailwind) -->
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface selection:bg-primary/30 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface-deep/80 backdrop-blur-xl border-b border-border-glass shadow-[0_0_20px_rgba(0,212,255,0.15)]">
+<div class="flex items-center justify-between px-gutter py-4 max-w-container-max-width mx-auto">
+<a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover transition-all group-hover:scale-105"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/index.html">Accueil</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/shop.html">Boutique</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/custom-order.html">Commande sur mesure</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/gift-ideas.html">Idées cadeaux</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/contact.html">Contact</a>
+</div>
+<div class="flex items-center space-x-5">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-primary transition-colors" onclick="window.location='/pages/search.html'">search</span>
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-primary transition-colors">favorite</span>
+<div class="relative" onclick="window.location='/pages/cart.html'" style="cursor:pointer">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-primary transition-colors">shopping_cart</span>
+<span data-cart-badge class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] font-bold px-1 rounded-full">0</span>
+</div>
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-primary transition-colors" onclick="window.location='/pages/my-orders.html'">account_circle</span>
+<button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+</div>
+</div>
+</nav>
+
+<!-- Header -->
+<header class="pt-32 pb-10 px-gutter max-w-container-max-width mx-auto">
+<div class="text-center md:text-left">
+<h1 class="font-display-lg text-display-lg mb-4 text-text-primary tracking-tight">Nos collections</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Explorez nos univers : par type de création ou par univers anime &amp; gaming. Cliquez une collection pour voir tous ses produits.</p>
+</div>
+</header>
+
+<main class="px-gutter max-w-container-max-width mx-auto pb-section-gap">
+<!-- Types de produits -->
+<section class="mb-16">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">category</span>
+<h2 class="font-headline-md text-headline-md text-text-primary">Types de produits</h2>
+</div>
+<div id="grid-types" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"></div>
+</section>
+
+<!-- Univers / Anime -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">sports_esports</span>
+<h2 class="font-headline-md text-headline-md text-text-primary">Univers &amp; Anime</h2>
+</div>
+<div id="grid-universe" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"></div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full border-t border-border-glass bg-surface-deep">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-gutter py-section-gap max-w-container-max-width mx-auto">
+<div class="space-y-4">
+<a href="/index.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-80"/>
+<span class="font-bold text-primary text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-on-surface-variant text-body-md">L'alliance du savoir-faire de précision et de l'innovation numérique pour donner vie à vos créations uniques.</p>
+</div>
+<div>
+<h4 class="text-text-primary font-bold mb-4">Liens utiles</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/shop.html">Toute la boutique</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/collections.html">Collections</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/contact.html">Livraison</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/contact.html">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-text-primary font-bold mb-4">Nos services</h4>
+<ul class="space-y-2">
+<li class="text-on-surface-variant text-label-md">Gravure laser</li>
+<li class="text-on-surface-variant text-label-md">Impression 3D</li>
+<li class="text-on-surface-variant text-label-md">Cadeaux personnalisés</li>
+</ul>
+</div>
+<div>
+<h4 class="text-text-primary font-bold mb-4">Newsletter</h4>
+<p class="text-on-surface-variant text-label-sm mb-4">Recevez nos nouveautés et éditions limitées.</p>
+<div class="flex gap-2">
+<input class="bg-surface-medium border border-border-glass rounded-lg py-2 px-3 flex-grow focus:ring-1 focus:ring-primary outline-none" placeholder="Adresse e-mail" type="email"/>
+<button class="bg-primary-container text-on-primary-container px-4 rounded-lg font-bold">S'inscrire</button>
+</div>
+</div>
+</div>
+<div class="border-t border-border-glass py-6 text-center text-on-surface-variant text-label-sm">© 2024 Laserya.tn. Savoir-faire de précision.</div>
+</footer>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script>
+// Regroupement des collections laserya.fr (mêmes handles que la boutique).
+const FILTER_TYPE = [
+  { label: 'Shadow Box',            handles: ['shadow-box-vos-heros-dans-la-lumiere'] },
+  { label: 'Light Box',             handles: ['light-boxs'] },
+  { label: 'Lampes & déco',         handles: ['lampes','lampe-decorative','lamp-led-cadeaux','lamp-led-jobs'] },
+  { label: 'Figurines',             handles: ['figurines','anime-figurine'] },
+  { label: 'Porte-clés',            handles: ['porte-cles','anime-porte-cle','porte-cle-jobs'] },
+  { label: 'Cadres anime',          handles: ['anime-frames'] },
+  { label: 'Keyboard Keys',         handles: ['keyboard-keys'] },
+  { label: 'Accessoires Crocs',     handles: ['accessoires-crocs'] },
+  { label: 'Couvercles de briquet', handles: ['couvercles-de-briquet'] },
+  { label: 'Supports cartes',       handles: ['support-de-cartes-de-visites'] },
+  { label: 'Jeux de cartes',        handles: ['jeux-de-cartes-accessoires'] },
+  { label: 'Gaming Setup',          handles: ['gaming-setup'] },
+  { label: 'Auto / Moto',           handles: ['lunivers-auto-moto'] },
+  { label: 'Déco maison',           handles: ['decoration-maison'] },
+  { label: 'Cadeaux métiers',       handles: ['cadeaux-metiers'] },
+  { label: 'Mariage & fiançailles', handles: ['mariage-et-fiancaille'] },
+  { label: 'Cadeaux',               handles: ['gift-for-our-loved-ones'] },
+];
+const FILTER_UNIVERSE = [
+  { label: 'One Piece',        handles: ['one-piece'] },
+  { label: 'Naruto',           handles: ['naruto'] },
+  { label: 'Dragon Ball',      handles: ['dragon-ball'] },
+  { label: 'Demon Slayer',     handles: ['demon-slayer'] },
+  { label: 'Jujutsu Kaisen',   handles: ['jujutsu-kaisen'] },
+  { label: 'Hunter x Hunter',  handles: ['hunter-x-hunter'] },
+  { label: 'Chainsaw Man',     handles: ['chainsaw-man'] },
+  { label: 'My Hero Academia', handles: ['my-hero-academia'] },
+  { label: 'Tokyo Ghoul',      handles: ['tokyo-ghoul'] },
+  { label: 'Marvel',           handles: ['marvel-univers'] },
+  { label: 'Pokémon',          handles: ['pokemon-world'] },
+];
+
+function getCols(p) {
+  try { const a = JSON.parse(p.collections || '[]'); return Array.isArray(a) ? a : []; }
+  catch { return []; }
+}
+
+function card(label, handles, items) {
+  const withImg = items.find(p => p.image_url);
+  const img = withImg ? withImg.image_url : '/assets/images/placeholder.svg';
+  const href = `/pages/shop.html?cols=${handles.join(',')}&label=${encodeURIComponent(label)}`;
+  return `
+  <a href="${href}" class="group relative block aspect-[4/3] rounded-2xl overflow-hidden glass-panel neon-glow-cyan-hover transition-all">
+    <img src="${img}" alt="${label}" onerror="this.src='/assets/images/placeholder.svg'"
+         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+    <span class="absolute top-3 right-3 bg-black/45 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-full">${items.length}</span>
+    <div class="absolute bottom-0 left-0 right-0 p-4">
+      <h3 class="text-white font-bold text-base md:text-lg leading-tight" style="font-family:Sora,sans-serif">${label}</h3>
+      <p class="text-white/75 text-xs md:text-sm mt-0.5">${items.length} produit${items.length > 1 ? 's' : ''}</p>
+    </div>
+  </a>`;
+}
+
+function build(containerId, list, all) {
+  const cont = document.getElementById(containerId);
+  if (!cont) return;
+  let html = '';
+  let shown = 0;
+  for (const { label, handles } of list) {
+    const items = all.filter(p => handles.some(h => getCols(p).includes(h)));
+    if (!items.length) continue;          // on masque les collections vides
+    html += card(label, handles, items);
+    shown++;
+  }
+  cont.innerHTML = shown ? html : '<p class="text-on-surface-variant col-span-full py-8 text-center">Aucune collection disponible.</p>';
+}
+
+(async () => {
+  let all = [];
+  try { all = await ProductsAPI.getAll(); } catch (e) {}
+  build('grid-types', FILTER_TYPE, all);
+  build('grid-universe', FILTER_UNIVERSE, all);
+})();
+</script>
+</body></html>

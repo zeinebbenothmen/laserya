@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════════
+  DÉMO DE DÉMONSTRATION — Boutique de mode féminine (clients Instagram)
+  ────────────────────────────────────────────────────────────────────
+  • Page autonome : s'ouvre au double-clic, aucun serveur requis.
+  • Fichier isolé dans /demos — ne touche PAS au projet Laserya.
+  • Style : élégant, éditorial. Palette porcelaine / encre / grenat / or.
+  • Typo : Cormorant Garamond (display) + Jost (texte) — pairing « luxe/fashion ».
+  ════════════════════════════════════════════════════════════════════
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MAISON LÉ — Mode féminine en édition limitée</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ═══ Palette (skill ui-ux-pro-max : luxe = premium + or ; fashion = blush + grenat) ═══ */
+  :root {
+    --porcelain: #F7F2EC;   /* fond chaud */
+    --cream:     #FBF8F3;
+    --ink:       #221B18;   /* texte espresso */
+    --taupe:     #8C7C73;   /* texte secondaire */
+    --garnet:    #9B2D4F;   /* accent brillant */
+    --wine:      #6E1F3C;   /* accent foncé (hover) */
+    --gold:      #C39A4B;   /* filets / détails luxe */
+    --gold-soft: #E3C98E;
+    --blush:     #EAD9D1;   /* teinte de section */
+    --line:      rgba(34,27,24,0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--porcelain); color: var(--ink);
+    font-family: "Jost", sans-serif; font-weight: 300; line-height: 1.7;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  h1, h2, h3, .serif { font-family: "Cormorant Garamond", serif; font-weight: 500; }
+
+  /* ═══ Utilitaires ═══ */
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 500; color: var(--garnet); }
+  .gold-rule { width: 54px; height: 1px; background: var(--gold); }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 32px; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+    background: var(--ink); color: var(--cream); border: 1px solid var(--ink);
+    transition: all .4s cubic-bezier(.2,.8,.2,1); position: relative; overflow: hidden;
+  }
+  .btn:hover { background: var(--garnet); border-color: var(--garnet); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--cream); }
+
+  /* ═══ Bandeau démo ═══ */
+  .demo-flag { text-align: center; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 7px; background: var(--ink); color: var(--gold-soft); }
+
+  /* ═══ Annonce défilante ═══ */
+  .marquee { background: var(--garnet); color: var(--cream); overflow: hidden; white-space: nowrap; }
+  .marquee-track { display: inline-block; padding: 11px 0; animation: slide 28s linear infinite; }
+  .marquee-track span { font-size: 11.5px; letter-spacing: 0.28em; text-transform: uppercase; margin: 0 38px; }
+  .marquee-track span::before { content: "✦"; color: var(--gold-soft); margin-right: 38px; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ═══ Navigation ═══ */
+  nav.bar { position: sticky; top: 0; z-index: 50; background: rgba(247,242,236,0.86);
+    backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 28px; }
+  .nav-links { display: flex; gap: 30px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .nav-links a { position: relative; padding-bottom: 3px; transition: color .3s; }
+  .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background: var(--garnet); transition: width .35s; }
+  .nav-links a:hover { color: var(--garnet); } .nav-links a:hover::after { width: 100%; }
+  .brand { text-align: center; font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 30px; letter-spacing: 0.18em; }
+  .brand b { color: var(--garnet); font-weight: 600; }
+  .nav-right { display: flex; gap: 22px; justify-content: flex-end; align-items: center; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .cart-link { position: relative; }
+  .cart-count { position: absolute; top: -9px; right: -13px; background: var(--garnet); color: #fff;
+    font-size: 9px; min-width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%;
+    font-family: "Jost"; letter-spacing: 0; transform: scale(0); transition: transform .3s cubic-bezier(.2,1.4,.4,1); }
+
+  /* ═══ Hero ═══ */
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; min-height: 84vh; align-items: stretch; }
+  .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 70px 64px; }
+  .hero-copy .reveal:nth-child(1){ animation-delay:.1s } .hero-copy .reveal:nth-child(2){ animation-delay:.22s }
+  .hero-copy .reveal:nth-child(3){ animation-delay:.34s } .hero-copy .reveal:nth-child(4){ animation-delay:.46s }
+  .hero h1 { font-size: clamp(46px, 6vw, 88px); line-height: 1.02; font-weight: 500; margin: 24px 0; }
+  .hero h1 em { font-style: italic; color: var(--garnet); }
+  .hero p { color: var(--taupe); max-width: 420px; font-size: 15.5px; margin-bottom: 36px; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-img { position: relative; overflow: hidden; background: var(--blush); }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-img .frame { position: absolute; inset: 26px; border: 1px solid rgba(255,255,255,.5); pointer-events: none; z-index: 2; }
+  .hero-tag { position: absolute; bottom: 30px; left: 30px; z-index: 3; background: rgba(247,242,236,.92);
+    padding: 14px 22px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .hero-tag b { color: var(--garnet); font-family: "Cormorant Garamond"; font-size: 17px; letter-spacing: 0; }
+
+  /* ═══ Valeurs ═══ */
+  .values { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; padding: 56px 28px; border-bottom: 1px solid var(--line); max-width: 1240px; margin: 0 auto; }
+  .value { text-align: center; } .value .ic { font-family: "Cormorant Garamond"; font-size: 30px; color: var(--gold); }
+  .value h4 { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; margin: 10px 0 6px; }
+  .value p { font-size: 13px; color: var(--taupe); }
+
+  /* ═══ Section header ═══ */
+  .sec-head { text-align: center; max-width: 560px; margin: 0 auto 50px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .sec-head h2 { font-size: clamp(34px, 4.5vw, 52px); line-height: 1.08; }
+  .sec-head p { color: var(--taupe); font-size: 15px; }
+
+  /* ═══ Grille produits ═══ */
+  section.collection { padding: 90px 0; }
+  .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px 26px; }
+  .card { position: relative; }
+  .card .ph { position: relative; overflow: hidden; aspect-ratio: 3/4; background: linear-gradient(135deg, var(--blush), #d8c3b8); }
+  .card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.2,.8,.2,1); display: block; }
+  .card:hover .ph img { transform: scale(1.06); }
+  .card .badge { position: absolute; top: 16px; left: 16px; z-index: 2; background: var(--cream); color: var(--ink);
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; padding: 6px 12px; }
+  .card .badge.gold { background: var(--gold); color: #fff; }
+  .card .fav { position: absolute; top: 14px; right: 14px; z-index: 2; width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(251,248,243,.85); border: none; display: grid; place-items: center; color: var(--ink);
+    transition: all .3s; backdrop-filter: blur(4px); }
+  .card .fav:hover { background: var(--garnet); color: #fff; }
+  .card .fav svg { width: 17px; height: 17px; }
+  .card .add { position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 2; padding: 13px;
+    background: rgba(34,27,24,.92); color: var(--cream); border: none; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; opacity: 0; transform: translateY(12px); transition: all .45s cubic-bezier(.2,.8,.2,1); }
+  .card:hover .add { opacity: 1; transform: none; }
+  .card .add:hover { background: var(--garnet); }
+  .card .meta { padding: 18px 2px 0; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .card .meta h3 { font-size: 22px; font-weight: 500; line-height: 1.15; }
+  .card .meta .price { font-family: "Jost"; font-size: 14px; font-weight: 400; white-space: nowrap; }
+  .card .meta .price s { color: var(--taupe); margin-right: 7px; font-weight: 300; }
+  .card .stars { font-size: 11px; color: var(--gold); letter-spacing: 2px; margin-top: 3px; }
+
+  /* ═══ Lookbook éditorial ═══ */
+  .lookbook { position: relative; background: var(--ink); color: var(--cream); overflow: hidden; }
+  .lookbook .inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 540px; }
+  .lookbook .lk-img { background: var(--wine); position: relative; overflow: hidden; }
+  .lookbook .lk-img img { width: 100%; height: 100%; object-fit: cover; opacity: .92; }
+  .lookbook .lk-copy { display: flex; flex-direction: column; justify-content: center; padding: 80px 70px; }
+  .lookbook .eyebrow { color: var(--gold-soft); }
+  .lookbook h2 { font-size: clamp(36px, 4.5vw, 60px); line-height: 1.06; margin: 20px 0 24px; color: var(--cream); }
+  .lookbook h2 em { font-style: italic; color: var(--gold-soft); }
+  .lookbook p { color: rgba(251,248,243,.72); max-width: 440px; font-size: 15px; margin-bottom: 34px; }
+  .lookbook .btn { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+  .lookbook .btn:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  /* ═══ Instagram ═══ */
+  section.insta { padding: 90px 0; text-align: center; }
+  .ig-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 46px; }
+  .ig { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--blush); }
+  .ig img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+  .ig:hover img { transform: scale(1.08); }
+  .ig .ov { position: absolute; inset: 0; background: rgba(110,31,60,.0); display: grid; place-items: center;
+    transition: background .4s; color: #fff; }
+  .ig:hover .ov { background: rgba(110,31,60,.45); }
+  .ig .ov svg { width: 26px; height: 26px; opacity: 0; transform: scale(.7); transition: all .4s; }
+  .ig:hover .ov svg { opacity: 1; transform: none; }
+  .ig-handle { display: inline-flex; align-items: center; gap: 9px; margin-top: 30px; font-size: 13px; letter-spacing: 0.14em; }
+  .ig-handle b { font-weight: 500; }
+
+  /* ═══ Newsletter ═══ */
+  section.news { background: var(--blush); padding: 80px 28px; text-align: center; }
+  .news h2 { font-size: clamp(32px,4vw,48px); margin: 16px 0; }
+  .news p { color: var(--taupe); max-width: 440px; margin: 0 auto 30px; font-size: 15px; }
+  .news form { display: flex; max-width: 440px; margin: 0 auto; border: 1px solid var(--ink); background: var(--cream); }
+  .news input { flex: 1; border: none; background: transparent; padding: 16px 20px; font-family: inherit; font-size: 14px; outline: none; color: var(--ink); }
+  .news button { border: none; background: var(--ink); color: var(--cream); padding: 0 28px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; transition: background .3s; }
+  .news button:hover { background: var(--garnet); }
+
+  /* ═══ Footer ═══ */
+  footer { background: var(--ink); color: rgba(251,248,243,.7); padding: 70px 28px 30px; }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1240px; margin: 0 auto; }
+  footer .brand { text-align: left; color: var(--cream); margin-bottom: 14px; }
+  footer h5 { color: var(--cream); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 18px; font-weight: 500; font-family: "Jost"; }
+  footer ul { list-style: none; } footer li { margin-bottom: 11px; font-size: 13.5px; transition: color .3s; cursor: pointer; }
+  footer li:hover { color: var(--gold-soft); }
+  footer p.tag { font-size: 13.5px; max-width: 300px; line-height: 1.7; }
+  .foot-bottom { max-width: 1240px; margin: 50px auto 0; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.1);
+    display: flex; justify-content: space-between; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; flex-wrap: wrap; gap: 12px; }
+
+  /* ═══ Toast ═══ */
+  #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(140%);
+    background: var(--ink); color: var(--cream); padding: 15px 26px; font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; display: flex; align-items: center; gap: 12px; z-index: 100; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+  #toast b { color: var(--gold-soft); font-family: "Cormorant Garamond"; font-size: 16px; letter-spacing: 0; text-transform: none; }
+
+  /* ═══ Révélation ═══ */
+  @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  .reveal { opacity: 0; animation: rise .9s cubic-bezier(.2,.8,.2,1) forwards; }
+  .io { opacity: 0; transform: translateY(34px); transition: opacity .9s, transform .9s cubic-bezier(.2,.8,.2,1); }
+  .io.in { opacity: 1; transform: none; }
+
+  /* ═══ Responsive ═══ */
+  @media (max-width: 900px) {
+    .nav-inner { grid-template-columns: auto 1fr auto; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-copy { padding: 56px 28px; order: 2; } .hero-img { min-height: 60vh; order: 1; }
+    .values { grid-template-columns: 1fr; gap: 30px; }
+    .grid { grid-template-columns: repeat(2,1fr); gap: 22px 16px; }
+    .lookbook .inner { grid-template-columns: 1fr; } .lookbook .lk-img { min-height: 340px; }
+    .lookbook .lk-copy { padding: 56px 28px; }
+    .ig-grid { grid-template-columns: repeat(2,1fr); }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .card .add { opacity: 1; transform: none; }
+  }
+  @media (max-width: 520px) {
+    .grid { grid-template-columns: 1fr; } .brand { font-size: 24px; }
+  }
+</style>
+</head>
+
+<body>
+<div class="demo-flag">Aperçu de démonstration · maquette par votre studio</div>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Édition limitée</span><span>Livraison offerte dès 150 TND</span><span>Pièces fabriquées en petite série</span><span>Nouveautés chaque semaine</span>
+    <span>Édition limitée</span><span>Livraison offerte dès 150 TND</span><span>Pièces fabriquées en petite série</span><span>Nouveautés chaque semaine</span>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav class="bar">
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="#collection">Collection</a>
+      <a href="#lookbook">Lookbook</a>
+      <a href="#insta">Instagram</a>
+    </div>
+    <a href="#" class="brand">MAISON&nbsp;<b>LÉ</b></a>
+    <div class="nav-right">
+      <a href="#" class="hide-sm">Recherche</a>
+      <a href="#" class="cart-link" id="cartLink">Panier
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow reveal">Collection Été · 2026</span>
+    <h1 class="reveal">L'élégance,<br><em>sans effort.</em></h1>
+    <p class="reveal">Des pièces féminines pensées en petites séries — coupes intemporelles, matières nobles, et ce supplément d'âme qui fait toute la différence.</p>
+    <div class="hero-actions reveal">
+      <a href="#collection" class="btn">Découvrir la collection</a>
+      <a href="#lookbook" class="btn btn-ghost">Le lookbook</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <div class="frame"></div>
+    <img alt="Mannequin portant une robe élégante" data-fallback="Maison Lé"
+      src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1100&q=80&auto=format&fit=crop"/>
+    <div class="hero-tag">Robe « Aurélie » · <b>189 TND</b></div>
+  </div>
+</header>
+
+<!-- ═══ VALEURS ═══ -->
+<div class="values io">
+  <div class="value"><div class="ic">✦</div><h4>Petites séries</h4><p>Chaque pièce est produite en quantité limitée, jamais rééditée.</p></div>
+  <div class="value"><div class="ic">❖</div><h4>Matières nobles</h4><p>Lin, soie et cotons sélectionnés pour leur tenue et leur douceur.</p></div>
+  <div class="value"><div class="ic">✶</div><h4>Livraison soignée</h4><p>Emballage signature, expédié sous 48h partout en Tunisie.</p></div>
+</div>
+
+<!-- ═══ COLLECTION ═══ -->
+<section class="collection wrap" id="collection">
+  <div class="sec-head io">
+    <span class="eyebrow">Les essentiels</span>
+    <h2>La nouvelle collection</h2>
+    <div class="gold-rule"></div>
+    <p>Une sélection de silhouettes faciles à vivre, à porter du matin au soir.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- ═══ LOOKBOOK ═══ -->
+<section class="lookbook io" id="lookbook">
+  <div class="inner">
+    <div class="lk-copy">
+      <span class="eyebrow">Lookbook · L'art du détail</span>
+      <h2>Le vestiaire d'une <em>femme libre.</em></h2>
+      <p>Inspirée par la lumière méditerranéenne, notre collection célèbre les coupes fluides, les tons chauds et les pièces qui traversent les saisons sans jamais se démoder.</p>
+      <a href="#collection" class="btn">Voir les pièces</a>
+    </div>
+    <div class="lk-img">
+      <img alt="Éditorial mode" data-fallback="Lookbook"
+        src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&q=80&auto=format&fit=crop"/>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSTAGRAM ═══ -->
+<section class="insta wrap" id="insta">
+  <div class="sec-head io" style="margin-bottom:0">
+    <span class="eyebrow">@maison.le</span>
+    <h2>Suivez-nous</h2>
+    <div class="gold-rule"></div>
+    <p>Identifiez-nous avec <b style="color:var(--garnet)">#MaisonLé</b> pour apparaître dans notre galerie.</p>
+  </div>
+  <div class="ig-grid io" id="igGrid"></div>
+  <a href="#" class="ig-handle">
+    <svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    <b>@maison.le</b> · 24,8k abonnés
+  </a>
+</section>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="news io">
+  <span class="eyebrow">Le cercle privé</span>
+  <h2>Les nouveautés en avant-première</h2>
+  <p>Inscrivez-vous et recevez −10 % sur votre première commande, ainsi que nos ventes privées.</p>
+  <form onsubmit="subscribe(event)">
+    <input type="email" placeholder="Votre adresse e-mail" required/>
+    <button type="submit">S'inscrire</button>
+  </form>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="brand">MAISON&nbsp;<b>LÉ</b></div>
+      <p class="tag">Maison de mode féminine en petites séries. Pensée, dessinée et expédiée avec soin depuis la Tunisie.</p>
+    </div>
+    <div><h5>Boutique</h5><ul><li>Nouveautés</li><li>Robes</li><li>Tops & blouses</li><li>Accessoires</li></ul></div>
+    <div><h5>Maison</h5><ul><li>Notre histoire</li><li>Le journal</li><li>Tailles & guide</li><li>Nous écrire</li></ul></div>
+    <div><h5>Service</h5><ul><li>Livraison & retours</li><li>Suivi de commande</li><li>FAQ</li><li>Instagram</li></ul></div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Maison Lé — Tous droits réservés</span>
+    <span>Maquette de démonstration · conçue pour vous</span>
+  </div>
+</footer>
+
+<div id="toast"><span>✦</span><span id="toastMsg">Ajouté au panier</span></div>
+
+<script>
+/* ════════════ Données produits (intégrées, aucun serveur) ════════════ */
+const IMGS = [
+  "1539109136881-3be0616acf4b","1485462537746-965f33f7f6a7","1496747611176-843222e1e57c",
+  "1525507119028-ed4c629a60a3","1469334031218-e382a71b716b","1487412720507-e7ab37603c6f"
+];
+const PRODUCTS = [
+  { name:"Robe « Aurélie »",     price:189, old:0,   badge:"Nouveau", gold:true,  img:"1490481651871-ab68de25d43d" },
+  { name:"Blouse « Camille »",   price:95,  old:120, badge:"Édition limitée", gold:false, img:"1485462537746-965f33f7f6a7" },
+  { name:"Ensemble « Solène »",  price:145, old:0,   badge:"Best-seller", gold:true, img:"1496747611176-843222e1e57c" },
+  { name:"Jupe « Margaux »",     price:79,  old:0,   badge:"Nouveau", gold:false, img:"1525507119028-ed4c629a60a3" },
+  { name:"Robe « Joséphine »",   price:210, old:260, badge:"Petite série", gold:false, img:"1469334031218-e382a71b716b" },
+  { name:"Top « Inès »",         price:68,  old:0,   badge:"Nouveau", gold:false, img:"1539109136881-3be0616acf4b" },
+];
+
+/* SVG de secours élégant (palette maison) si une photo ne charge pas */
+function fallback(label) {
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'>
+    <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+    <stop offset='0' stop-color='%23EAD9D1'/><stop offset='1' stop-color='%23C9B0A4'/></linearGradient></defs>
+    <rect width='600' height='800' fill='url(%23g)'/>
+    <text x='300' y='400' fill='%236E1F3C' font-family='Georgia,serif' font-size='34' font-style='italic' text-anchor='middle'>${label}</text>
+    <text x='300' y='440' fill='%239B2D4F' font-family='sans-serif' font-size='13' letter-spacing='4' text-anchor='middle'>MAISON LÉ</text></svg>`;
+  return "data:image/svg+xml," + svg.replace(/\n/g,'').replace(/#/g,'%23');
+}
+function imgTag(id, alt, label) {
+  return `<img alt="${alt}" loading="lazy" src="https://images.unsplash.com/photo-${id}?w=700&q=80&auto=format&fit=crop"
+    onerror="this.onerror=null;this.src='${fallback(label)}'"/>`;
+}
+
+/* ════════════ Rendu de la grille ════════════ */
+const heart = `<svg class="fav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9C.5 9 2 4.5 6 4.5c2.2 0 3.4 1.3 4 2.2.6-.9 1.8-2.2 4-2.2 4 0 5.5 4.5 4 7.5-2.5 4.4-10 9-10 9z"/></svg>`;
+const grid = document.getElementById('grid');
+grid.innerHTML = PRODUCTS.map((p,i) => {
+  const onSale = p.old > p.price;
+  const price = onSale
+    ? `<span class="price"><s>${p.old} TND</s>${p.price} TND</span>`
+    : `<span class="price">${p.price} TND</span>`;
+  return `<article class="card io" style="transition-delay:${i*0.08}s">
+    <div class="ph">
+      <span class="badge ${p.gold?'gold':''}">${p.badge}</span>
+      <button class="fav" aria-label="Ajouter aux favoris" onclick="fav(this)">${heart}</button>
+      ${imgTag(p.img, p.name, p.name.replace(/«|»/g,'').trim())}
+      <button class="add" onclick="addCart('${p.name.replace(/'/g,'')}')">Ajouter au panier</button>
+    </div>
+    <div class="meta">
+      <div><h3>${p.name}</h3><div class="stars">★★★★★</div></div>
+      ${price}
+    </div>
+  </article>`;
+}).join('');
+
+/* ════════════ Galerie Instagram ════════════ */
+const igCam = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`;
+document.getElementById('igGrid').innerHTML = IMGS.map(id =>
+  `<a class="ig" href="#">${imgTag(id,'Publication Instagram','@maison.le')}<span class="ov">${igCam}</span></a>`
+).join('');
+
+/* ════════════ Interactions ════════════ */
+let cart = 0;
+const toast = document.getElementById('toast');
+let tT;
+function showToast(msg) {
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show'); clearTimeout(tT);
+  tT = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+function addCart(name) {
+  cart++;
+  const c = document.getElementById('cartCount');
+  c.textContent = cart; c.style.transform = 'scale(1)';
+  showToast(`« ${name} » ajouté au panier`);
+}
+function fav(btn) {
+  btn.classList.toggle('on');
+  const on = btn.style.background === '';
+  btn.style.background = btn.style.background ? '' : 'var(--garnet)';
+  btn.style.color = btn.style.color ? '' : '#fff';
+  showToast('Ajouté à vos favoris');
+}
+function subscribe(e) { e.preventDefault(); e.target.reset(); showToast('Bienvenue dans le cercle privé ✦'); }
+
+/* ════════════ Révélation au scroll ════════════ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.io').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

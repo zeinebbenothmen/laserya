@@ -1,0 +1,424 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Custom Requests Management | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101419;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3c494e;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #859398;
+        }
+        .glass-card {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside id="admin-sidebar" data-active="custom"></aside>
+<!-- TopNavBar -->
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/20 rounded-full py-2 pl-10 pr-4 text-body-sm focus:outline-none focus:border-primary transition-all" placeholder="Rechercher une demande…" type="text">
+<div class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] bg-surface-variant px-1.5 py-0.5 rounded border border-outline-variant/30 text-on-surface-variant font-mono-ui">⌘K</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center text-primary"><span class="material-symbols-outlined">person</span></div>
+<p class="font-label-md text-label-md text-on-surface hidden lg:block">Administrateur</p>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-[calc(64px+32px)] pl-[calc(260px+32px)] pr-gutter pb-gutter min-h-screen">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Demandes perso</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gérez les demandes de création sur mesure (idées, photos, devis).</p>
+</div>
+</div>
+<!-- Dashboard Widgets -->
+<div class="grid grid-cols-4 gap-gutter mb-8">
+<div class="glass-card p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary material-symbols-outlined p-2 bg-primary/10 rounded">pending_actions</span>
+<span class="text-xs font-label-md text-green-400">+12% vs LW</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Pending Review</p>
+<h3 class="font-display-lg text-display-lg mt-1">24</h3>
+</div>
+<div class="glass-card p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="text-secondary material-symbols-outlined p-2 bg-secondary/10 rounded">send</span>
+<span class="text-xs font-label-md text-green-400">+5% vs LW</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Quotes Sent</p>
+<h3 class="font-display-lg text-display-lg mt-1">156</h3>
+</div>
+<div class="glass-card p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="text-tertiary material-symbols-outlined p-2 bg-tertiary/10 rounded">check_circle</span>
+<span class="text-xs font-label-md text-on-surface-variant">Stable</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Accepted Rate</p>
+<h3 class="font-display-lg text-display-lg mt-1">68%</h3>
+</div>
+<div class="glass-card p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="text-error material-symbols-outlined p-2 bg-error/10 rounded">timer_off</span>
+<span class="text-xs font-label-md text-error">-2% vs LW</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Expired Quotes</p>
+<h3 class="font-display-lg text-display-lg mt-1">12</h3>
+</div>
+</div>
+<!-- Custom Requests Table -->
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h4 class="font-headline-sm text-headline-sm">Active Requests</h4>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-label-sm">Laser: 12</span>
+<span class="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-label-sm">3D Print: 8</span>
+</div>
+</div>
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container/50">
+<tr>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase text-on-surface-variant border-b border-outline-variant/10">N° demande</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase text-on-surface-variant border-b border-outline-variant/10">Date</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase text-on-surface-variant border-b border-outline-variant/10">Client</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase text-on-surface-variant border-b border-outline-variant/10">Type</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase text-on-surface-variant border-b border-outline-variant/10">Aperçu</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase text-on-surface-variant border-b border-outline-variant/10">Statut</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase text-on-surface-variant border-b border-outline-variant/10 text-right">Actions</th>
+</tr>
+</thead>
+<tbody id="cr-tbody" class="divide-y divide-outline-variant/5">
+<!-- Row 1 -->
+<tr class="hover:bg-on-surface/[0.03] transition-colors cursor-pointer group" onclick="toggleDrawer()">
+<td class="px-6 py-4 font-mono-ui text-primary">#CR-9842</td>
+<td class="px-6 py-4 text-body-sm text-on-surface-variant">20 Oct, 09:45</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold">SM</div>
+<span class="text-body-sm font-medium">Sami Mansour</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-label-sm flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">architecture</span> Laser</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A detailed digital macro photograph of an intricate laser-cut wooden geometric pattern with clean burnt edges, showcasing technical precision and high-quality material textures. The scene is shot in a professional photography studio with dark, atmospheric lighting and sharp focus on the wood grain and carved recesses." src="/assets/images/placeholder.svg">
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-medium bg-primary/10 text-primary border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                Pending Review
+                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-all" title="Message"><span class="material-symbols-outlined text-[18px]">chat</span></button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-all" title="Send Quote"><span class="material-symbols-outlined text-[18px]">monetization_on</span></button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-error/10 hover:text-error transition-all" title="Archive"><span class="material-symbols-outlined text-[18px]">archive</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-on-surface/[0.03] transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-mono-ui text-primary">#CR-9839</td>
+<td class="px-6 py-4 text-body-sm text-on-surface-variant">19 Oct, 16:12</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold">AL</div>
+<span class="text-body-sm font-medium">Amira Labidi</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-label-sm flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-secondary">3d_rotation</span> 3D Print</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-fidelity 3D rendering of a technical mechanical part showing complex internal structures and lattices, displayed against a dark obsidian background with cyan highlight accents. The visual style is reminiscent of high-end CAD software interfaces, focusing on industrial design excellence and futuristic manufacturing capabilities." src="/assets/images/placeholder.svg">
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-medium bg-secondary/10 text-secondary border border-secondary/20">
+                                Quote Sent
+                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-[18px]">chat</span></button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-[18px]">monetization_on</span></button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-error/10 hover:text-error transition-all"><span class="material-symbols-outlined text-[18px]">archive</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-on-surface/[0.03] transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-mono-ui text-primary">#CR-9831</td>
+<td class="px-6 py-4 text-body-sm text-on-surface-variant">19 Oct, 11:30</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold">FK</div>
+<span class="text-body-sm font-medium">Fares Karray</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-label-sm flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">architecture</span> Laser</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated close-up of custom laser-engraved typography on a matte black metal surface. The engraving reveals a bright silver core underneath, creating a sharp high-contrast look. The lighting is focused and dramatic, emphasizing the precision of the manufacturing process in a high-tech dark workshop environment." src="/assets/images/placeholder.svg">
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+                                Accepted
+                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-[18px]">chat</span></button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-[18px]">history</span></button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-error/10 hover:text-error transition-all"><span class="material-symbols-outlined text-[18px]">archive</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<!-- Detail Drawer -->
+<div class="fixed inset-y-0 right-0 w-[500px] bg-surface-container-low border-l border-outline-variant/30 shadow-2xl z-[60] transform translate-x-full transition-transform duration-300 ease-in-out" id="detailDrawer">
+<div class="h-full flex flex-col">
+<!-- Header -->
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<div>
+<span class="text-label-sm text-primary font-bold uppercase tracking-widest">Request Details</span>
+<h3 class="font-headline-sm text-headline-sm mt-1">#CR-9842 | Sami Mansour</h3>
+</div>
+<button class="p-2 hover:bg-surface-variant/50 rounded-full transition-colors" onclick="toggleDrawer()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Large Preview -->
+<div class="space-y-3">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase">Design File Preview</p>
+<div class="relative group rounded-xl overflow-hidden border border-outline-variant/20 bg-black aspect-video flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A professional, ultra-high-resolution close-up view of a laser cutting machine in operation, carving an intricate organic design into a dark walnut wood board. Tiny orange sparks and a focused blue laser beam are visible, set against a dark industrial workshop background. The scene is lit with cinematic precision to highlight the material texture and technological process." id="drawerImage" src="/assets/images/placeholder.svg">
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+<button class="bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-full"><span class="material-symbols-outlined">zoom_in</span></button>
+</div>
+</div>
+<div class="flex justify-between text-label-sm text-on-surface-variant font-mono-ui bg-surface-container-high/50 p-2 rounded">
+<span class="">FILE: fractal_walnut_v2.svg</span>
+<span class="">SIZE: 4.2 MB</span>
+</div>
+</div>
+<!-- Customer Notes -->
+<div class="space-y-3">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase">Customer Instruction</p>
+<div class="p-4 bg-surface-container border-l-4 border-primary rounded text-body-md italic leading-relaxed">
+                        "I want the engraving deep on walnut wood. This is for a centerpiece for a high-end luxury furniture store. Needs clean edges, no charring on the surface if possible. Please quote for 10 units."
+                    </div>
+</div>
+<!-- Technical Specs -->
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-lg bg-surface-container-high/40 border border-outline-variant/10">
+<p class="text-label-sm text-on-surface-variant">Material</p>
+<p class="font-medium text-body-sm mt-1">Dark Walnut (Solid)</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high/40 border border-outline-variant/10">
+<p class="text-label-sm text-on-surface-variant">Thickness</p>
+<p class="font-medium text-body-sm mt-1">12mm</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high/40 border border-outline-variant/10">
+<p class="text-label-sm text-on-surface-variant">Cut Length</p>
+<p class="font-medium text-body-sm mt-1">1,450 mm</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high/40 border border-outline-variant/10">
+<p class="text-label-sm text-on-surface-variant">Est. Time</p>
+<p class="font-medium text-body-sm mt-1">42 mins / unit</p>
+</div>
+</div>
+<!-- Quote Calculator -->
+<div class="p-6 bg-primary/5 border border-primary/20 rounded-xl space-y-4">
+<div class="flex justify-between items-center">
+<h4 class="font-label-md text-label-md text-primary uppercase">Quote Calculator</h4>
+<span class="material-symbols-outlined text-primary">calculate</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Base Material (10 units)</span>
+<span class="text-body-sm font-mono-ui">$120.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Laser Processing Fee</span>
+<span class="text-body-sm font-mono-ui">$210.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Setup &amp; Hand-finishing</span>
+<span class="text-body-sm font-mono-ui">$45.00</span>
+</div>
+<hr class="border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-on-surface">Suggested Total</span>
+<span class="text-headline-sm text-primary font-bold">$375.00</span>
+</div>
+</div>
+<div class="pt-2">
+<label class="block text-label-sm text-on-surface-variant mb-2">Adjust Final Quote ($)</label>
+<input class="w-full bg-surface-container border border-outline-variant/20 rounded px-3 py-2 text-body-md focus:border-primary focus:ring-0" type="number" value="375.00">
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 border-t border-outline-variant/10 bg-surface-container/30 flex gap-3">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md text-label-md rounded hover:opacity-90 active:scale-95 transition-all">
+                    Send Quote
+                </button>
+<button class="px-4 py-3 border border-outline-variant/30 rounded font-label-md text-label-md hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="px-4 py-3 border border-outline-variant/30 rounded font-label-md text-label-md hover:bg-error/10 hover:text-error hover:border-error/30 transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="fixed top-0 right-0 -z-10 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+<div class="fixed bottom-0 left-0 -z-10 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+if (!Auth.isAdmin()) window.location.href = '/admin/dashboard.html';
+
+const CR_STATUS = { new:'Nouveau', reviewing:'En révision', quoted:'Devis envoyé', approved:'Accepté', in_production:'En production', done:'Terminé', cancelled:'Annulé' };
+const CR_COLORS = { new:'text-warning border-warning/30 bg-warning/10', reviewing:'text-primary border-primary/30 bg-primary/10', quoted:'text-secondary border-secondary/30 bg-secondary/10', approved:'text-success border-success/30 bg-success/10', in_production:'text-primary border-primary/30 bg-primary/10', done:'text-success border-success/30 bg-success/10', cancelled:'text-error border-error/30 bg-error/10' };
+let currentReq = null;
+
+function toggleDrawer(req) {
+    const drawer = document.getElementById('detailDrawer');
+    if (req) {
+        currentReq = req;
+        fillDrawer(req);
+        drawer.classList.remove('translate-x-full');
+    } else {
+        drawer.classList.add('translate-x-full');
+        currentReq = null;
+    }
+}
+
+function fillDrawer(req) {
+    const d = drawer => drawer.querySelector.bind(drawer);
+    const dEl = document.getElementById('detailDrawer');
+    dEl.querySelectorAll('[data-field]').forEach(el => {
+        const f = el.dataset.field;
+        if (req[f] !== undefined) el.textContent = req[f];
+    });
+    // Populate main fields
+    dEl.querySelector('#drawer-name')?.textContent && (dEl.querySelector('#drawer-name').textContent = req.customer_name || '—');
+    dEl.querySelector('#drawer-phone')?.textContent && (dEl.querySelector('#drawer-phone').textContent = req.customer_phone || '—');
+    dEl.querySelector('#drawer-type')?.textContent && (dEl.querySelector('#drawer-type').textContent = req.product_type || '—');
+    dEl.querySelector('#drawer-notes')?.textContent && (dEl.querySelector('#drawer-notes').textContent = req.notes || req.personalization_text || '—');
+    const img = dEl.querySelector('#drawer-image');
+    if (img) img.src = req.image_url || '';
+    // Status select
+    const sel = dEl.querySelector('select[name="drawer-status"]');
+    if (sel) sel.value = req.status || 'new';
+}
+
+function renderCRRow(r) {
+    const date = new Date(r.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric' });
+    const cls = CR_COLORS[r.status] || CR_COLORS.new;
+    const initials = r.customer_name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    return `<tr class="hover:bg-on-surface/[0.03] transition-colors cursor-pointer group" onclick="toggleDrawer(${JSON.stringify(r).replace(/"/g,"&quot;")})">
+      <td class="p-4 pl-6"><span class="font-mono-ui text-[11px] text-primary">#${r.id.slice(0,8).toUpperCase()}</span></td>
+      <td class="p-4 text-body-sm text-on-surface-variant">${date}</td>
+      <td class="p-4"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-secondary/20 flex items-center justify-center text-secondary text-[10px] font-bold">${initials}</div><span class="font-label-md text-on-surface">${r.customer_name}</span></div></td>
+      <td class="p-4"><span class="text-body-sm text-on-surface">${r.product_type}</span></td>
+      <td class="p-4">${r.image_url ? `<img src="${r.image_url}" class="w-10 h-10 rounded object-cover border border-outline-variant/20">` : '<span class="text-on-surface-variant text-[10px]">—</span>'}</td>
+      <td class="p-4"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border text-[10px] font-bold ${cls}">${CR_STATUS[r.status]||r.status}</span></td>
+      <td class="p-4 pr-6">
+        <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+          <select onchange="updateCRStatus('${r.id}', this.value); event.stopPropagation();" class="bg-surface-container border border-outline-variant/20 rounded text-[10px] px-1 py-0.5 outline-none" onclick="event.stopPropagation()">
+            ${Object.entries(CR_STATUS).map(([v,l])=>`<option value="${v}" ${r.status===v?'selected':''}>${l}</option>`).join('')}
+          </select>
+          <button onclick="deleteCR('${r.id}'); event.stopPropagation();" class="p-1 hover:text-error rounded transition-colors"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+        </div>
+      </td>
+    </tr>`;
+}
+
+async function loadCR(search = '') {
+    const tbody = document.getElementById('cr-tbody');
+    try {
+        const reqs = await CustomAPI.getAll(search ? { search } : {});
+        tbody.innerHTML = reqs.length ? reqs.map(renderCRRow).join('') : `<tr><td colspan="7" class="p-10 text-center text-on-surface-variant">Aucune demande</td></tr>`;
+        // Update stat cards
+        const stats = document.querySelectorAll('.glass-card .text-headline-md, .glass-card .font-headline-md');
+        if (stats[0]) stats[0].textContent = reqs.filter(r=>r.status==='new').length;
+        if (stats[1]) stats[1].textContent = reqs.filter(r=>r.status==='quoted').length;
+        if (stats[2]) stats[2].textContent = reqs.filter(r=>r.status==='approved').length;
+    } catch (e) {
+        tbody.innerHTML = `<tr><td colspan="7" class="p-10 text-center text-error">${e.message}</td></tr>`;
+    }
+}
+
+async function updateCRStatus(id, status) {
+    try { await CustomAPI.setStatus(id, status); showToast('Statut mis à jour', 'success'); loadCR(); }
+    catch (e) { showToast(e.message, 'error'); }
+}
+async function deleteCR(id) {
+    if (!confirm('Supprimer cette demande ?')) return;
+    try { await CustomAPI.delete(id); showToast('Demande supprimée', 'success'); loadCR(); }
+    catch (e) { showToast(e.message, 'error'); }
+}
+
+// ── Drawer send quote button ───────────────────────────────
+document.querySelector('#detailDrawer button')?.addEventListener('click', async () => {
+    if (!currentReq) return;
+    await updateCRStatus(currentReq.id, 'quoted');
+    toggleDrawer(null);
+});
+
+// ── Search ─────────────────────────────────────────────────
+let searchTimer;
+document.querySelector('input[type="text"]')?.addEventListener('input', e => { clearTimeout(searchTimer); searchTimer = setTimeout(() => loadCR(e.target.value), 300); });
+
+// ── Nav + keyboard ─────────────────────────────────────────
+const NAV = { 'Dashboard':'/admin/dashboard.html','Orders':'/admin/orders.html','Products':'/admin/products.html','3D Print Requests':'/pages/3d-print.html','Production Board':'/admin/production-board.html' };
+document.querySelectorAll('aside nav a').forEach(a => { const t = a.textContent.trim(); if (NAV[t]) a.href = NAV[t]; });
+document.querySelectorAll('a,button').forEach(el => { if (el.textContent.trim()==='Logout') el.addEventListener('click', ()=>Auth.logout()); });
+document.addEventListener('keydown', e => { if ((e.metaKey||e.ctrlKey)&&e.key==='k') { e.preventDefault(); document.querySelector('input[type="text"]')?.focus(); }});
+
+loadCR();
+    </script>
+
+
+</body></html>

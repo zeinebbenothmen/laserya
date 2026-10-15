@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+<html class="" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Commande personnalisée | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { background-color: #0b0e13; color: #e0e2ea; }
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .step-inactive { opacity: 0.4; filter: grayscale(1); }
+        .neon-border-active { border-color: #00d4ff; box-shadow: 0 0 15px rgba(0, 212, 255, 0.2); }
+        input:focus, textarea:focus { border-color: #00d4ff !important; outline: none; box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #3c494e; border-radius: 10px; }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[rgba(7,10,15,0.8)] backdrop-blur-[16px] border-b border-border-glass shadow-sm">
+<div class="flex justify-between items-center h-20 px-gutter max-w-container-max-width mx-auto">
+<a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:scale-[1.02] transition-all duration-300" href="/">Accueil</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:scale-[1.02] transition-all duration-300" href="/shop">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+<a class="font-label-md text-label-md text-primary-container font-bold border-b-2 border-primary-container pb-1 transition-all duration-300" href="/custom-order">Commande sur mesure</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:scale-[1.02] transition-all duration-300" href="/gift-ideas">Idées cadeaux</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:scale-[1.02] transition-all duration-300" href="/track-order">Suivi commande</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container hover:scale-[1.02] transition-all duration-300" href="/contact">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary-container">shopping_cart</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary-container">person</button>
+<button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap px-gutter max-w-container-max-width mx-auto">
+<!-- Progress Indicator -->
+<div class="max-w-4xl mx-auto mb-12">
+<div class="flex justify-between relative">
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-border-glass -z-10 -translate-y-1/2"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2" id="nav-step-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold shadow-[0_0_15px_rgba(0,212,255,0.4)]">1</div>
+<span class="font-label-sm text-primary-container">Type</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2 step-inactive" id="nav-step-2">
+<div class="w-10 h-10 rounded-full bg-surface-card border border-border-glass flex items-center justify-center font-bold">2</div>
+<span class="font-label-sm text-on-surface-variant">Détails</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2 step-inactive" id="nav-step-3">
+<div class="w-10 h-10 rounded-full bg-surface-card border border-border-glass flex items-center justify-center font-bold">3</div>
+<span class="font-label-sm text-on-surface-variant">Fichiers</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-2 step-inactive" id="nav-step-4">
+<div class="w-10 h-10 rounded-full bg-surface-card border border-border-glass flex items-center justify-center font-bold">4</div>
+<span class="font-label-sm text-on-surface-variant">Inspiration</span>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-2 step-inactive" id="nav-step-5">
+<div class="w-10 h-10 rounded-full bg-surface-card border border-border-glass flex items-center justify-center font-bold">5</div>
+<span class="font-label-sm text-on-surface-variant">Estimation</span>
+</div>
+<!-- Step 6 -->
+<div class="flex flex-col items-center gap-2 step-inactive" id="nav-step-6">
+<div class="w-10 h-10 rounded-full bg-surface-card border border-border-glass flex items-center justify-center font-bold">6</div>
+<span class="font-label-sm text-on-surface-variant">Contact</span>
+</div>
+<!-- Step 7 -->
+<div class="flex flex-col items-center gap-2 step-inactive" id="nav-step-7">
+<div class="w-10 h-10 rounded-full bg-surface-card border border-border-glass flex items-center justify-center font-bold">7</div>
+<span class="font-label-sm text-on-surface-variant">Récap</span>
+</div>
+</div>
+</div>
+<!-- Form Container -->
+<div class="glass-panel max-w-4xl mx-auto rounded-xl p-8 min-h-[600px] flex flex-col">
+<!-- STEP 1: WHAT DO YOU WANT TO CREATE -->
+<section class="flex-grow animate-fade-in" id="step-1-content">
+<h1 class="font-headline-md text-headline-md mb-2">Que voulez-vous créer ?</h1>
+<p class="text-text-secondary mb-8">Choisissez la catégorie qui correspond le mieux à votre idée.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+<button class="p-6 glass-panel rounded-lg text-left hover:neon-border-active transition-all group flex flex-col gap-4">
+<span class="material-symbols-outlined text-4xl text-primary">lightbulb</span>
+<span class="font-headline-sm text-[18px]">Lampe LED acrylique</span>
+</button>
+<button class="p-6 glass-panel rounded-lg text-left hover:neon-border-active transition-all group flex flex-col gap-4">
+<span class="material-symbols-outlined text-4xl text-primary">vpn_key</span>
+<span class="font-headline-sm text-[18px]">Porte-clés</span>
+</button>
+<button class="p-6 glass-panel rounded-lg text-left hover:neon-border-active transition-all group flex flex-col gap-4">
+<span class="material-symbols-outlined text-4xl text-primary">token</span>
+<span class="font-headline-sm text-[18px]">Figurine 3D</span>
+</button>
+<button class="p-6 glass-panel rounded-lg text-left hover:neon-border-active transition-all group flex flex-col gap-4">
+<span class="material-symbols-outlined text-4xl text-primary">display_settings</span>
+<span class="font-headline-sm text-[18px]">Présentoir pro</span>
+</button>
+<button class="p-6 glass-panel rounded-lg text-left hover:neon-border-active transition-all group flex flex-col gap-4">
+<span class="material-symbols-outlined text-4xl text-primary">desk</span>
+<span class="font-headline-sm text-[18px]">Accessoire de bureau</span>
+</button>
+<button class="p-6 glass-panel rounded-lg text-left hover:neon-border-active transition-all group flex flex-col gap-4">
+<span class="material-symbols-outlined text-4xl text-primary">wallpaper</span>
+<span class="font-headline-sm text-[18px]">Déco murale</span>
+</button>
+<button class="p-6 glass-panel rounded-lg text-left hover:neon-border-active transition-all group flex flex-col gap-4 sm:col-span-2 lg:col-span-1">
+<span class="material-symbols-outlined text-4xl text-primary">auto_fix_high</span>
+<span class="font-headline-sm text-[18px]">Autre idée</span>
+</button>
+</div>
+</section>
+<!-- STEP 2: DESCRIBE YOUR IDEA -->
+<section class="hidden flex-grow animate-fade-in" id="step-2-content">
+<h1 class="font-headline-md text-headline-md mb-2">Décrivez votre idée</h1>
+<p class="text-text-secondary mb-8">Indiquez les dimensions, les couleurs et les textes à inclure.</p>
+<div class="flex flex-col gap-6">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Description détaillée</label>
+<textarea class="w-full h-32 bg-surface-container-lowest border border-border-glass rounded-lg p-4 font-body-md text-on-surface custom-scrollbar" placeholder="Décrivez les matières, les couleurs et les détails précis..."></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Nom / Texte</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="Texte à inclure" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Taille (cm)</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="ex. 20x30" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Palette de couleurs</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="Bleu néon, noir mat" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Quantité</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" type="number" value="1"/>
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-sm text-on-surface-variant mb-1">Date souhaitée (optionnel)</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" type="date"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-3">Étiquettes d'inspiration</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-1.5 rounded-full border border-secondary-container text-secondary text-label-sm hover:bg-secondary-container transition-colors">Anime</button>
+<button class="px-4 py-1.5 rounded-full border border-secondary-container text-secondary text-label-sm hover:bg-secondary-container transition-colors">Cadeau couple</button>
+<button class="px-4 py-1.5 rounded-full border border-secondary-container text-secondary text-label-sm hover:bg-secondary-container transition-colors">Business</button>
+<button class="px-4 py-1.5 rounded-full border border-secondary-container text-secondary text-label-sm hover:bg-secondary-container transition-colors">Gaming</button>
+<button class="px-4 py-1.5 rounded-full border border-secondary-container text-secondary text-label-sm hover:bg-secondary-container transition-colors">Voiture</button>
+<button class="px-4 py-1.5 rounded-full border border-secondary-container text-secondary text-label-sm hover:bg-secondary-container transition-colors">Design islamique</button>
+<button class="px-4 py-1.5 rounded-full border border-secondary-container text-secondary text-label-sm hover:bg-secondary-container transition-colors">Minimaliste</button>
+<button class="px-4 py-1.5 rounded-full border border-secondary-container text-secondary text-label-sm hover:bg-secondary-container transition-colors">Cadeau humour</button>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 3: UPLOAD REFERENCES -->
+<section class="hidden flex-grow animate-fade-in" id="step-3-content">
+<h1 class="font-headline-md text-headline-md mb-2">Ajoutez vos références</h1>
+<p class="text-text-secondary mb-8">Des visuels nous aident à comprendre exactement ce que vous voulez.</p>
+<div class="space-y-6">
+<label for="ref-file-input" id="ref-drop-zone" class="block border-2 border-dashed border-border-glass rounded-xl p-12 text-center flex flex-col items-center group hover:border-primary-container transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl text-primary">cloud_upload</span>
+</div>
+<p class="font-headline-sm text-[18px] mb-1">Glissez-déposez votre image d'inspiration</p>
+<p class="text-on-surface-variant text-label-sm">PNG, JPG, WEBP ou PDF — 20 Mo max. Cliquez pour parcourir.</p>
+<input type="file" id="ref-file-input" accept="image/png,image/jpeg,image/webp,image/gif,application/pdf" class="hidden"/>
+</label>
+<!-- Inspiration image preview -->
+<div id="ref-preview-wrap" class="hidden glass-panel rounded-xl p-4 flex items-center gap-4">
+<img id="ref-preview-img" alt="Your inspiration" class="w-24 h-24 object-cover rounded-lg border border-primary/30 flex-shrink-0"/>
+<div class="flex-grow min-w-0">
+<p class="font-label-sm text-on-surface-variant mb-1">Votre image d'inspiration</p>
+<p id="ref-preview-name" class="font-headline-sm text-[16px] text-primary truncate"></p>
+</div>
+<button type="button" id="ref-remove-btn" class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors flex-shrink-0">delete</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Lien d'image de référence</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="Pinterest, Imgur, etc." type="url"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Référence réseaux sociaux (IG/TikTok)</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="@pseudo ou lien" type="url"/>
+</div>
+</div>
+<label class="flex items-center gap-3 p-4 glass-panel rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+<input class="w-5 h-5 rounded border-border-glass bg-surface-container-lowest text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md">Je souhaite que Laserya.tn m'aide à améliorer le design (accompagnement design).</span>
+</label>
+</div>
+</section>
+<!-- STEP 4: INSPIRATION FROM CATALOGUE -->
+<section class="hidden flex-grow animate-fade-in" id="step-4-content">
+<h1 class="font-headline-md text-headline-md mb-2">De l'inspiration pour votre idée</h1>
+<p class="text-text-secondary mb-8">D'après votre description, voici de vraies pièces de notre catalogue pour inspirer votre design final. Touchez celles qui vous plaisent — on les joindra à votre demande.</p>
+<!-- Your inspiration image -->
+<div id="insp-your-image" class="hidden mb-8">
+<p class="font-label-md text-on-surface-variant mb-3">Votre référence</p>
+<img id="insp-your-img" alt="Your reference" class="max-h-48 rounded-xl border border-primary/30 object-contain bg-surface-container-lowest"/>
+</div>
+<!-- Matched catalogue gallery -->
+<p class="font-label-md text-on-surface-variant mb-3">Depuis notre catalogue</p>
+<div id="insp-loading" class="hidden py-12 text-center text-on-surface-variant">
+<span class="material-symbols-outlined text-4xl text-primary animate-pulse">auto_awesome</span>
+<p class="mt-2">Recherche d'inspiration en cours…</p>
+</div>
+<div id="insp-empty" class="hidden py-12 text-center text-on-surface-variant">
+<span class="material-symbols-outlined text-4xl text-primary">image_search</span>
+<p class="mt-2">Ajoutez une description à l'étape « Détails » pour voir des inspirations adaptées.</p>
+</div>
+<div id="insp-gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+<p class="text-label-sm text-on-surface-variant mt-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">info</span>
+Ce sont des exemples de nos réalisations — votre pièce finale est faite rien que pour vous.
+</p>
+</section>
+<!-- STEP 5: PRICE ESTIMATE -->
+<section class="hidden flex-grow animate-fade-in" id="step-5-content">
+<h1 class="font-headline-md text-headline-md mb-2">Estimation de prix</h1>
+<p class="text-text-secondary mb-8">Précisez quelques détails pour obtenir une fourchette de prix indicative. L'atelier confirmera le prix final.</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Controls -->
+<div class="flex flex-col gap-6">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Taille</label>
+<div class="grid grid-cols-3 gap-2 p-1 bg-surface-container-lowest rounded-xl border border-border-glass" id="est-size-group">
+<button type="button" data-val="small" class="py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high transition-colors">Petite</button>
+<button type="button" data-val="medium" class="py-2.5 rounded-lg bg-primary-container text-on-primary-container font-label-md">Moyenne</button>
+<button type="button" data-val="large" class="py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high transition-colors">Grande</button>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Niveau de détail</label>
+<div class="grid grid-cols-2 gap-2 p-1 bg-surface-container-lowest rounded-xl border border-border-glass" id="est-detail-group">
+<button type="button" data-val="0" class="py-2.5 rounded-lg bg-primary-container text-on-primary-container font-label-md">Simple</button>
+<button type="button" data-val="1" class="py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high transition-colors">Détaillé</button>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Couleurs</label>
+<div class="grid grid-cols-2 gap-2 p-1 bg-surface-container-lowest rounded-xl border border-border-glass" id="est-color-group">
+<button type="button" data-val="0" class="py-2.5 rounded-lg bg-primary-container text-on-primary-container font-label-md">1 couleur</button>
+<button type="button" data-val="1" class="py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high transition-colors">Plusieurs</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Matière</label>
+<select id="est-material" class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3 text-on-surface">
+<option value="PLA">PLA (standard)</option>
+<option value="PETG">PETG (résistant)</option>
+<option value="Resin">Résine (haute définition)</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Quantité</label>
+<input id="est-qty" class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" type="number" min="1" value="1"/>
+</div>
+</div>
+</div>
+<!-- Live estimate card -->
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-4 self-start neon-border-active">
+<div class="flex justify-between items-start border-b border-border-glass pb-3">
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Produit</p>
+<p id="est-type-label" class="font-headline-sm text-[18px] text-primary">—</p>
+</div>
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Prix estimé</p>
+<p class="text-display-lg text-[36px] font-extrabold text-primary"><span id="est-range">—</span> <span class="text-[20px] font-bold">TND</span></p>
+<p id="est-unit" class="text-label-sm text-on-surface-variant mt-1"></p>
+</div>
+<div class="flex items-start gap-2 p-3 rounded-lg bg-warning/10 border border-warning/20">
+<span class="material-symbols-outlined text-warning text-[20px] shrink-0">info</span>
+<p class="text-label-sm text-warning">Estimation indicative. L'atelier vérifie votre demande et vous <b>confirme le prix final</b> avant production.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 6: CONTACT INFORMATION -->
+<section class="hidden flex-grow animate-fade-in" id="step-6-content">
+<h1 class="font-headline-md text-headline-md mb-2">Coordonnées</h1>
+<p class="text-text-secondary mb-8">Nous vous recontactons pour préciser les détails et vous fournir un devis.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Nom complet</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="Prénom Nom" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Numéro de téléphone</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="+216 12 345 678" type="tel"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Adresse e-mail</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="prenom@exemple.com" type="email"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1">Ville</label>
+<input class="w-full bg-surface-container-lowest border border-border-glass rounded-lg px-4 py-3" placeholder="Tunis, Sousse, etc." type="text"/>
+</div>
+</div>
+<div class="mb-8">
+<label class="block font-label-md text-on-surface-variant mb-3">Moyen de contact préféré</label>
+<div class="grid grid-cols-3 gap-2 p-1 bg-surface-container-lowest rounded-xl border border-border-glass">
+<button class="py-2.5 px-4 rounded-lg bg-primary-container text-on-primary-container font-label-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">chat</span> WhatsApp
+                        </button>
+<button class="py-2.5 px-4 rounded-lg text-on-surface-variant font-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">call</span> Appel
+                        </button>
+<button class="py-2.5 px-4 rounded-lg text-on-surface-variant font-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">mail</span> Email
+                        </button>
+</div>
+</div>
+<label class="flex items-center gap-3 p-4 glass-panel rounded-lg cursor-pointer border-primary/20">
+<input checked="" class="w-5 h-5 rounded border-border-glass bg-surface-container-lowest text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md">Envoyez-moi une estimation de prix sous 24 h.</span>
+</label>
+</section>
+<!-- STEP 7: REVIEW AND SUBMIT -->
+<section class="hidden flex-grow animate-fade-in" id="step-7-content">
+<h1 class="font-headline-md text-headline-md mb-2">Vérifiez votre commande</h1>
+<p class="text-text-secondary mb-8">Presque fini ! Vérifiez vos informations avant de les envoyer à nos designers.</p>
+<div class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 glass-panel rounded-lg border-l-4 border-l-primary">
+<p class="text-label-sm text-primary mb-1 uppercase tracking-wider">Type de produit</p>
+<p class="font-headline-sm text-[18px]" id="rv-type">—</p>
+</div>
+<div class="p-4 glass-panel rounded-lg">
+<p class="text-label-sm text-on-surface-variant mb-1">Quantité estimée</p>
+<p class="font-headline-sm text-[18px]" id="rv-qty">1 unité</p>
+</div>
+</div>
+<div class="p-4 glass-panel rounded-lg border-l-4 border-l-primary flex items-center justify-between">
+<div>
+<p class="text-label-sm text-primary mb-1 uppercase tracking-wider">Prix estimé</p>
+<p class="text-label-sm text-on-surface-variant">Indicatif — confirmé par l'atelier</p>
+</div>
+<p class="font-headline-md text-[24px] font-extrabold text-primary"><span id="rv-price">—</span> TND</p>
+</div>
+<div class="p-6 glass-panel rounded-lg">
+<p class="text-label-sm text-on-surface-variant mb-2 uppercase tracking-wider">Description</p>
+<p class="text-body-md leading-relaxed" id="rv-desc">—</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="p-4 glass-panel rounded-lg">
+<p class="text-label-sm text-on-surface-variant mb-1">Couleur</p>
+<p class="font-bold text-primary" id="rv-color">—</p>
+</div>
+<div class="p-4 glass-panel rounded-lg">
+<p class="text-label-sm text-on-surface-variant mb-1">Contact</p>
+<p class="font-bold text-primary" id="rv-contact">WhatsApp</p>
+</div>
+<div class="p-4 glass-panel rounded-lg">
+<p class="text-label-sm text-on-surface-variant mb-1">Date souhaitée</p>
+<p class="font-bold text-primary" id="rv-deadline">Flexible</p>
+</div>
+</div>
+<div id="rv-inspiration-wrap" class="hidden p-4 glass-panel rounded-lg">
+<p class="text-label-sm text-on-surface-variant mb-3 uppercase tracking-wider">Pièces du catalogue que vous avez aimées</p>
+<div id="rv-inspiration-list" class="flex flex-wrap gap-3"></div>
+</div>
+<div class="p-4 bg-surface-container-high/50 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-success">verified_user</span>
+<p class="text-label-sm">Notre équipe vérifiera la faisabilité technique de ce design.</p>
+</div>
+</div>
+</section>
+<!-- Navigation Buttons -->
+<div class="mt-12 flex justify-between items-center">
+<button class="invisible px-8 py-3 rounded-lg border border-border-glass text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all flex items-center gap-2" id="prev-btn">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span> Retour
+                </button>
+<button class="px-10 py-3 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-[16px] flex items-center gap-2 shadow-[0_0_20px_rgba(0,212,255,0.3)] hover:scale-105 transition-all" id="next-btn">
+<span>Continuer</span> <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="hidden px-10 py-3 rounded-lg bg-gradient-to-r from-primary-container to-secondary-container text-white font-headline-sm text-[16px] shadow-[0_0_25px_rgba(0,212,255,0.4)] hover:scale-105 transition-all" id="submit-btn">
+                    Envoyer ma demande
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-deep w-full py-section-gap border-t border-border-glass">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-container-max-width mx-auto">
+<div class="flex flex-col gap-4">
+<a href="/index.html" class="flex items-center gap-2"><img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover flex-shrink-0 opacity-80"/><span class="font-bold text-primary text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span></a>
+<p class="font-body-md text-body-md text-text-secondary pr-4">© 2024 Laserya.tn. Artisanat numérique &amp; précision physique.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-headline-sm text-[18px] text-on-surface">Liens</h4>
+<div class="flex flex-col gap-2">
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/checkout-info.html">Informations</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/checkout-delivery.html">Livraison</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/admin/dashboard.html">Paiement</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/admin/dashboard.html">Avis</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-headline-sm text-[18px] text-on-surface">Mentions légales</h4>
+<div class="flex flex-col gap-2">
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">Politique de confidentialité</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">Conditions d'utilisation</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">FAQ</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-headline-sm text-[18px] text-on-surface">Suivez-nous</h4>
+<div class="flex flex-col gap-2">
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">Newsletter</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">Support</a>
+<div class="flex gap-4 mt-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container cursor-pointer transition-all">
+<span class="material-symbols-outlined text-[18px]">public</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container cursor-pointer transition-all">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        let currentStep = 1;
+        const totalSteps = 7;
+        const API_BASE = '/api';  // URL relative → marche en local et en ligne
+
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const submitBtn = document.getElementById('submit-btn');
+
+        function updateUI() {
+            // Content visibility
+            for (let i = 1; i <= totalSteps; i++) {
+                document.getElementById(`step-${i}-content`).classList.toggle('hidden', i !== currentStep);
+
+                // Progress indicators
+                const navEl = document.getElementById(`nav-step-${i}`);
+                if (i < currentStep) {
+                    navEl.classList.remove('step-inactive');
+                    navEl.querySelector('div').innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span>';
+                    navEl.querySelector('div').className = "w-10 h-10 rounded-full bg-success text-on-surface flex items-center justify-center font-bold";
+                    navEl.querySelector('span').className = "font-label-sm text-success";
+                } else if (i === currentStep) {
+                    navEl.classList.remove('step-inactive');
+                    navEl.querySelector('div').innerText = i;
+                    navEl.querySelector('div').className = "w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold shadow-[0_0_15px_rgba(0,212,255,0.4)]";
+                    navEl.querySelector('span').className = "font-label-sm text-primary-container";
+                } else {
+                    navEl.classList.add('step-inactive');
+                    navEl.querySelector('div').innerText = i;
+                    navEl.querySelector('div').className = "w-10 h-10 rounded-full bg-surface-card border border-border-glass flex items-center justify-center font-bold";
+                    navEl.querySelector('span').className = "font-label-sm text-on-surface-variant";
+                }
+            }
+
+            // Buttons visibility
+            prevBtn.classList.toggle('invisible', currentStep === 1);
+            if (currentStep === totalSteps) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if (currentStep === 4) loadInspiration();
+            if (currentStep === 5) loadEstimate();
+            if (currentStep === 7) fillReview();
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
+        });
+
+        // Tag interaction
+        document.querySelectorAll('button[class*="rounded-full border"]').forEach(btn => {
+            btn.addEventListener('click', () => { btn.classList.toggle('bg-secondary-container'); btn.classList.toggle('text-white'); });
+        });
+        // Product selection
+        let selectedType = '';
+        document.querySelectorAll('#step-1-content button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#step-1-content button').forEach(b => b.classList.remove('neon-border-active'));
+                btn.classList.add('neon-border-active');
+                selectedType = btn.querySelector('span:last-child')?.textContent || 'Création sur mesure';
+            });
+        });
+
+        // ── Preferred contact method toggle (Step 5) ──────
+        document.querySelectorAll('#step-6-content .grid.grid-cols-3 button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#step-6-content .grid.grid-cols-3 button').forEach(b => {
+                    b.classList.remove('bg-primary-container','text-on-primary-container');
+                    b.classList.add('text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary-container','text-on-primary-container');
+                btn.classList.remove('text-on-surface-variant');
+            });
+        });
+
+        // ── Inspiration image upload (Step 3) ─────────────
+        const refInput      = document.getElementById('ref-file-input');
+        const refDropZone   = document.getElementById('ref-drop-zone');
+        const refPreviewWrap= document.getElementById('ref-preview-wrap');
+        const refPreviewImg = document.getElementById('ref-preview-img');
+        const refPreviewName= document.getElementById('ref-preview-name');
+        const refRemoveBtn  = document.getElementById('ref-remove-btn');
+        let inspirationDataUrl = null; // for showing the reference on the inspiration step
+
+        function showRefFile(file) {
+            if (!file) return;
+            if (file.size > 20 * 1024 * 1024) { alert('Fichier trop volumineux (max 20 MB)'); refInput.value=''; return; }
+            refPreviewName.textContent = file.name;
+            refPreviewWrap.classList.remove('hidden');
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = e => { inspirationDataUrl = e.target.result; refPreviewImg.src = e.target.result; refPreviewImg.style.display = ''; };
+                reader.readAsDataURL(file);
+            } else {
+                inspirationDataUrl = null;
+                refPreviewImg.style.display = 'none';
+            }
+        }
+        refInput?.addEventListener('change', () => showRefFile(refInput.files[0]));
+        refRemoveBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            refInput.value = ''; inspirationDataUrl = null;
+            refPreviewWrap.classList.add('hidden');
+        });
+        ['dragover','dragenter'].forEach(ev => refDropZone?.addEventListener(ev, e => {
+            e.preventDefault(); refDropZone.style.borderColor = '#00d4ff';
+        }));
+        ['dragleave','drop'].forEach(ev => refDropZone?.addEventListener(ev, e => {
+            e.preventDefault(); refDropZone.style.borderColor = '';
+        }));
+        refDropZone?.addEventListener('drop', e => {
+            const file = e.dataTransfer.files[0];
+            if (file) { const dt = new DataTransfer(); dt.items.add(file); refInput.files = dt.files; showRefFile(file); }
+        });
+
+        // ── Inspiration matching (Step 4) ─────────────────
+        const STOPWORDS = new Set(['the','and','for','with','que','des','les','une','pour','avec','mon','ma','mes','dans','sur','est','this','that','your','you','want','like','make','custom','design','idea','color','size','please']);
+        const CATEGORY_BY_TYPE = {
+            'Lampe LED acrylique':'led-lamps', 'Porte-clés':'keychains', 'Figurine 3D':'3d-figures',
+            'Présentoir pro':'accessories', 'Accessoire de bureau':'accessories', 'Déco murale':'other', 'Autre idée':null
+        };
+        const KEYWORD_CATEGORY = [
+            { rx:/(lamp|lampe|led|acryl|light|lumi|glow|neon)/i, cat:'led-lamps' },
+            { rx:/(key.?chain|porte.?cl|keyring|key ring)/i,     cat:'keychains' },
+            { rx:/(figure|figurine|statue|model|resin|résine|3d)/i, cat:'3d-figures' },
+            { rx:/(gift|cadeau|couple|love|amour|wedding|mariage|anniversa)/i, cat:'gifts' },
+            { rx:/(desk|bureau|office|plaque|name|prénom|sign|mirror|miroir|wall|mur)/i, cat:'accessories' },
+        ];
+
+        let allProducts = null; // cache
+
+        function getIdea() {
+            const descEl  = document.querySelector('#step-2-content textarea');
+            const inputs  = document.querySelectorAll('#step-2-content input');
+            const nameTxt = inputs[0]?.value || '';
+            const color   = inputs[2]?.value || '';
+            const tags = Array.from(document.querySelectorAll('#step-2-content [class*="rounded-full"]'))
+                .filter(b => b.classList.contains('bg-secondary-container'))
+                .map(b => b.textContent.trim());
+            return { type: selectedType, desc: descEl?.value || '', nameTxt, color, tags };
+        }
+
+        function scoreProduct(p, idea) {
+            const hay = `${p.name} ${p.description} ${p.category} ${p.material}`.toLowerCase();
+            const corpus = `${idea.type} ${idea.desc} ${idea.nameTxt} ${idea.color} ${idea.tags.join(' ')}`.toLowerCase();
+            let score = 0;
+            // Category from selected type
+            const typeCat = CATEGORY_BY_TYPE[idea.type];
+            if (typeCat && p.category === typeCat) score += 6;
+            // Keyword -> category rules
+            for (const rule of KEYWORD_CATEGORY) {
+                if (rule.rx.test(corpus) && p.category === rule.cat) score += 4;
+            }
+            // Token overlap
+            const tokens = [...new Set(corpus.split(/[^a-z0-9àâçéèêëîïôûùüÿñ]+/i).filter(w => w.length >= 3 && !STOPWORDS.has(w)))];
+            for (const t of tokens) { if (hay.includes(t)) score += 2; }
+            return score;
+        }
+
+        function loadInspiration() {
+            const idea = getIdea();
+            // Show the user's reference image if provided
+            const yourWrap = document.getElementById('insp-your-image');
+            const yourImg  = document.getElementById('insp-your-img');
+            if (inspirationDataUrl) { yourImg.src = inspirationDataUrl; yourWrap.classList.remove('hidden'); }
+            else yourWrap.classList.add('hidden');
+
+            const loading = document.getElementById('insp-loading');
+            const empty   = document.getElementById('insp-empty');
+            const gallery = document.getElementById('insp-gallery');
+            empty.classList.add('hidden');
+
+            const render = (products) => {
+                const scored = products.map(p => ({ p, s: scoreProduct(p, idea) })).sort((a,b) => b.s - a.s);
+                let picks = scored.filter(x => x.s > 0).slice(0, 6).map(x => x.p);
+                if (picks.length < 3) {
+                    const extra = scored.map(x => x.p).filter(p => !picks.includes(p)).slice(0, 6 - picks.length);
+                    picks = picks.concat(extra);
+                }
+                gallery.innerHTML = picks.map(p => {
+                    const img = p.image_url || '';
+                    const price = Math.round(Number(p.price) || 0);
+                    const selected = selectedInspiration.has(p.id);
+                    return `
+                    <button type="button" data-id="${p.id}" class="insp-card text-left glass-panel rounded-xl overflow-hidden group relative transition-all ${selected ? 'neon-border-active' : ''}">
+                      <div class="relative aspect-square overflow-hidden bg-surface-container-lowest">
+                        <img src="${img}" alt="${(p.name||'').replace(/"/g,'')}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="w-full h-full items-center justify-center text-on-surface-variant" style="display:none"><span class="material-symbols-outlined text-4xl">image</span></div>
+                        <div class="insp-check absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-on-primary-container items-center justify-center shadow-lg ${selected ? 'flex' : 'hidden'}"><span class="material-symbols-outlined text-[18px]">check</span></div>
+                      </div>
+                      <div class="p-3">
+                        <p class="font-headline-sm text-[15px] truncate">${p.name || 'Produit'}</p>
+                        <p class="text-label-sm text-on-surface-variant mt-1">${p.material || ''}${p.material ? ' · ' : ''}${price} DT</p>
+                      </div>
+                    </button>`;
+                }).join('');
+
+                gallery.querySelectorAll('.insp-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const id = card.dataset.id;
+                        const prod = picks.find(p => String(p.id) === String(id));
+                        if (selectedInspiration.has(id)) selectedInspiration.delete(id);
+                        else selectedInspiration.set(id, prod);
+                        card.classList.toggle('neon-border-active');
+                        const check = card.querySelector('.insp-check');
+                        check.classList.toggle('flex'); check.classList.toggle('hidden');
+                    });
+                });
+                loading.classList.add('hidden');
+                if (!picks.length) empty.classList.remove('hidden');
+            };
+
+            if (allProducts) { render(allProducts); return; }
+            loading.classList.remove('hidden');
+            gallery.innerHTML = '';
+            fetch(`${API_BASE}/products`)
+                .then(r => r.json())
+                .then(data => { allProducts = Array.isArray(data) ? data : []; render(allProducts); })
+                .catch(() => { loading.classList.add('hidden'); empty.classList.remove('hidden'); });
+        }
+
+        // Selected catalogue inspiration: id -> product
+        const selectedInspiration = new Map();
+
+        // ── Price estimate (Step 5) ───────────────────────
+        // Map a "Create design" product type to a print-estimate type (keychain|figurine|deco|part|other)
+        const ESTIMATE_TYPE_BY_DESIGN = {
+            'Lampe LED acrylique':'deco', 'Porte-clés':'keychain', 'Figurine 3D':'figurine',
+            'Présentoir pro':'part', 'Accessoire de bureau':'deco', 'Déco murale':'deco', 'Autre idée':'other'
+        };
+        const EST_TYPE_LABELS = { keychain:'Porte-clés', figurine:'Figurine', deco:'Objet déco', part:'Pièce / prototype', other:'Création sur mesure' };
+        const estState = { size:'medium', detailed:0, multicolor:0 };
+        let currentEstimate = null; // last computed {range, unit, price, ...}
+
+        // Wire a segmented control (group of buttons) -> updates estState[key] and re-estimates
+        function wireSegment(groupId, key, cast) {
+            document.querySelectorAll(`#${groupId} button`).forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll(`#${groupId} button`).forEach(b => {
+                        b.classList.remove('bg-primary-container','text-on-primary-container');
+                        b.classList.add('text-on-surface-variant');
+                    });
+                    btn.classList.add('bg-primary-container','text-on-primary-container');
+                    btn.classList.remove('text-on-surface-variant');
+                    estState[key] = cast(btn.dataset.val);
+                    loadEstimate();
+                });
+            });
+        }
+        wireSegment('est-size-group',  'size',       v => v);
+        wireSegment('est-detail-group','detailed',   v => parseInt(v));
+        wireSegment('est-color-group', 'multicolor', v => parseInt(v));
+        document.getElementById('est-material')?.addEventListener('change', loadEstimate);
+        document.getElementById('est-qty')?.addEventListener('input', (e) => { e.target.dataset.touched = '1'; loadEstimate(); });
+
+        async function loadEstimate() {
+            const estType = ESTIMATE_TYPE_BY_DESIGN[selectedType] || 'other';
+            // Prefill quantity from the Details step until the user edits it here
+            const qtyEl = document.getElementById('est-qty');
+            const detailQty = document.querySelectorAll('#step-2-content input[type="number"]')[0]?.value;
+            if (qtyEl && !qtyEl.dataset.touched && detailQty) qtyEl.value = detailQty;
+
+            const material = document.getElementById('est-material')?.value || 'PLA';
+            const quantity = Math.max(1, parseInt(qtyEl?.value) || 1);
+            document.getElementById('est-type-label').textContent = EST_TYPE_LABELS[estType] || 'Création sur mesure';
+
+            const body = { type: estType, size: estState.size, detailed: estState.detailed, multicolor: estState.multicolor, material, quantity };
+            try {
+                const res = await fetch(`${API_BASE}/3d-print/estimate`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
+                });
+                const est = await res.json();
+                currentEstimate = est;
+                document.getElementById('est-range').textContent = est.range ?? est.price ?? '—';
+                document.getElementById('est-unit').textContent = est.unit != null
+                    ? `≈ ${est.unit} TND / unité${quantity > 1 ? ` × ${quantity}` : ''}` : '';
+            } catch {
+                currentEstimate = null;
+                document.getElementById('est-range').textContent = '—';
+                document.getElementById('est-unit').textContent = 'Estimation indisponible (atelier vous recontacte).';
+            }
+        }
+
+        // ── Review (Step 7) ───────────────────────────────
+        function fillReview() {
+            const idea = getIdea();
+            const qty = document.querySelectorAll('#step-2-content input[type="number"]')[0]?.value || '1';
+            const deadline = document.querySelector('#step-2-content input[type="date"]')?.value;
+            document.getElementById('rv-type').textContent = idea.type || 'Création sur mesure';
+            document.getElementById('rv-qty').textContent = `${qty} unité${qty === '1' ? '' : 's'}`;
+            document.getElementById('rv-desc').textContent = idea.desc?.trim() || 'Aucune description fournie.';
+            document.getElementById('rv-color').textContent = idea.color?.trim() || '—';
+            document.getElementById('rv-deadline').textContent = deadline ? new Date(deadline).toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric' }) : 'Flexible';
+            const activeMethod = document.querySelector('#step-6-content .grid.grid-cols-3 button.bg-primary-container');
+            document.getElementById('rv-contact').textContent = activeMethod ? activeMethod.textContent.replace(/\b(chat|call|mail)\b/i,'').trim() : 'WhatsApp';
+            document.getElementById('rv-price').textContent = currentEstimate ? (currentEstimate.range ?? currentEstimate.price ?? '—') : '—';
+
+            const wrap = document.getElementById('rv-inspiration-wrap');
+            const list = document.getElementById('rv-inspiration-list');
+            if (selectedInspiration.size) {
+                list.innerHTML = Array.from(selectedInspiration.values()).map(p =>
+                    `<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-high rounded-full">
+                        <img src="${p.image_url || ''}" class="w-6 h-6 rounded-full object-cover" onerror="this.style.display='none'">
+                        <span class="text-label-sm">${p.name}</span>
+                     </div>`).join('');
+                wrap.classList.remove('hidden');
+            } else wrap.classList.add('hidden');
+        }
+
+        // ── Submit to API ─────────────────────────────────
+        submitBtn.addEventListener('click', async () => {
+            const inputs = document.querySelectorAll('#step-6-content input');
+            const name  = inputs[0]?.value.trim();
+            const phone = inputs[1]?.value.trim();
+            const email = inputs[2]?.value.trim();
+            const city  = inputs[3]?.value.trim();
+            if (!phone) { alert('Numéro de téléphone requis'); return; }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+            try {
+                const idea = getIdea();
+                const fd = new FormData();
+                fd.append('customer_name', name || 'Client');
+                fd.append('customer_phone', phone);
+                fd.append('customer_email', email || '');
+                fd.append('product_type', selectedType || 'Création sur mesure');
+                fd.append('personalization_text', idea.nameTxt || '');
+                const sizeEl = document.querySelectorAll('#step-2-content input')[1];
+                fd.append('size', sizeEl?.value || '');
+                fd.append('material', idea.color || '');
+                if (refInput?.files[0]) fd.append('image', refInput.files[0]);
+
+                // Build a rich notes field for the admin
+                const picks = Array.from(selectedInspiration.values()).map(p => p.name);
+                const estLine = currentEstimate
+                    ? `Estimation client: ${currentEstimate.range ?? currentEstimate.price} TND `
+                      + `(taille ${estState.size}, ${estState.detailed ? 'détaillé' : 'simple'}, `
+                      + `${estState.multicolor ? 'multicolore' : '1 couleur'}, ${document.getElementById('est-material')?.value || 'PLA'})`
+                    : null;
+                const notes = [
+                    estLine,
+                    idea.desc && `Description: ${idea.desc}`,
+                    idea.color && `Couleurs: ${idea.color}`,
+                    idea.tags.length && `Tags: ${idea.tags.join(', ')}`,
+                    city && `Ville: ${city}`,
+                    picks.length && `Inspirations catalogue choisies: ${picks.join(', ')}`
+                ].filter(Boolean).join(' | ');
+                fd.append('notes', notes);
+
+                let res;
+                try { res = await fetch(`${API_BASE}/custom-requests`, { method: 'POST', body: fd }); }
+                catch { throw new Error("Impossible de joindre le serveur backend (http://localhost:3001). Est-il démarré ?"); }
+                const ctype = res.headers.get('content-type') || '';
+                if (!ctype.includes('application/json')) {
+                    throw new Error("Le serveur n'a pas répondu en JSON. Ouvrez le site via http://localhost:3001 et vérifiez que 'node backend/server.js' tourne.");
+                }
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error);
+                window.location.href = `/pages/request-sent.html?id=${data.id}`;
+            } catch (e) {
+                alert('Erreur: ' + e.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Custom Request';
+            }
+        });
+    </script>
+</body></html>

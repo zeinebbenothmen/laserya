@@ -1,0 +1,514 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Laserya.tn Admin - Analytics Dashboard</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Use provided Tailwind Config -->
+<style>
+        body {
+            background-color: #070A0F;
+            color: #e0e2ea;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0b0e13;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3c494e;
+            border-radius: 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- SideNavBar (Authority: JSON & Style Guidance) -->
+<aside id="admin-sidebar" data-active="dashboard"></aside>
+<!-- TopNavBar -->
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+<div class="flex items-center w-96 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/10">
+<span class="material-symbols-outlined text-on-surface-variant text-xl" data-icon="search">search</span>
+<input class="bg-transparent border-none text-body-sm focus:ring-0 w-full placeholder:text-on-surface-variant/50" placeholder="Search orders, clients, or parts... (⌘K)" type="text">
+</div>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/15 flex items-center justify-center text-primary"><span class="material-symbols-outlined">person</span></div>
+<p class="font-label-md text-label-md text-on-surface">Administrateur</p>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] pt-[64px] min-h-screen p-stack_lg">
+<!-- Hero Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack_md mb-stack_lg">
+<div class="glass-card p-5 rounded-xl flex flex-col justify-between transition-transform duration-300" style="transform: translateY(0px);">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Total Revenue</p>
+<h3 class="font-display-lg text-display-lg mt-1 text-primary">42.8k TND</h3>
+</div>
+<div class="bg-primary/10 p-2 rounded">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+</div>
+</div>
+<div class="mt-4 h-12 flex items-end gap-1">
+<div class="w-full bg-primary/20 h-4 rounded-t-sm"></div>
+<div class="w-full bg-primary/20 h-6 rounded-t-sm"></div>
+<div class="w-full bg-primary/20 h-5 rounded-t-sm"></div>
+<div class="w-full bg-primary/40 h-8 rounded-t-sm"></div>
+<div class="w-full bg-primary/30 h-6 rounded-t-sm"></div>
+<div class="w-full bg-primary/60 h-10 rounded-t-sm"></div>
+<div class="w-full bg-primary h-12 rounded-t-sm glow-cyan"></div>
+</div>
+<p class="text-xs text-green-400 mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span> +12% vs last month
+                </p>
+</div>
+<div class="glass-card p-5 rounded-xl">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Total Orders</p>
+<h3 class="font-display-lg text-display-lg mt-1">1,204</h3>
+</div>
+<div class="bg-secondary/10 p-2 rounded">
+<span class="material-symbols-outlined text-secondary" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-3">
+<div class="flex-1 bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary w-3/4 h-full"></div>
+</div>
+<span class="text-xs font-mono-ui">75% Target</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-4">88 new since yesterday</p>
+</div>
+<div class="glass-card p-5 rounded-xl">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Custom Pending</p>
+<h3 class="font-display-lg text-display-lg mt-1 text-orange-400">24</h3>
+</div>
+<div class="bg-orange-400/10 p-2 rounded">
+<span class="material-symbols-outlined text-orange-400" data-icon="pending_actions">pending_actions</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="px-2 py-1 bg-orange-400/10 border border-orange-400/20 text-[10px] text-orange-400 rounded">8 URGENT</span>
+<span class="px-2 py-1 bg-surface-container-high border border-outline-variant/10 text-[10px] text-on-surface-variant rounded">16 IN REVIEW</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-4 italic">Avg. response: 2.4 hrs</p>
+</div>
+<div class="glass-card p-5 rounded-xl">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Efficiency</p>
+<h3 class="font-display-lg text-display-lg mt-1 text-green-400">94.2%</h3>
+</div>
+<div class="bg-green-400/10 p-2 rounded">
+<span class="material-symbols-outlined text-green-400" data-icon="bolt">bolt</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-background bg-blue-500 flex items-center justify-center text-[8px]">L1</div>
+<div class="w-6 h-6 rounded-full border border-background bg-blue-500 flex items-center justify-center text-[8px]">L2</div>
+<div class="w-6 h-6 rounded-full border border-background bg-purple-500 flex items-center justify-center text-[8px]">P1</div>
+<div class="w-6 h-6 rounded-full border border-background bg-green-500 flex items-center justify-center text-[8px]">P2</div>
+</div>
+<p class="text-[10px] text-on-surface-variant">All machines nominal</p>
+</div>
+<p class="text-xs text-on-surface-variant mt-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span> Uptime: 22h 14m
+                </p>
+</div>
+</div>
+<!-- Main Grid -->
+<div class="grid grid-cols-12 gap-stack_lg">
+<!-- Production Velocity (Bar Chart Placeholder) -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h4 class="font-headline-sm text-headline-sm">Activité de production</h4>
+<p class="text-body-sm text-on-surface-variant">Aperçu indicatif — gravure laser vs impression 3D</p>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between px-4 pb-2 border-b border-outline-variant/10 relative">
+<!-- Grid Lines -->
+<div class="absolute inset-x-0 top-0 border-t border-outline-variant/5 h-px"></div>
+<div class="absolute inset-x-0 top-1/4 border-t border-outline-variant/5 h-px"></div>
+<div class="absolute inset-x-0 top-2/4 border-t border-outline-variant/5 h-px"></div>
+<div class="absolute inset-x-0 top-3/4 border-t border-outline-variant/5 h-px"></div>
+<!-- Bars -->
+<div class="flex flex-col items-center gap-1 w-full max-w-[40px] group">
+<div class="flex gap-0.5 items-end">
+<div class="w-3 bg-primary/80 h-32 rounded-t-sm group-hover:bg-primary transition-all"></div>
+<div class="w-3 bg-secondary/80 h-20 rounded-t-sm group-hover:bg-secondary transition-all"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">Mon</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full max-w-[40px] group">
+<div class="flex gap-0.5 items-end">
+<div class="w-3 bg-primary/80 h-40 rounded-t-sm group-hover:bg-primary transition-all"></div>
+<div class="w-3 bg-secondary/80 h-28 rounded-t-sm group-hover:bg-secondary transition-all"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">Tue</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full max-w-[40px] group">
+<div class="flex gap-0.5 items-end">
+<div class="w-3 bg-primary/80 h-36 rounded-t-sm group-hover:bg-primary transition-all"></div>
+<div class="w-3 bg-secondary/80 h-44 rounded-t-sm group-hover:bg-secondary transition-all"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">Wed</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full max-w-[40px] group">
+<div class="flex gap-0.5 items-end">
+<div class="w-3 bg-primary/80 h-48 rounded-t-sm group-hover:bg-primary transition-all"></div>
+<div class="w-3 bg-secondary/80 h-30 rounded-t-sm group-hover:bg-secondary transition-all"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">Thu</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full max-w-[40px] group">
+<div class="flex gap-0.5 items-end">
+<div class="w-3 bg-primary/80 h-56 rounded-t-sm group-hover:bg-primary transition-all"></div>
+<div class="w-3 bg-secondary/80 h-38 rounded-t-sm group-hover:bg-secondary transition-all"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">Fri</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full max-w-[40px] group">
+<div class="flex gap-0.5 items-end">
+<div class="w-3 bg-primary/80 h-24 rounded-t-sm group-hover:bg-primary transition-all"></div>
+<div class="w-3 bg-secondary/80 h-16 rounded-t-sm group-hover:bg-secondary transition-all"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">Sat</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full max-w-[40px] group">
+<div class="flex gap-0.5 items-end">
+<div class="w-3 bg-primary/80 h-12 rounded-t-sm group-hover:bg-primary transition-all"></div>
+<div class="w-3 bg-secondary/80 h-10 rounded-t-sm group-hover:bg-secondary transition-all"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">Sun</span>
+</div>
+</div>
+<div class="mt-4 flex gap-6">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="text-xs text-on-surface-variant">Laser Cutting (Job units)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-secondary rounded-full"></div>
+<span class="text-xs text-on-surface-variant">3D Printing (Hours)</span>
+</div>
+</div>
+</div>
+<!-- Production Queue Summary -->
+<div class="col-span-12 lg:col-span-4 glass-card rounded-xl p-6">
+<h4 class="font-headline-sm text-headline-sm mb-4">Production Queue</h4>
+<div class="space-y-4">
+<div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant/10">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md">Laser Cutter 1</span>
+<span class="text-xs text-primary">BUSY</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-primary w-4/5 h-full"></div>
+</div>
+<p class="text-[10px] mt-2 text-on-surface-variant flex justify-between">
+<span class="">Order #842 - Wood Inlay</span>
+<span class="">42m left</span>
+</p>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant/10">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md">Laser Cutter 2</span>
+<span class="text-xs text-green-400">IDLE</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full"></div>
+<p class="text-[10px] mt-2 text-on-surface-variant italic">Next: Custom Wall Art (#845)</p>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant/10">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md">3D Printer A (Voron)</span>
+<span class="text-xs text-primary">BUSY</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-primary w-2/3 h-full"></div>
+</div>
+<p class="text-[10px] mt-2 text-on-surface-variant flex justify-between">
+<span class="">Lithophane Plate</span>
+<span class="">4h 12m left</span>
+</p>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant/10">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md">3D Printer B (Ender)</span>
+<span class="text-xs text-primary">BUSY</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-primary w-[95%] h-full"></div>
+</div>
+<p class="text-[10px] mt-2 text-on-surface-variant flex justify-between">
+<span class="">Anime Lamp Base</span>
+<span class="">8m left</span>
+</p>
+</div>
+</div>
+<button onclick="window.location.href='/admin/production-board.html'" class="w-full mt-6 py-2 bg-surface-variant/30 border border-outline-variant/20 rounded font-label-sm text-label-sm hover:bg-surface-variant/50 transition-colors">
+                    Voir l'atelier complet
+                </button>
+</div>
+<!-- Recent Orders Table -->
+<div class="col-span-12 lg:col-span-9 glass-card rounded-xl overflow-hidden transition-transform duration-300" style="transform: translateY(0px);">
+<div class="px-6 py-4 border-b border-outline-variant/10 flex justify-between items-center">
+<h4 class="font-headline-sm text-headline-sm">Commandes récentes</h4>
+<a class="text-primary text-xs hover:underline" href="/admin/orders.html">Tout voir</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-highest/50">
+<tr>
+<th class="px-6 py-3 font-label-sm text-label-sm uppercase text-on-surface-variant">N° commande</th>
+<th class="px-6 py-3 font-label-sm text-label-sm uppercase text-on-surface-variant">Client</th>
+<th class="px-6 py-3 font-label-sm text-label-sm uppercase text-on-surface-variant">Articles</th>
+<th class="px-6 py-3 font-label-sm text-label-sm uppercase text-on-surface-variant">Statut</th>
+<th class="px-6 py-3 font-label-sm text-label-sm uppercase text-on-surface-variant text-right">Total</th>
+<th class="px-6 py-3 font-label-sm text-label-sm uppercase text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr><td colspan="6" class="px-6 py-8 text-center text-on-surface-variant">Chargement…</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Top Custom Products -->
+<div class="col-span-12 lg:col-span-3 glass-card rounded-xl p-6">
+<h4 class="font-headline-sm text-headline-sm mb-6">Top Products</h4>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-highest overflow-hidden">
+<img alt="LED Lamp" class="w-full h-full object-cover" data-alt="A macro shot of a sleek, modern LED lamp base made of high-quality dark acrylic. The lamp features a laser-etched anime character glowing with a vibrant cyan light. The setting is a minimalist tech desk with bokeh lighting in the background, reinforcing the dark tech and precision manufacturing aesthetic." src="/assets/images/placeholder.svg">
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md">Anime LED Lamp</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[10px] text-on-surface-variant">412 sold</span>
+<span class="text-xs text-primary font-bold">+18%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-highest overflow-hidden">
+<img alt="Map" class="w-full h-full object-cover" data-alt="A detailed close-up of a 3D topographic map of a mountainous region, precisely carved from dark walnut wood with white resin inlays for water bodies. The craftsmanship is evident in the sharp layers and high-fidelity detail. The lighting is soft and cinematic, emphasizing the texture and depth of the physical model." src="/assets/images/placeholder.svg">
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md">3D Topographic Map</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[10px] text-on-surface-variant">128 sold</span>
+<span class="text-xs text-primary font-bold">+5%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-highest overflow-hidden">
+<img alt="Signage" class="w-full h-full object-cover" data-alt="A professional custom business sign made from layered matte black metal and brushed copper. The sign features a precision-cut logo and is mounted on a textured concrete wall. The mood is industrial and premium, with focused spotlighting highlighting the contrast between the metal finishes." src="/assets/images/placeholder.svg">
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md">Acrylic Wall Logo</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[10px] text-on-surface-variant">89 sold</span>
+<span class="text-xs text-primary font-bold">+12%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 opacity-70">
+<div class="w-12 h-12 rounded bg-surface-container-highest overflow-hidden">
+<img alt="Coaster" class="w-full h-full object-cover" data-alt="A set of geometric coasters laser-cut from high-grade slate. Each coaster features a different intricate mandala pattern etched into the surface. The presentation is clean and professional, with the coasters stacked on a dark stone tabletop under cool, neutral lighting." src="/assets/images/placeholder.svg">
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md">Geometric Coasters</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[10px] text-on-surface-variant">54 sold</span>
+<span class="text-xs text-on-surface-variant">-2%</span>
+</div>
+</div>
+</div>
+</div>
+<button onclick="window.location.href='/admin/analytics.html'" class="w-full mt-10 py-2 border border-primary/20 text-primary rounded font-label-sm text-label-sm hover:bg-primary/5 transition-colors">
+                    Voir les analyses
+                </button>
+</div>
+</div>
+</main>
+<!-- Background Atmospheric Glows -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-secondary/5 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+// ══ LOGIN OVERLAY ══════════════════════════════════════════
+const LOGIN_HTML = `
+<div id="login-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center bg-surface-deep/95 backdrop-blur-xl">
+  <div class="w-full max-w-sm mx-4">
+    <div class="glass-card rounded-2xl p-8 shadow-2xl border border-primary/20">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 shadow-[0_0_12px_rgba(0,212,255,0.3)]">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="w-full h-full object-cover"/>
+</div>
+        <div>
+          <a href="/admin/dashboard.html" class="block">
+<span class="font-bold text-primary text-lg leading-none" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+          <p class="text-label-sm text-on-surface-variant">Admin Panel</p>
+        </div>
+      </div>
+      <h2 class="font-headline-sm text-headline-sm mb-6">Connexion</h2>
+      <div class="space-y-4">
+        <div>
+          <label class="text-label-sm text-on-surface-variant mb-1 block uppercase tracking-wider">Identifiant</label>
+          <input id="login-user" type="text" value="admin"
+            class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-4 py-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+            placeholder="admin">
+        </div>
+        <div>
+          <label class="text-label-sm text-on-surface-variant mb-1 block uppercase tracking-wider">Mot de passe</label>
+          <input id="login-pass" type="password"
+            class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-4 py-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+            placeholder="••••••••">
+        </div>
+        <p id="login-error" class="text-error text-label-sm hidden"></p>
+        <button id="login-btn"
+          class="w-full py-3 bg-primary-container text-on-primary rounded-xl font-bold text-headline-sm hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_20px_rgba(0,212,255,0.3)]">
+          Se connecter
+        </button>
+      </div>
+      <p class="text-center text-label-sm text-on-surface-variant mt-6">admin / laserya2024</p>
+    </div>
+  </div>
+</div>`;
+
+function showLogin() {
+  document.body.insertAdjacentHTML('beforeend', LOGIN_HTML);
+  const btn  = document.getElementById('login-btn');
+  const err  = document.getElementById('login-error');
+  const pass = document.getElementById('login-pass');
+
+  async function doLogin() {
+    const user = document.getElementById('login-user').value.trim();
+    const pw   = pass.value;
+    if (!user || !pw) { err.textContent = 'Champs requis'; err.classList.remove('hidden'); return; }
+    btn.disabled = true; btn.textContent = 'Connexion...';
+    try {
+      await Auth.login(user, pw);
+      document.getElementById('login-overlay').remove();
+      loadDashboard();
+    } catch (e) {
+      err.textContent = e.message; err.classList.remove('hidden');
+      btn.disabled = false; btn.textContent = 'Se connecter';
+    }
+  }
+  btn.addEventListener('click', doLogin);
+  pass.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+}
+
+// ══ STATS ════════════════════════════════════════════════
+async function loadDashboard() {
+  try {
+    const stats = await StatsAPI.get();
+
+    // ── Stat cards ─────────────────────────────────────
+    // Revenue
+    document.querySelector('.glass-card h3.text-primary').textContent = formatPrice(stats.revenue);
+    // Total orders
+    const h3s = document.querySelectorAll('.glass-card h3');
+    if (h3s[1]) h3s[1].textContent = stats.totalOrders;
+    // Pending
+    if (h3s[2]) { h3s[2].textContent = stats.pending; h3s[2].className = h3s[2].className.replace('text-orange-400','') + ' text-warning'; }
+    // Products
+    const allH3 = document.querySelectorAll('.glass-card .font-display-lg');
+    allH3.forEach((el, i) => {
+      if (i === 0) el.textContent = formatPrice(stats.revenue);
+      if (i === 1) el.textContent = stats.totalOrders;
+      if (i === 2) el.textContent = stats.pending + stats.customReqs;
+    });
+
+    // ── Recent orders table ─────────────────────────────
+    const tbody = document.querySelector('tbody');
+    if (tbody && !stats.recentOrders?.length)
+      tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-on-surface-variant">Aucune commande récente</td></tr>';
+    if (tbody && stats.recentOrders?.length) {
+      const STATUS_COLORS = { pending:'text-warning border-warning bg-warning/10', confirmed:'text-primary border-primary bg-primary/10', in_production:'text-primary border-primary bg-primary/10', ready:'text-success border-success bg-success/10', delivered:'text-success border-success bg-success/10', cancelled:'text-error border-error bg-error/10' };
+      const STATUS_LABELS = { pending:'En attente', confirmed:'Confirmée', in_production:'En production', ready:'Prête', delivered:'Livrée', cancelled:'Annulée' };
+      tbody.innerHTML = stats.recentOrders.map(o => {
+        const initials = o.customer_name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+        const cls = STATUS_COLORS[o.status] || STATUS_COLORS.pending;
+        return `<tr class="hover:bg-white/5 transition-colors">
+          <td class="px-6 py-4 font-mono-ui text-sm text-primary">#${o.id.slice(0,8).toUpperCase()}</td>
+          <td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-7 h-7 bg-primary/20 rounded-full flex items-center justify-center text-[10px] font-bold">${initials}</div><span class="font-label-md text-label-md">${o.customer_name}</span></div></td>
+          <td class="px-6 py-4 text-xs text-on-surface-variant">—</td>
+          <td class="px-6 py-4"><span class="px-2 py-1 border text-[10px] rounded-full uppercase font-bold ${cls}">${STATUS_LABELS[o.status]||o.status}</span></td>
+          <td class="px-6 py-4 text-right font-label-md text-label-md">${formatPrice(o.total)}</td>
+          <td class="px-6 py-4 text-right"><a href="/admin/orders.html" class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">open_in_new</span></a></td>
+        </tr>`;
+      }).join('');
+    }
+
+    // ── Top products ────────────────────────────────────
+    try {
+      const products = await ProductsAPI.getAll();
+      const topEl = document.querySelector('.col-span-12.lg\\:col-span-3 .space-y-6');
+      if (topEl && products.length) {
+        topEl.innerHTML = products.slice(0, 4).map(p => `
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded bg-surface-container-highest overflow-hidden flex-shrink-0">
+              <img alt="${p.name}" class="w-full h-full object-cover" src="${p.image_url}" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=48'">
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="font-label-md text-label-md truncate">${p.name}</p>
+              <div class="flex justify-between items-center mt-1">
+                <span class="text-[10px] text-on-surface-variant">${p.stock} en stock</span>
+                <span class="text-xs text-primary font-bold">${formatPrice(p.price)}</span>
+              </div>
+            </div>
+          </div>`).join('');
+      }
+    } catch {}
+
+  } catch (e) {
+    console.warn('Stats load failed:', e.message);
+  }
+
+  // ── Hover cards ──────────────────────────────────────
+  document.querySelectorAll('.glass-card').forEach(card => {
+    card.addEventListener('mouseenter', () => { card.style.transform = 'translateY(-2px)'; });
+    card.addEventListener('mouseleave', () => { card.style.transform = 'translateY(0)'; });
+  });
+}
+
+// ══ NAV LINKS ═════════════════════════════════════════════
+const NAV = { 'Dashboard':'/admin/dashboard.html','Orders':'/admin/orders.html','Custom Requests':'/admin/custom-requests.html','3D Print Requests':'/pages/3d-print.html','Production Board':'/admin/production-board.html','Products':'/admin/products.html' };
+document.querySelectorAll('aside nav a').forEach(a => { const t = a.textContent.trim(); if (NAV[t]) a.href = NAV[t]; });
+document.querySelectorAll('a, button').forEach(el => { if (el.textContent.trim() === 'Logout') el.addEventListener('click', () => Auth.logout()); });
+
+// ══ INIT ══════════════════════════════════════════════════
+if (Auth.isAdmin()) {
+  loadDashboard();
+} else {
+  showLogin();
+}
+</script>
+
+
+</body></html>

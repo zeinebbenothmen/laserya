@@ -1,0 +1,633 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Add New Product | Laserya.tn Admin</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Polices "gravure" (script) pour l'aperçu des zones -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Allura&amp;family=Parisienne&amp;family=Dancing+Script:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            background-color: #070A0F;
+            color: #e0e2ea;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-blur: 12px;
+        }
+        .glow-cyan:focus {
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            border-color: #a8e8ff;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070A0F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #32353b;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- Sidebar -->
+<aside id="admin-sidebar" data-active="products"></aside>
+<!-- Main Wrapper -->
+<div class="flex-1 ml-sidebar_width min-h-screen relative">
+<!-- Top Bar -->
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+<a href="/admin/products.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-label-md"><span class="material-symbols-outlined text-[18px]">arrow_back</span> Retour aux produits</a>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/15 flex items-center justify-center text-primary"><span class="material-symbols-outlined">person</span></div>
+<p class="font-label-md text-on-surface hidden lg:block">Administrateur</p>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pt-[calc(64px+32px)] px-container_padding pb-12">
+<!-- Breadcrumbs & Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<nav class="flex items-center gap-2 text-outline text-[11px] font-medium uppercase tracking-widest mb-2">
+<span class="">Products</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">Add New Product</span>
+</nav>
+<h2 class="font-headline-md text-headline-md text-on-surface">Add New Product</h2>
+</div>
+<div class="flex items-center gap-3">
+<button id="discard-btn" class="px-6 py-2.5 rounded-lg border border-outline-variant/30 text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-all">Annuler</button>
+<button id="save-btn" class="px-6 py-2.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-bold shadow-lg shadow-primary-container/20 hover:scale-[1.02] active:scale-95 transition-all">Enregistrer le produit</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- General Information -->
+<section class="glass-card p-6 rounded-xl space-y-6">
+<div class="flex items-center gap-3 pb-4 border-b border-outline-variant/10">
+<span class="material-symbols-outlined text-primary">info</span>
+<h3 class="font-headline-sm text-headline-sm">General Information</h3>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2 md:col-span-1 flex flex-col gap-2">
+<label class="text-label-sm text-outline uppercase tracking-wider">Nom du produit *</label>
+<input id="field-name" class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2.5 text-body-md focus:ring-1 focus:ring-primary/50 outline-none glow-cyan" placeholder="ex. Lampe LED Anime Personnalisée" type="text">
+</div>
+<div class="col-span-2 md:col-span-1 flex flex-col gap-2">
+<label class="text-label-sm text-outline uppercase tracking-wider">Catégorie</label>
+<select id="field-category" class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2.5 text-body-md focus:ring-1 focus:ring-primary/50 outline-none">
+<option value="led-lamps">Lampes LED</option>
+<option value="keychains">Porte-clés</option>
+<option value="3d-figures">Figurines 3D</option>
+<option value="accessories">Accessoires</option>
+<option value="gifts">Cadeaux</option>
+<option value="other">Autre</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline uppercase tracking-wider">Description</label>
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg overflow-hidden">
+<textarea id="field-description" class="bg-transparent border-none w-full p-4 text-body-md focus:ring-0 outline-none resize-none" placeholder="Décrivez le produit, le processus de fabrication et ses caractéristiques..." rows="6"></textarea>
+</div>
+</div>
+</div>
+</section>
+<!-- Media Upload -->
+<section class="glass-card p-6 rounded-xl space-y-6">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">image</span>
+<h3 class="font-headline-sm text-headline-sm">Product Gallery</h3>
+</div>
+<span class="text-label-sm text-outline">Up to 10 images • JPG, PNG or WEBP</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="col-span-2 h-48 border-2 border-dashed border-outline-variant/30 rounded-xl bg-surface-container-lowest flex flex-col items-center justify-center gap-3 hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer group"
+     onclick="document.getElementById('image-input').click()">
+<input id="image-input" type="file" accept="image/*" class="hidden">
+<div id="image-preview-wrap" class="hidden w-full h-full"><img id="image-preview" class="w-full h-full object-cover rounded-xl"></div>
+<div id="image-placeholder" class="text-center">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-3xl">add_photo_alternate</span>
+<p class="font-label-md text-label-md text-on-surface mt-2">Cliquez pour choisir une image</p>
+<p class="text-label-sm text-outline">JPG, PNG, WEBP — max 10MB</p>
+</div>
+</div>
+<div class="h-48 border border-outline-variant/20 rounded-xl bg-surface-container-lowest/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline/30 text-3xl">image</span>
+</div>
+<div class="h-48 border border-outline-variant/20 rounded-xl bg-surface-container-lowest/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline/30 text-3xl">image</span>
+</div>
+</div>
+</section>
+<!-- Technical Specifications -->
+<section class="glass-card p-6 rounded-xl space-y-6" style="--mouse-x: 223px; --mouse-y: 243.4140625px;">
+<div class="flex items-center gap-3 pb-4 border-b border-outline-variant/10">
+<span class="material-symbols-outlined text-primary">settings_suggest</span>
+<h3 class="font-headline-sm text-headline-sm">Technical Specifications</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Laser Specifics -->
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<h4 class="text-label-md text-on-surface uppercase tracking-widest">Laser Parameters</h4>
+</div>
+<div class="space-y-4 pl-4">
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Matière principale</label>
+<input id="field-material" class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2 text-body-sm glow-cyan outline-none" placeholder="ex. Acrylique, Bois, Résine" type="text">
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Available Thickness (mm)</label>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-variant text-on-surface rounded text-xs flex items-center gap-1">3mm <span class="material-symbols-outlined text-xs">close</span></span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface rounded text-xs flex items-center gap-1">5mm <span class="material-symbols-outlined text-xs">close</span></span>
+<button class="px-2 py-1 border border-outline-variant/30 rounded text-xs hover:border-primary transition-colors">+ Add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 3D Print Specifics -->
+<div class="space-y-4 opacity-50 grayscale pointer-events-none">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<h4 class="text-label-md text-outline uppercase tracking-widest">3D Printing Specs</h4>
+</div>
+<div class="space-y-4 pl-4">
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Filament / Resin</label>
+<input class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2 text-body-sm" disabled="" placeholder="Select material..." type="text">
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Build Volume (mm³)</label>
+<input class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2 text-body-sm" disabled="" placeholder="X x Y x Z" type="text">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Customization Rules -->
+<section class="glass-card p-6 rounded-xl space-y-6">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">brush</span>
+<h3 class="font-headline-sm text-headline-sm">Customization Rules</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm text-outline">Enable Personalization</span>
+<button class="w-10 h-5 rounded-full bg-primary-container relative transition-colors duration-300" id="personalize-toggle">
+<span class="absolute right-1 top-1 w-3 h-3 bg-on-primary rounded-full transition-all duration-300"></span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<label class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant/10 rounded-lg cursor-pointer hover:border-primary/30 transition-colors">
+<input checked="" class="w-4 h-4 rounded border-outline-variant/50 bg-transparent text-primary focus:ring-primary/30" type="checkbox">
+<span class="text-body-md">Custom Size</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant/10 rounded-lg cursor-pointer hover:border-primary/30 transition-colors">
+<input checked="" class="w-4 h-4 rounded border-outline-variant/50 bg-transparent text-primary focus:ring-primary/30" type="checkbox">
+<span class="text-body-md">Material Choice</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant/10 rounded-lg cursor-pointer hover:border-primary/30 transition-colors">
+<input class="w-4 h-4 rounded border-outline-variant/50 bg-transparent text-primary focus:ring-primary/30" type="checkbox">
+<span class="text-body-md">Base Type</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant/10 rounded-lg cursor-pointer hover:border-primary/30 transition-colors">
+<input class="w-4 h-4 rounded border-outline-variant/50 bg-transparent text-primary focus:ring-primary/30" type="checkbox">
+<span class="text-body-md">LED Color</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant/10 rounded-lg cursor-pointer hover:border-primary/30 transition-colors">
+<input checked="" class="w-4 h-4 rounded border-outline-variant/50 bg-transparent text-primary focus:ring-primary/30" type="checkbox">
+<span class="text-body-md">Gift Packaging</span>
+</label>
+</div>
+<!-- Éditeur visuel des zones de personnalisation -->
+<div class="pt-4 border-t border-outline-variant/10 space-y-4">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<div>
+<p class="text-label-sm text-on-surface uppercase tracking-widest">Zones de personnalisation</p>
+<p class="text-[11px] text-outline mt-1">Glissez chaque étiquette à l'endroit exact où le texte sera gravé sur le produit.</p>
+</div>
+<div class="flex gap-2">
+<button type="button" id="zone-add-text" class="px-3 py-1.5 rounded-lg bg-primary-container/20 text-primary border border-primary/30 text-label-sm flex items-center gap-1 hover:bg-primary-container/30 transition-colors"><span class="material-symbols-outlined text-[16px]">add</span> Texte</button>
+<button type="button" id="zone-add-date" class="px-3 py-1.5 rounded-lg bg-primary-container/20 text-primary border border-primary/30 text-label-sm flex items-center gap-1 hover:bg-primary-container/30 transition-colors"><span class="material-symbols-outlined text-[16px]">add</span> Date</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+<div>
+<div id="zone-canvas" class="relative w-full aspect-square rounded-xl overflow-hidden bg-surface-container-lowest border border-outline-variant/20 select-none">
+<img id="zone-canvas-img" class="w-full h-full object-cover pointer-events-none" style="display:none" alt="">
+<div id="zone-canvas-empty" class="absolute inset-0 flex flex-col items-center justify-center text-outline text-center px-4">
+<span class="material-symbols-outlined text-3xl mb-2">image</span>
+<span class="text-label-sm">Ajoutez une image produit pour positionner les zones</span>
+</div>
+</div>
+</div>
+<div id="zone-list" class="space-y-2"></div>
+</div>
+</div>
+</section>
+<!-- Pricing & Inventory -->
+<section class="glass-card p-6 rounded-xl space-y-6">
+<div class="flex items-center gap-3 pb-4 border-b border-outline-variant/10">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h3 class="font-headline-sm text-headline-sm">Pricing &amp; Inventory</h3>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Prix de base (DT) *</label>
+<div class="relative">
+<input id="field-price" class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-lg pl-4 pr-12 py-2.5 text-body-md glow-cyan outline-none" placeholder="0.00" type="number" min="0" step="0.01">
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-outline text-xs font-bold">DT</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Stock initial</label>
+<input id="field-stock" class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2.5 text-body-md glow-cyan outline-none" placeholder="0" type="number" min="0">
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Statut</label>
+<select id="field-active" class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2.5 text-body-md glow-cyan outline-none">
+<option value="1">Actif</option>
+<option value="0">Inactif</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">URL image (optionnel)</label>
+<input id="field-image-url" class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2.5 text-body-md glow-cyan outline-none" placeholder="https://..." type="url">
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column -->
+<aside class="lg:col-span-4 space-y-gutter">
+<!-- Product Status -->
+<section class="glass-card p-6 rounded-xl space-y-4">
+<h4 class="text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant/10 pb-3">Visibility &amp; Status</h4>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Publication Status</label>
+<select class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2.5 text-body-sm focus:ring-1 focus:ring-primary/50 outline-none">
+<option value="draft">Draft</option>
+<option selected="" value="active">Active</option>
+<option value="scheduled">Scheduled</option>
+</select>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-body-md text-on-surface">Storefront Visibility</span>
+<button class="w-10 h-5 rounded-full bg-surface-variant relative transition-colors duration-300" id="visibility-toggle">
+<span class="absolute left-1 top-1 w-3 h-3 bg-outline rounded-full transition-all duration-300"></span>
+</button>
+</div>
+<div class="p-3 bg-surface-container rounded-lg border border-outline-variant/10">
+<p class="text-[11px] text-outline italic">Publicly visible since Oct 24, 2023. Not searchable until indexed.</p>
+</div>
+</div>
+</section>
+<!-- Categories & Tags -->
+<section class="glass-card p-6 rounded-xl space-y-4">
+<h4 class="text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant/10 pb-3">Organization</h4>
+<div class="space-y-4">
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Collections</label>
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg p-2 space-y-1">
+<label class="flex items-center gap-2 px-2 py-1 hover:bg-surface-variant/30 rounded cursor-pointer">
+<input class="w-3.5 h-3.5 rounded border-outline-variant bg-transparent text-primary" type="checkbox">
+<span class="text-body-sm">Wall Art</span>
+</label>
+<label class="flex items-center gap-2 px-2 py-1 hover:bg-surface-variant/30 rounded cursor-pointer">
+<input checked="" class="w-3.5 h-3.5 rounded border-outline-variant bg-transparent text-primary" type="checkbox">
+<span class="text-body-sm">Custom Decor</span>
+</label>
+<label class="flex items-center gap-2 px-2 py-1 hover:bg-surface-variant/30 rounded cursor-pointer">
+<input class="w-3.5 h-3.5 rounded border-outline-variant bg-transparent text-primary" type="checkbox">
+<span class="text-body-sm">Corporate Gifts</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm text-outline">Tags</label>
+<input class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-2 text-body-sm outline-none focus:ring-1 focus:ring-primary/50" placeholder="Add tags (enter to add)..." type="text">
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-2 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded text-[10px] font-bold uppercase">Modern</span>
+<span class="px-2 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded text-[10px] font-bold uppercase">Eco-Friendly</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Meta Preview -->
+<section class="glass-card p-6 rounded-xl space-y-4">
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-3">
+<h4 class="text-label-md text-on-surface uppercase tracking-widest">Shop Meta Preview</h4>
+<span class="material-symbols-outlined text-outline text-sm">visibility</span>
+</div>
+<div class="space-y-3 bg-white/5 p-4 rounded-lg border border-white/5">
+<div class="flex items-center gap-2 text-[#4d90fe] text-sm overflow-hidden whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">public</span>
+<span class="truncate">laserya.tn › products › custom-wall-art</span>
+</div>
+<p class="text-[#8ab4f8] text-lg font-medium leading-tight hover:underline cursor-pointer">Custom Laser Cut Wall Art - Premium Tunisian Craftsmanship</p>
+<p class="text-on-surface-variant/70 text-xs leading-relaxed">
+<span class="text-outline">Oct 24, 2023 —</span> Elevate your space with our precision-crafted laser cut wall art. Available in multiple materials like MDF and Walnut. Fully customizable...
+                            </p>
+<div class="flex gap-4 pt-1">
+<div class="flex items-center gap-1 text-[#fbbc04]">
+<span class="material-symbols-outlined text-xs fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[10px] font-bold ml-1 text-on-surface-variant">5.0 (42 reviews)</span>
+</div>
+</div>
+</div>
+</section>
+</aside>
+</div>
+</main>
+</div>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+// ── Admin guard ────────────────────────────────────────────
+if (!Auth.isAdmin()) window.location.href = '/admin/dashboard.html';
+
+// ── Edit mode: load product from URL ?id=xxx ───────────────
+const urlId = new URLSearchParams(location.search).get('id');
+let isEditMode = !!urlId;
+
+async function loadForEdit() {
+  if (!isEditMode) return;
+  document.querySelector('h2').textContent = 'Modifier le produit';
+  document.querySelector('nav span:last-child').textContent = 'Modifier le produit';
+  document.getElementById('save-btn').textContent = 'Mettre à jour';
+  try {
+    const p = await ProductsAPI.getOne(urlId);
+    document.getElementById('field-name').value      = p.name || '';
+    document.getElementById('field-category').value  = p.category || 'other';
+    document.getElementById('field-description').value = p.description || '';
+    document.getElementById('field-material').value  = p.material || '';
+    document.getElementById('field-price').value     = p.price || '';
+    document.getElementById('field-stock').value     = p.stock || 0;
+    document.getElementById('field-active').value    = p.active ? '1' : '0';
+    document.getElementById('field-image-url').value = p.image_url || '';
+    try { zones = JSON.parse(p.personalization_zones || '[]'); } catch { zones = []; }
+    if (!Array.isArray(zones)) zones = [];
+    if (p.image_url) {
+      document.getElementById('image-preview').src = p.image_url;
+      document.getElementById('image-preview-wrap').classList.remove('hidden');
+      document.getElementById('image-placeholder').classList.add('hidden');
+    }
+    syncCanvasImage();
+    renderMarkers();
+    renderList();
+  } catch (e) { showToast('Produit introuvable', 'error'); }
+}
+
+// ── Image preview ──────────────────────────────────────────
+document.getElementById('image-input')?.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    document.getElementById('image-preview').src = ev.target.result;
+    document.getElementById('image-preview-wrap').classList.remove('hidden');
+    document.getElementById('image-placeholder').classList.add('hidden');
+    syncCanvasImage();
+    renderMarkers();
+  };
+  reader.readAsDataURL(file);
+});
+
+// ── Save ───────────────────────────────────────────────────
+document.getElementById('save-btn')?.addEventListener('click', async () => {
+  const name  = document.getElementById('field-name').value.trim();
+  const price = document.getElementById('field-price').value;
+  if (!name || !price) { showToast('Nom et prix obligatoires', 'error'); return; }
+
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Enregistrement...';
+
+  const fd = new FormData();
+  fd.append('name',        name);
+  fd.append('description', document.getElementById('field-description').value);
+  fd.append('price',       price);
+  fd.append('category',    document.getElementById('field-category').value);
+  fd.append('material',    document.getElementById('field-material').value);
+  fd.append('stock',       document.getElementById('field-stock').value || 0);
+  fd.append('active',      document.getElementById('field-active').value);
+  const hasText = zones.some(z => z.type === 'text');
+  const hasDate = zones.some(z => z.type === 'date');
+  fd.append('requires_name', hasText ? 1 : 0);
+  fd.append('requires_date', hasDate ? 1 : 0);
+  fd.append('personalization_zones', JSON.stringify(
+    zones.map(z => ({ id: z.id, label: z.label, type: z.type, x: z.x, y: z.y, size: z.size, color: z.color, font: z.font || 'sora', glow: z.glow !== false }))
+  ));
+  const imageUrl = document.getElementById('field-image-url').value;
+  if (imageUrl) fd.append('image_url', imageUrl);
+  const fileInput = document.getElementById('image-input');
+  if (fileInput?.files[0]) fd.append('image', fileInput.files[0]);
+
+  try {
+    if (isEditMode) {
+      await ProductsAPI.update(urlId, fd);
+      showToast('Produit mis à jour !', 'success');
+    } else {
+      await ProductsAPI.create(fd);
+      showToast('Produit créé !', 'success');
+    }
+    setTimeout(() => window.location.href = '/admin/products.html', 1200);
+  } catch (e) {
+    showToast(e.message || 'Erreur lors de l\'enregistrement', 'error');
+    btn.disabled = false;
+    btn.textContent = isEditMode ? 'Mettre à jour' : 'Enregistrer le produit';
+  }
+});
+
+// ── Discard ────────────────────────────────────────────────
+document.getElementById('discard-btn')?.addEventListener('click', () => {
+  if (confirm('Annuler les modifications ?')) window.location.href = '/admin/products.html';
+});
+
+// ── Toggle micro-interactions ──────────────────────────────
+['personalize-toggle', 'visibility-toggle'].forEach(id => {
+  const btn = document.getElementById(id);
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const circle = btn.querySelector('span');
+    const isOn = btn.classList.contains('bg-primary-container');
+    btn.classList.toggle('bg-primary-container', !isOn);
+    btn.classList.toggle('bg-surface-variant', isOn);
+    circle.classList.toggle('right-1', !isOn);
+    circle.classList.toggle('left-1', isOn);
+    circle.classList.toggle('bg-on-primary', !isOn);
+    circle.classList.toggle('bg-outline', isOn);
+  });
+});
+
+// ── Hover glow ─────────────────────────────────────────────
+document.querySelectorAll('.glass-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+    card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+  });
+});
+
+// ── Nav links ──────────────────────────────────────────────
+const navMap = { 'Dashboard': '/admin/dashboard.html', 'Orders': '/admin/orders.html', 'Products': '/admin/products.html', 'Custom Requests': '/admin/custom-requests.html' };
+document.querySelectorAll('aside nav a').forEach(a => { const t = a.textContent.trim(); if (navMap[t]) a.href = navMap[t]; });
+document.querySelectorAll('button').forEach(btn => { if (btn.textContent.trim() === 'Logout') btn.addEventListener('click', () => Auth.logout()); });
+
+// ── Polices "gravure" disponibles (clé → famille CSS + libellé) ──
+// Partagé avec la page produit (frontend/pages/product.html).
+const ENGRAVE_FONTS = {
+  'sora':      { label: 'Standard (gras)', css: "Sora, sans-serif",        weight: 800 },
+  'elegant':   { label: 'Élégant',         css: "'Great Vibes', cursive",  weight: 400 },
+  'fin':       { label: 'Fin',             css: "'Allura', cursive",       weight: 400 },
+  'manuscrit': { label: 'Manuscrit',       css: "'Parisienne', cursive",   weight: 400 },
+  'casual':    { label: 'Décontracté',     css: "'Dancing Script', cursive", weight: 700 },
+};
+function fontCss(key)    { return (ENGRAVE_FONTS[key] || ENGRAVE_FONTS.sora).css; }
+function fontWeight(key) { return (ENGRAVE_FONTS[key] || ENGRAVE_FONTS.sora).weight; }
+
+// ── Éditeur visuel des zones de personnalisation ──────────
+let zones = [];
+let selectedZoneId = null;
+const zoneCanvas      = document.getElementById('zone-canvas');
+const zoneCanvasImg   = document.getElementById('zone-canvas-img');
+const zoneCanvasEmpty = document.getElementById('zone-canvas-empty');
+const zoneList        = document.getElementById('zone-list');
+const zid = () => 'z' + Math.random().toString(36).slice(2, 7);
+
+function syncCanvasImage() {
+  const wrap = document.getElementById('image-preview-wrap');
+  const preview = document.getElementById('image-preview');
+  const url = document.getElementById('field-image-url').value.trim();
+  let src = '';
+  if (preview?.src && wrap && !wrap.classList.contains('hidden')) src = preview.src;
+  else if (url) src = url;
+  if (src) { zoneCanvasImg.src = src; zoneCanvasImg.style.display = ''; zoneCanvasEmpty.style.display = 'none'; }
+  else { zoneCanvasImg.removeAttribute('src'); zoneCanvasImg.style.display = 'none'; zoneCanvasEmpty.style.display = ''; }
+}
+
+function renderMarkers() {
+  zoneCanvas.querySelectorAll('.zone-marker').forEach(n => n.remove());
+  const w = zoneCanvas.clientWidth || 1;
+  zones.forEach(z => {
+    const m = document.createElement('div');
+    m.className = 'zone-marker absolute cursor-move whitespace-nowrap font-extrabold' + (z.id === selectedZoneId ? ' ring-2 ring-primary rounded' : '');
+    m.dataset.id = z.id;
+    const glow = z.glow === false ? '' : `,0 0 10px ${z.color},0 0 22px ${z.color}aa`;
+    m.style.cssText = `left:${z.x}%;top:${z.y}%;transform:translate(-50%,-50%);font-family:${fontCss(z.font)};font-weight:${fontWeight(z.font)};color:${z.color};font-size:${(z.size / 100) * w}px;text-shadow:0 0 8px rgba(0,0,0,.7)${glow};padding:1px 4px;line-height:1.1;`;
+    m.textContent = z.label || (z.type === 'date' ? 'JJ/MM/AAAA' : 'Texte');
+    zoneCanvas.appendChild(m);
+    makeDraggable(m, z);
+  });
+}
+
+function renderList() {
+  if (!zones.length) {
+    zoneList.innerHTML = '<p class="text-label-sm text-outline p-4 text-center border border-dashed border-outline-variant/20 rounded-lg">Aucune zone. Cliquez « + Texte » ou « + Date » pour en ajouter une.</p>';
+    return;
+  }
+  zoneList.innerHTML = '';
+  zones.forEach(z => {
+    const card = document.createElement('div');
+    card.className = 'p-3 rounded-lg border transition-colors ' + (z.id === selectedZoneId ? 'border-primary bg-primary/5' : 'border-outline-variant/15 bg-surface-container-lowest');
+    card.innerHTML = `
+      <div class="flex items-center gap-2 mb-2">
+        <span class="material-symbols-outlined text-primary text-[18px]">${z.type === 'date' ? 'event' : 'title'}</span>
+        <input data-f="label" value="${(z.label || '').replace(/"/g, '&quot;')}" placeholder="Libellé (ex. Prénom 1)" class="flex-1 bg-surface-container border border-outline-variant/20 rounded px-2 py-1 text-body-sm outline-none focus:border-primary">
+        <button type="button" data-act="del" title="Supprimer" class="material-symbols-outlined text-outline hover:text-error text-[18px]">delete</button>
+      </div>
+      <div class="flex items-center gap-4 mb-2">
+        <label class="flex items-center gap-1 text-[11px] text-outline">Couleur <input data-f="color" type="color" value="${z.color}" class="w-6 h-6 rounded bg-transparent border border-outline-variant/20 cursor-pointer"></label>
+        <label class="flex items-center gap-2 text-[11px] text-outline flex-1">Taille <input data-f="size" type="range" min="2" max="20" step="0.5" value="${z.size}" class="flex-1 accent-primary"></label>
+      </div>
+      <div class="flex items-center gap-4">
+        <label class="flex items-center gap-1 text-[11px] text-outline flex-1">Police
+          <select data-f="font" class="flex-1 bg-surface-container border border-outline-variant/20 rounded px-2 py-1 text-body-sm outline-none focus:border-primary">
+            ${Object.entries(ENGRAVE_FONTS).map(([k, v]) => `<option value="${k}" ${(z.font || 'sora') === k ? 'selected' : ''}>${v.label}</option>`).join('')}
+          </select>
+        </label>
+        <label class="flex items-center gap-1 text-[11px] text-outline cursor-pointer" title="Effet lumineux (gravure éclairée)">
+          <input data-f="glow" type="checkbox" ${z.glow === false ? '' : 'checked'} class="accent-primary"> Brillant
+        </label>
+      </div>`;
+    card.addEventListener('click', e => { if (!e.target.closest('[data-act],[data-f]')) { selectedZoneId = z.id; renderMarkers(); renderList(); } });
+    card.querySelector('[data-act="del"]').addEventListener('click', () => { zones = zones.filter(x => x.id !== z.id); if (selectedZoneId === z.id) selectedZoneId = null; renderMarkers(); renderList(); });
+    card.querySelector('[data-f="label"]').addEventListener('input', e => { z.label = e.target.value; renderMarkers(); });
+    card.querySelector('[data-f="color"]').addEventListener('input', e => { z.color = e.target.value; renderMarkers(); });
+    card.querySelector('[data-f="size"]').addEventListener('input', e => { z.size = parseFloat(e.target.value); renderMarkers(); });
+    card.querySelector('[data-f="font"]').addEventListener('change', e => { z.font = e.target.value; renderMarkers(); });
+    card.querySelector('[data-f="glow"]').addEventListener('change', e => { z.glow = e.target.checked; renderMarkers(); });
+    zoneList.appendChild(card);
+  });
+}
+
+function makeDraggable(el, z) {
+  let dragging = false;
+  el.addEventListener('pointerdown', e => {
+    e.preventDefault(); dragging = true; selectedZoneId = z.id; renderList();
+    el.classList.add('ring-2', 'ring-primary', 'rounded');
+    try { el.setPointerCapture(e.pointerId); } catch {}
+  });
+  el.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const r = zoneCanvas.getBoundingClientRect();
+    z.x = Math.min(100, Math.max(0, ((e.clientX - r.left) / r.width) * 100));
+    z.y = Math.min(100, Math.max(0, ((e.clientY - r.top) / r.height) * 100));
+    el.style.left = z.x + '%'; el.style.top = z.y + '%';
+  });
+  el.addEventListener('pointerup', e => { dragging = false; try { el.releasePointerCapture(e.pointerId); } catch {} });
+}
+
+document.getElementById('zone-add-text')?.addEventListener('click', () => {
+  zones.push({ id: zid(), label: 'Prénom', type: 'text', x: 50, y: 75, size: 7, color: '#ffffff', font: 'elegant', glow: true });
+  selectedZoneId = zones[zones.length - 1].id; renderMarkers(); renderList();
+});
+document.getElementById('zone-add-date')?.addEventListener('click', () => {
+  zones.push({ id: zid(), label: 'Date', type: 'date', x: 50, y: 88, size: 4.5, color: '#a8e8ff', font: 'elegant', glow: true });
+  selectedZoneId = zones[zones.length - 1].id; renderMarkers(); renderList();
+});
+
+// Cliquer sur la photo place la zone sélectionnée à cet endroit (ajustement rapide)
+zoneCanvas?.addEventListener('pointerdown', e => {
+  if (e.target.closest('.zone-marker')) return;       // on a cliqué un marqueur → géré par le drag
+  const z = zones.find(x => x.id === selectedZoneId) || zones[zones.length - 1];
+  if (!z) return;
+  const r = zoneCanvas.getBoundingClientRect();
+  z.x = Math.min(100, Math.max(0, ((e.clientX - r.left) / r.width) * 100));
+  z.y = Math.min(100, Math.max(0, ((e.clientY - r.top) / r.height) * 100));
+  selectedZoneId = z.id; renderMarkers(); renderList();
+});
+
+// Keep the canvas image in sync with the uploaded / URL image
+document.getElementById('image-input')?.addEventListener('change', () => setTimeout(syncCanvasImage, 50));
+document.getElementById('field-image-url')?.addEventListener('input', () => { syncCanvasImage(); renderMarkers(); });
+window.addEventListener('resize', renderMarkers);
+
+syncCanvasImage();
+renderList();
+
+loadForEdit();
+</script>
+
+
+</body></html>

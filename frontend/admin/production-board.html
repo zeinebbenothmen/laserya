@@ -1,0 +1,442 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Production Board | Laserya.tn Admin</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0e13;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3c494e;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #859398;
+        }
+        .kanban-column {
+            min-width: 320px;
+            max-width: 320px;
+        }
+        .glass-card {
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-production {
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.3) !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30 font-body-md">
+<!-- SideNavBar (Shared Component) -->
+<aside id="admin-sidebar" data-active="production"></aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-full max-w-[400px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-full py-2 pl-10 pr-12 text-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Rechercher commande, client, fichier…" type="text">
+<div class="absolute right-3 top-1/2 -translate-y-1/2 bg-surface-variant/50 px-1.5 py-0.5 rounded text-[10px] font-mono-ui text-on-surface-variant border border-outline-variant/20">⌘K</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/15 flex items-center justify-center text-primary"><span class="material-symbols-outlined">person</span></div>
+<p class="font-label-md text-on-surface hidden xl:block">Administrateur</p>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar_width mt-topbar_height p-gutter min-h-screen">
+<!-- Board Header / Filters -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-gutter mb-8">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-[20px]">view_kanban</span>
+<span class="text-primary font-label-sm uppercase tracking-widest">Real-time Dashboard</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Production Pipeline</h2>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-on-surface-variant ml-1">Staff Assigned</span>
+<select class="bg-surface-container-high border border-outline-variant/30 rounded-lg py-2 px-3 text-body-sm text-on-surface focus:ring-primary focus:border-primary">
+<option>All Staff</option>
+<option>Amine B.</option>
+<option>Sami K.</option>
+<option>Ines J.</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-on-surface-variant ml-1">Machine</span>
+<select class="bg-surface-container-high border border-outline-variant/30 rounded-lg py-2 px-3 text-body-sm text-on-surface focus:ring-primary focus:border-primary">
+<option>All Units</option>
+<option>Laser-01 (CO2)</option>
+<option>Laser-02 (Fiber)</option>
+<option>3D-Resin-01</option>
+<option>3D-FDM-04</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Kanban Board Container -->
+<div id="kanban-board" class="flex gap-4 overflow-x-auto pb-8 min-h-[calc(100vh-280px)] scroll-smooth">
+<!-- Column: Queue -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Queue</h3>
+<span class="bg-surface-container-high px-2 py-0.5 rounded-full text-[10px] font-bold text-on-surface">04</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_horiz</span></button>
+</div>
+<div class="flex-1 bg-surface-container-lowest/40 rounded-xl border border-outline-variant/10 p-2 space-y-3">
+<!-- Card 1 -->
+<div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm hover:scale-[1.02] transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex items-start justify-between mb-3">
+<span class="bg-error/10 border border-error text-error text-[10px] px-2 py-0.5 rounded uppercase font-bold">High Priority</span>
+<span class="text-on-surface-variant text-[11px] font-mono-ui">#ORD-9021</span>
+</div>
+<div class="flex gap-3 mb-3">
+<img alt="Technical Blueprint" class="w-12 h-12 rounded object-cover border border-outline-variant/30" data-alt="A technical CAD blueprint of a complex gear assembly displayed on a high-resolution monitor. The screen glow is cool blue, reflecting on the dark metallic surroundings of a workshop. The image is shot in macro, showing the fine lines and measurements of the laser cutting template, maintaining a professional and precise industrial aesthetic." src="/assets/images/placeholder.svg">
+<div>
+<p class="text-body-sm font-bold text-on-surface leading-tight">Infinity Mirror Frame</p>
+<p class="text-[11px] text-on-surface-variant">LED Lamp / Laser Acrylic</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-3 mt-3">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[8px] font-bold">JD</div>
+<span class="text-[11px] text-on-surface-variant">John Doe</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] group-hover:text-primary">open_in_new</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm hover:scale-[1.02] transition-all cursor-grab group">
+<div class="flex items-start justify-between mb-3">
+<span class="bg-primary/10 border border-primary/40 text-primary text-[10px] px-2 py-0.5 rounded uppercase font-bold">Normal</span>
+<span class="text-on-surface-variant text-[11px] font-mono-ui">#ORD-8942</span>
+</div>
+<div class="flex gap-3 mb-3">
+<img alt="Custom Lamp Design" class="w-12 h-12 rounded object-cover border border-outline-variant/30" data-alt="A macro photo of an intricately carved wooden lamp base with geometric patterns. Warm light bleeds through the laser-cut crevices, creating soft shadows. The wood has a rich, dark walnut finish. The photo is taken in a dimly lit studio environment with a shallow depth of field, emphasizing the precision of the laser craftsmanship." src="/assets/images/placeholder.svg">
+<div>
+<p class="text-body-sm font-bold text-on-surface leading-tight">Mandala Wood Lamp</p>
+<p class="text-[11px] text-on-surface-variant">LED Lamp / Wood Veneer</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-3 mt-3">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-surface-variant text-on-surface flex items-center justify-center text-[8px] font-bold">SM</div>
+<span class="text-[11px] text-on-surface-variant">Sara Miller</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Design & Prep -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Design &amp; Prep</h3>
+<span class="bg-surface-container-high px-2 py-0.5 rounded-full text-[10px] font-bold text-on-surface">02</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_horiz</span></button>
+</div>
+<div class="flex-1 bg-surface-container-lowest/40 rounded-xl border border-outline-variant/10 p-2 space-y-3">
+<div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm hover:scale-[1.02] transition-all cursor-grab group">
+<div class="flex items-start justify-between mb-3">
+<span class="bg-primary/10 border border-primary/40 text-primary text-[10px] px-2 py-0.5 rounded uppercase font-bold">Normal</span>
+<span class="text-on-surface-variant text-[11px] font-mono-ui">#ORD-9011</span>
+</div>
+<div class="flex gap-3 mb-3">
+<div class="w-12 h-12 rounded bg-surface-variant flex items-center justify-center border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">file_png</span>
+</div>
+<div>
+<p class="text-body-sm font-bold text-on-surface leading-tight">Robot Arm Joint (v2)</p>
+<p class="text-[11px] text-on-surface-variant">3D Print / Resin (Grey)</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-3 mt-3">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" src="/assets/images/placeholder.svg">
+<span class="text-[11px] text-on-surface-variant">Karim B.</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-5 h-5 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center"><span class="material-symbols-outlined text-[10px] text-primary">edit</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Production -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-primary">In Production</h3>
+<span class="bg-primary/20 px-2 py-0.5 rounded-full text-[10px] font-bold text-primary">03</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_horiz</span></button>
+</div>
+<div class="flex-1 bg-primary/5 rounded-xl border border-primary/20 p-2 space-y-3">
+<!-- Active Production Card -->
+<div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm glow-production hover:scale-[1.02] transition-all cursor-grab group">
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-1 text-[10px] font-bold text-primary animate-pulse">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                PROCESSING
+                            </div>
+<span class="text-on-surface-variant text-[11px] font-mono-ui">#ORD-8871</span>
+</div>
+<div class="flex gap-3 mb-3">
+<img alt="Laser in Action" class="w-12 h-12 rounded object-cover border border-primary/30" data-alt="A dramatic high-speed photograph of a laser cutting head in action, emitting a brilliant blue spark as it carves through black acrylic. Smoke swirls artistically around the glowing point of contact. The scene is shot in a very dark industrial workshop with sharp contrast and deep blacks, punctuated by the intense, vibrant cyan light of the laser beam." src="/assets/images/placeholder.svg">
+<div>
+<p class="text-body-sm font-bold text-on-surface leading-tight">Corporate Awards x12</p>
+<p class="text-[11px] text-on-surface-variant">Laser-01 / 85% Complete</p>
+</div>
+</div>
+<div class="w-full bg-surface-variant/30 h-1 rounded-full mb-3 overflow-hidden">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-3 mt-3">
+<div class="flex items-center gap-1.5">
+<span class="text-[11px] text-on-surface-variant">M-01 (CO2)</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">settings_slow_motion</span>
+</div>
+</div>
+<div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm border border-outline-variant/10 hover:scale-[1.02] transition-all cursor-grab group">
+<div class="flex items-start justify-between mb-3">
+<span class="bg-error/10 border border-error text-error text-[10px] px-2 py-0.5 rounded uppercase font-bold">High Priority</span>
+<span class="text-on-surface-variant text-[11px] font-mono-ui">#ORD-8889</span>
+</div>
+<div class="flex gap-3 mb-3">
+<div class="w-12 h-12 rounded bg-surface-variant flex items-center justify-center border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">3d_rotation</span>
+</div>
+<div>
+<p class="text-body-sm font-bold text-on-surface leading-tight">Skull Model (Large)</p>
+<p class="text-[11px] text-on-surface-variant">3D-Resin-01 / 4h Left</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Post-Processing -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Post-Processing</h3>
+<span class="bg-surface-container-high px-2 py-0.5 rounded-full text-[10px] font-bold text-on-surface">01</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_horiz</span></button>
+</div>
+<div class="flex-1 bg-surface-container-lowest/40 rounded-xl border border-outline-variant/10 p-2 space-y-3">
+<div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm hover:scale-[1.02] transition-all cursor-grab group">
+<div class="flex items-start justify-between mb-3">
+<span class="bg-primary/10 border border-primary/40 text-primary text-[10px] px-2 py-0.5 rounded uppercase font-bold">Normal</span>
+<span class="text-on-surface-variant text-[11px] font-mono-ui">#ORD-8802</span>
+</div>
+<p class="text-body-sm font-bold text-on-surface leading-tight mb-2">Engraved Map Table</p>
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] bg-tertiary-container/10 border border-tertiary text-tertiary px-2 py-0.5 rounded">Sanding</span>
+<span class="text-[10px] bg-tertiary-container/10 border border-tertiary text-tertiary px-2 py-0.5 rounded">Oiling</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Quality Control -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Quality Control</h3>
+<span class="bg-surface-container-high px-2 py-0.5 rounded-full text-[10px] font-bold text-on-surface">03</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_horiz</span></button>
+</div>
+<div class="flex-1 bg-surface-container-lowest/40 rounded-xl border border-outline-variant/10 p-2 space-y-3">
+<div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm border-l-4 border-l-secondary hover:scale-[1.02] transition-all cursor-grab group">
+<div class="flex gap-3 mb-2">
+<span class="text-on-surface-variant text-[11px] font-mono-ui">#ORD-8799</span>
+</div>
+<p class="text-body-sm font-bold text-on-surface leading-tight mb-3">Custom Keychain Set</p>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-3 mt-3">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="text-[11px] text-on-surface-variant font-bold">Ready for check</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Ready for Shipping -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Ready for Shipping</h3>
+<span class="bg-surface-container-high px-2 py-0.5 rounded-full text-[10px] font-bold text-on-surface">08</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_horiz</span></button>
+</div>
+<div class="flex-1 bg-surface-container-lowest/40 rounded-xl border border-outline-variant/10 p-2 space-y-3">
+<div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm border border-outline-variant/10 opacity-60 hover:opacity-100 hover:scale-[1.02] transition-all cursor-grab group">
+<div class="flex items-center justify-between mb-2">
+<span class="text-on-surface-variant text-[11px] font-mono-ui">#ORD-8700</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">local_shipping</span>
+</div>
+<p class="text-body-sm font-bold text-on-surface leading-tight">World Map Wall Art</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button - Supressed on Board for specific focus -->
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+if (!Auth.isAdmin()) window.location.href = '/admin/dashboard.html';
+
+// ── Columns definition ─────────────────────────────────────
+const COLUMNS = [
+  { id: 'pending',       label: 'En attente',      color: 'text-warning',  bg: 'bg-warning/10',  border: 'border-warning/30'  },
+  { id: 'confirmed',     label: 'Confirmée',        color: 'text-primary',  bg: 'bg-primary/10',  border: 'border-primary/30'  },
+  { id: 'in_production', label: 'En production',    color: 'text-primary',  bg: 'bg-primary/20',  border: 'border-primary/50', glow: true },
+  { id: 'ready',         label: 'Prête',            color: 'text-secondary',bg: 'bg-secondary/10',border: 'border-secondary/30'},
+  { id: 'delivered',     label: 'Livrée',           color: 'text-success',  bg: 'bg-success/10',  border: 'border-success/30'  },
+  { id: 'cancelled',     label: 'Annulée',          color: 'text-error',    bg: 'bg-error/10',    border: 'border-error/30'    },
+];
+
+// ── Render a kanban card ───────────────────────────────────
+function renderCard(order) {
+  const items = Array.isArray(order.items) ? order.items : [];
+  const thumb = items[0]?.image_url || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=48';
+  const date  = new Date(order.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'short' });
+  const priorityMap = { pending:'bg-warning/10 border-warning text-warning', confirmed:'bg-primary/10 border-primary/40 text-primary', in_production:'bg-error/10 border-error text-error' };
+  const priorityCls = priorityMap[order.status] || 'bg-surface-container border-outline-variant text-on-surface-variant';
+  const priorityLabel = order.status === 'pending' ? 'En attente' : order.status === 'in_production' ? 'Urgent' : 'Normal';
+
+  return `
+  <div class="glass-card bg-surface-container p-3 rounded-lg shadow-sm hover:scale-[1.02] transition-all cursor-pointer group border border-outline-variant/10"
+       data-id="${order.id}" onclick="openOrderDetail('${order.id}')">
+    <div class="flex items-start justify-between mb-3">
+      <span class="border text-[10px] px-2 py-0.5 rounded uppercase font-bold ${priorityCls}">${priorityLabel}</span>
+      <span class="text-on-surface-variant text-[11px] font-mono-ui">#${order.id.slice(0,8).toUpperCase()}</span>
+    </div>
+    <div class="flex gap-3 mb-3">
+      <img alt="product" class="w-12 h-12 rounded object-cover border border-outline-variant/30 flex-shrink-0"
+           src="${thumb}" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=48'">
+      <div class="min-w-0">
+        <p class="text-body-sm font-bold text-on-surface leading-tight truncate">${order.customer_name}</p>
+        <p class="text-[11px] text-on-surface-variant truncate">${items.map(i=>i.name).join(', ') || '—'}</p>
+      </div>
+    </div>
+    <div class="flex items-center justify-between border-t border-outline-variant/10 pt-3">
+      <div class="flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-on-surface-variant text-[14px]">calendar_today</span>
+        <span class="text-[11px] text-on-surface-variant">${date}</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <span class="text-[11px] font-bold text-primary">${formatPrice(order.total)}</span>
+        <select onchange="moveCard('${order.id}', this.value); event.stopPropagation();"
+          onclick="event.stopPropagation();"
+          class="ml-1 bg-surface-container-high border border-outline-variant/20 rounded text-[9px] px-1 py-0.5 outline-none opacity-0 group-hover:opacity-100 transition-opacity">
+          ${COLUMNS.map(c => `<option value="${c.id}" ${order.status===c.id?'selected':''}>${c.label}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── Render a column ────────────────────────────────────────
+function renderColumn(col, orders) {
+  const glowClass = col.glow ? 'shadow-[0_0_20px_rgba(0,212,255,0.15)]' : '';
+  return `
+  <div class="kanban-column flex flex-col gap-4" data-col="${col.id}">
+    <div class="flex items-center justify-between px-2">
+      <div class="flex items-center gap-2">
+        <h3 class="font-label-md text-label-md uppercase tracking-wider ${col.color}">${col.label}</h3>
+        <span class="${col.bg} border ${col.border} px-2 py-0.5 rounded-full text-[10px] font-bold ${col.color}">${orders.length}</span>
+      </div>
+    </div>
+    <div class="flex-1 bg-surface-container-lowest/40 rounded-xl border border-outline-variant/10 p-2 space-y-3 min-w-[240px] max-w-[280px] ${glowClass}">
+      ${orders.length
+        ? orders.map(renderCard).join('')
+        : `<div class="py-8 text-center text-on-surface-variant text-[11px] opacity-50"><span class="material-symbols-outlined text-2xl block mb-1">inbox</span>Vide</div>`
+      }
+    </div>
+  </div>`;
+}
+
+// ── Load & render board ────────────────────────────────────
+async function loadBoard() {
+  const board = document.getElementById('kanban-board');
+  board.innerHTML = '<div class="flex items-center justify-center w-full py-20 text-on-surface-variant"><span class="material-symbols-outlined animate-spin mr-2">refresh</span>Chargement...</div>';
+  try {
+    const orders = await OrdersAPI.getAll();
+    const byStatus = {};
+    COLUMNS.forEach(c => { byStatus[c.id] = []; });
+    orders.forEach(o => { if (byStatus[o.status]) byStatus[o.status].push(o); else byStatus['pending'].push(o); });
+    board.innerHTML = COLUMNS.map(col => renderColumn(col, byStatus[col.id])).join('');
+    initDragEffects();
+    updateColumnCounts();
+  } catch (e) {
+    board.innerHTML = `<div class="w-full text-center py-20 text-error">${e.message}</div>`;
+  }
+}
+
+// ── Move a card to another column ─────────────────────────
+async function moveCard(orderId, newStatus) {
+  try {
+    await OrdersAPI.setStatus(orderId, newStatus);
+    showToast('Statut mis à jour', 'success');
+    loadBoard();
+  } catch (e) { showToast(e.message, 'error'); }
+}
+
+// ── Open order detail (redirect) ──────────────────────────
+function openOrderDetail(id) {
+  window.location.href = `/admin/orders.html`;
+}
+
+// ── Update column header counts ────────────────────────────
+function updateColumnCounts() {}
+
+// ── Drag visual feedback ───────────────────────────────────
+function initDragEffects() {
+  document.querySelectorAll('.glass-card').forEach(card => {
+    card.addEventListener('mousedown', () => { card.style.transform = 'scale(0.97)'; card.style.zIndex = '1000'; });
+    card.addEventListener('mouseup',   () => { card.style.transform = ''; card.style.zIndex = ''; });
+    card.addEventListener('mouseleave',() => { card.style.transform = ''; card.style.zIndex = ''; });
+  });
+}
+
+// ── Sidebar nav ────────────────────────────────────────────
+const NAV = { 'Dashboard':'/admin/dashboard.html','Orders':'/admin/orders.html','Custom Requests':'/admin/custom-requests.html','Products':'/admin/products.html','3D Print Requests':'/pages/3d-print.html' };
+document.querySelectorAll('aside nav a').forEach(a => { const t = a.textContent.trim(); if (NAV[t]) a.href = NAV[t]; });
+document.querySelectorAll('a,button').forEach(el => { if (el.textContent.trim()==='Logout') el.addEventListener('click',()=>Auth.logout()); });
+document.addEventListener('keydown', e => { if ((e.metaKey||e.ctrlKey)&&e.key==='k') { e.preventDefault(); document.querySelector('input')?.focus(); }});
+
+// ── Search ─────────────────────────────────────────────────
+document.querySelector('input')?.addEventListener('input', e => {
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('.glass-card[data-id]').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.style.opacity = text.includes(q) || !q ? '1' : '0.2';
+  });
+});
+
+loadBoard();
+</script>
+
+
+</body></html>

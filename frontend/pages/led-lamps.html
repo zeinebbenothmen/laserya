@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom LED Lamps | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #070A0F;
+            color: #e0e2ea;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        .neon-glow-purple {
+            box-shadow: 0 0 20px rgba(208, 188, 255, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #070A0F;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3c494e;
+            border-radius: 10px;
+        }
+        .active-chip {
+            background: linear-gradient(135deg, #a8e8ff 0%, #d0bcff 100%);
+            color: #001f27;
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface-deep/80 backdrop-blur-xl border-b border-border-glass shadow-[0_0_20px_rgba(0,212,255,0.15)]">
+<div class="flex items-center justify-between px-gutter py-4 max-w-container-max-width mx-auto">
+<a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="/">Accueil</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="/shop">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="/custom-order">Commande sur mesure</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="/track-order">Suivi de commande</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="/contact">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">search</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">favorite</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">shopping_cart</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">account_circle</span>
+</div>
+<button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative pt-32 pb-20 px-gutter overflow-hidden">
+<div class="absolute -top-20 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute -bottom-20 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]"></div>
+<div class="max-w-container-max-width mx-auto relative z-10 text-center md:text-left">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">Custom LED Lamps</h1>
+<p class="font-body-lg text-text-secondary max-w-2xl mb-8">Personalized anime, couple, music, business, and decorative LED acrylic lamps. Precision crafted with laser technology and high-quality materials.</p>
+<div class="flex flex-wrap gap-4 justify-center md:justify-start mb-10">
+<button class="bg-primary-container text-on-primary-container font-bold px-8 py-3 rounded-xl flex items-center gap-2 hover:scale-105 transition-transform neon-glow-cyan">
+<span class="material-symbols-outlined">edit</span>
+                    Customize a Lamp
+                </button>
+<button class="border border-primary text-primary font-bold px-8 py-3 rounded-xl hover:bg-primary/5 transition-all">
+                    View Best Sellers
+                </button>
+</div>
+<div class="flex flex-wrap gap-3 justify-center md:justify-start">
+<span class="px-4 py-1.5 bg-surface-card border border-border-glass rounded-full font-label-md text-secondary">#Anime</span>
+<span class="px-4 py-1.5 bg-surface-card border border-border-glass rounded-full font-label-md text-secondary">#Names</span>
+<span class="px-4 py-1.5 bg-surface-card border border-border-glass rounded-full font-label-md text-secondary">#Couples</span>
+<span class="px-4 py-1.5 bg-surface-card border border-border-glass rounded-full font-label-md text-secondary">#Logos</span>
+<span class="px-4 py-1.5 bg-surface-card border border-border-glass rounded-full font-label-md text-secondary">#Music Plaques</span>
+<span class="px-4 py-1.5 bg-surface-card border border-border-glass rounded-full font-label-md text-secondary">#Car Designs</span>
+</div>
+</div>
+</header>
+<!-- Subcategory Chips -->
+<section class="max-w-container-max-width mx-auto px-gutter mb-12">
+<div class="flex gap-3 overflow-x-auto pb-4 custom-scrollbar">
+<button class="active-chip px-6 py-2 rounded-full font-label-md whitespace-nowrap">All Lamps</button>
+<button class="bg-surface-card border border-border-glass px-6 py-2 rounded-full font-label-md whitespace-nowrap hover:border-primary transition-colors">Anime Lamps</button>
+<button class="bg-surface-card border border-border-glass px-6 py-2 rounded-full font-label-md whitespace-nowrap hover:border-primary transition-colors">Couple Lamps</button>
+<button class="bg-surface-card border border-border-glass px-6 py-2 rounded-full font-label-md whitespace-nowrap hover:border-primary transition-colors">Music Lamps</button>
+<button class="bg-surface-card border border-border-glass px-6 py-2 rounded-full font-label-md whitespace-nowrap hover:border-primary transition-colors">Business QR Stands</button>
+<button class="bg-surface-card border border-border-glass px-6 py-2 rounded-full font-label-md whitespace-nowrap hover:border-primary transition-colors">Pet Portraits</button>
+<button class="bg-surface-card border border-border-glass px-6 py-2 rounded-full font-label-md whitespace-nowrap hover:border-primary transition-colors">Wall Panels</button>
+</div>
+</section>
+<!-- Main Content: Sidebar + Grid -->
+<main class="max-w-container-max-width mx-auto px-gutter grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 pb-section-gap">
+<!-- Sidebar Filters -->
+<aside class="space-y-8 hidden lg:block">
+<div class="glass-panel p-6 rounded-2xl">
+<h3 class="font-headline-sm text-primary mb-6">Filters</h3>
+<div class="space-y-6">
+<div>
+<p class="font-label-md text-on-surface mb-4">Categories</p>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-deep text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-text-secondary group-hover:text-on-surface transition-colors">Anime Characters</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-deep text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-text-secondary group-hover:text-on-surface transition-colors">Couple Portraits</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant bg-surface-deep text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-text-secondary group-hover:text-on-surface transition-colors">Business Logos</span>
+</label>
+</div>
+</div>
+<div class="h-[1px] bg-border-glass"></div>
+<div>
+<p class="font-label-md text-on-surface mb-4">Base Materials</p>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 border-outline-variant bg-surface-deep text-primary focus:ring-primary" name="material" type="radio"/>
+<span class="font-body-md text-text-secondary group-hover:text-on-surface transition-colors">Wood</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 border-outline-variant bg-surface-deep text-primary focus:ring-primary" name="material" type="radio"/>
+<span class="font-body-md text-text-secondary group-hover:text-on-surface transition-colors">Black Acrylic</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 border-outline-variant bg-surface-deep text-primary focus:ring-primary" name="material" type="radio"/>
+<span class="font-body-md text-text-secondary group-hover:text-on-surface transition-colors">RGB Smart Base</span>
+</label>
+</div>
+</div>
+<div class="h-[1px] bg-border-glass"></div>
+<div>
+<p class="font-label-md text-on-surface mb-4">Price Range</p>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+<div class="flex justify-between mt-2">
+<span class="text-label-sm text-text-secondary">25 DT</span>
+<span class="text-label-sm text-text-secondary">250 DT</span>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-2xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
+<h4 class="relative font-headline-sm text-primary-fixed mb-2">Flash Sale</h4>
+<p class="relative font-body-md text-on-primary-fixed-variant mb-4">Up to -20% on all Anime Lamps this weekend.</p>
+<button class="relative bg-primary text-on-primary w-full py-2 rounded-lg font-bold">Claim Offer</button>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="space-y-10">
+<div class="flex justify-between items-center">
+<p class="font-body-md text-text-secondary">Showing <span class="text-on-surface font-bold">18 Products</span></p>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-text-secondary">Sort by:</span>
+<select class="bg-surface-card border-border-glass rounded-lg text-label-md px-4 py-2 outline-none focus:border-primary">
+<option>Most Popular</option>
+<option>Newest First</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300">
+<div class="h-64 relative bg-surface-container overflow-hidden">
+<img alt="Anime Hero Lamp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A high-end custom LED acrylic lamp featuring an intricate anime character design with glowing neon lines. The lamp is displayed in a dark, moody modern room with a sleek black base. The acrylic plate emits a vibrant electric cyan light that reflects beautifully off the surrounding dark metallic surfaces. The atmosphere is futuristic and artisanal, capturing the precision of laser craftsmanship." src="/assets/images/placeholder.svg"/>
+<div class="absolute top-3 left-3 bg-success/90 text-on-background text-[10px] font-bold px-2 py-1 rounded uppercase">24-48h Production</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-surface-deep/60 backdrop-blur rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-lg">Anime Hero Lamp</h3>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-warning text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm text-text-secondary">4.9</span>
+</div>
+</div>
+<p class="font-body-md text-text-secondary text-sm mb-4">Precision-etched acrylic with customizable character posing.</p>
+<div class="flex items-center gap-3 mb-6">
+<span class="text-label-sm text-text-secondary">Colors:</span>
+<div class="flex gap-1.5">
+<div class="w-4 h-4 rounded-full border border-white/20 bg-white"></div>
+<div class="w-4 h-4 rounded-full border border-white/20 bg-blue-500"></div>
+<div class="w-4 h-4 rounded-full border border-white/20 bg-green-500"></div>
+<div class="w-4 h-4 rounded-full border border-white/20 bg-red-500"></div>
+<div class="w-4 h-4 rounded-full border border-white/20 bg-gradient-to-tr from-red-500 via-green-500 to-blue-500"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-primary">65.00 DT</span>
+<button class="bg-primary text-on-primary font-bold px-4 py-2 rounded-lg text-sm hover:neon-glow-cyan transition-shadow">Customize</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300">
+<div class="h-64 relative bg-surface-container overflow-hidden">
+<img alt="Music Plaque" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A personalized transparent acrylic music plaque featuring a custom song cover and a scannable Spotify code. The plaque is held by a warm wooden base that illuminates the entire plate with a soft neon purple glow. It is set against a dark workshop background with subtle light flares from high-powered lasers. The design is sleek, modern, and highly technical, reflecting digital craftsmanship and physical precision." src="/assets/images/placeholder.svg"/>
+<div class="absolute top-3 left-3 bg-success/90 text-on-background text-[10px] font-bold px-2 py-1 rounded uppercase">24h Express</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-lg">Music Plaque</h3>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-warning text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm text-text-secondary">5.0</span>
+</div>
+</div>
+<p class="font-body-md text-text-secondary text-sm mb-4">Custom Spotify code lamp with your favorite photo.</p>
+<div class="flex items-center gap-3 mb-6">
+<span class="text-label-sm text-text-secondary">Colors:</span>
+<div class="flex gap-1.5">
+<div class="w-4 h-4 rounded-full border border-white/20 bg-purple-500"></div>
+<div class="w-4 h-4 rounded-full border border-white/20 bg-white"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-primary">45.00 DT</span>
+<button class="bg-primary text-on-primary font-bold px-4 py-2 rounded-lg text-sm hover:neon-glow-cyan transition-shadow">Customize</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300">
+<div class="h-64 relative bg-surface-container overflow-hidden">
+<img alt="Business QR Stand" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A professional business QR code stand made from premium black acrylic with gold laser-etched lettering. The stand features a custom logo and social media icons, illuminated from beneath by a crisp white LED. It sits on a high-end office desk with minimalist dark aesthetic. The lighting is focused and clean, highlighting the precision of the laser cuts and the premium quality of the material." src="/assets/images/placeholder.svg"/>
+<div class="absolute top-3 left-3 bg-primary/90 text-on-primary-fixed text-[10px] font-bold px-2 py-1 rounded uppercase">Premium</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-lg">Business QR Stand</h3>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-warning text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm text-text-secondary">4.8</span>
+</div>
+</div>
+<p class="font-body-md text-text-secondary text-sm mb-4">Functional &amp; stylish LED stand for business counters.</p>
+<div class="flex items-center gap-3 mb-6">
+<span class="text-label-sm text-text-secondary">Colors:</span>
+<div class="flex gap-1.5">
+<div class="w-4 h-4 rounded-full border border-white/20 bg-white"></div>
+<div class="w-4 h-4 rounded-full border border-white/20 bg-blue-400"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-primary">85.00 DT</span>
+<button class="bg-primary text-on-primary font-bold px-4 py-2 rounded-lg text-sm hover:neon-glow-cyan transition-shadow">Customize</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Choose Your Style Section -->
+<section class="pt-10">
+<h2 class="font-headline-md text-on-surface mb-8">Choose Your Lamp Style</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-panel p-6 rounded-2xl border-l-4 border-primary">
+<h4 class="font-headline-sm text-lg mb-2">Black Acrylic Base</h4>
+<p class="text-label-sm text-text-secondary mb-4">Standard 15cm x 20cm plate with sleek minimal base.</p>
+<ul class="text-label-sm space-y-2 mb-6 text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> 24h Production</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> USB Powered</li>
+</ul>
+<p class="font-bold text-primary">Starting 25 DT</p>
+</div>
+<div class="glass-panel p-6 rounded-2xl border-l-4 border-secondary">
+<h4 class="font-headline-sm text-lg mb-2">RGB Smart Base</h4>
+<p class="text-label-sm text-text-secondary mb-4">16 Colors + Remote control &amp; App support.</p>
+<ul class="text-label-sm space-y-2 mb-6 text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Music Sync Mode</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Rechargeable Option</li>
+</ul>
+<p class="font-bold text-secondary">Starting 45 DT</p>
+</div>
+<div class="glass-panel p-6 rounded-2xl border-l-4 border-primary-container">
+<h4 class="font-headline-sm text-lg mb-2">Wall Light Panel</h4>
+<p class="text-label-sm text-text-secondary mb-4">Large scale wall mounted decorative panels.</p>
+<ul class="text-label-sm space-y-2 mb-6 text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container text-sm">check_circle</span> Up to 60cm wide</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container text-sm">check_circle</span> Professional Mounting</li>
+</ul>
+<p class="font-bold text-primary-container">Starting 120 DT</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-deep border-t border-border-glass">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-gutter py-section-gap max-w-container-max-width mx-auto">
+<div class="space-y-4">
+<a href="/index.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-80"/>
+<span class="font-bold text-primary text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-on-surface-variant font-body-md">Advanced laser engraving and 3D printing studio based in Tunisia. We turn digital concepts into physical masterpieces.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">social_leaderboard</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">potted_plant</span> <!-- Placeholder for Insta -->
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">mail</span>
+</div>
+</div>
+<div>
+<h5 class="text-primary font-bold mb-6 font-label-md uppercase tracking-wider">Shopping</h5>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm" href="/pages/shop.html?category=led-lamps">Custom LED Lamps</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm" href="/pages/3d-print.html">3D Printed Figures</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm" href="/pages/shop.html">Wood Engraving</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm" href="/pages/gift-ideas.html">Corporate Gifts</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-primary font-bold mb-6 font-label-md uppercase tracking-wider">Customer Support</h5>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm" href="/pages/contact.html">Shipping Info</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm" href="/pages/contact.html">Returns</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm" href="/pages/contact.html">FAQ</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm" href="/pages/contact.html">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-primary font-bold mb-6 font-label-md uppercase tracking-wider">Newsletter</h5>
+<p class="text-on-surface-variant font-label-sm mb-4">Get updates on new designs and limited drops.</p>
+<div class="flex">
+<input class="bg-surface-card border-border-glass rounded-l-lg px-4 py-2 w-full outline-none focus:border-primary" placeholder="Your email" type="email"/>
+<button class="bg-primary text-on-primary px-4 rounded-r-lg font-bold hover:bg-primary-container transition-colors">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max-width mx-auto px-gutter py-6 border-t border-border-glass flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-on-surface-variant font-label-sm">© 2024 Laserya.tn. Precision Craftsmanship.</p>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/contact.html">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/contact.html">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for hover effects
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                card.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(168, 232, 255, 0.05), transparent 80%), rgba(22, 27, 34, 0.7)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'rgba(22, 27, 34, 0.7)';
+            });
+        });
+    </script>
+</body></html>

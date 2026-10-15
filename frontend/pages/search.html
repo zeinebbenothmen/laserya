@@ -1,0 +1,218 @@
+<!DOCTYPE html><html class="" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Recherche | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&amp;family=Geist:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+  body { background-color:#070A0F; color:#e0e2ea; -webkit-font-smoothing:antialiased; }
+  .glass-card { background:rgba(22,27,34,.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.08); }
+  .glass-panel { background:rgba(22,27,34,.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.08); }
+  .custom-gradient-btn { background:linear-gradient(135deg,#a8e8ff 0%,#d0bcff 100%); }
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+</style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-4 bg-surface/80 backdrop-blur-md border-b border-border-glass">
+  <a href="/index.html" class="flex items-center gap-3">
+    <img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+    <span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+  </a>
+  <div class="hidden xl:flex items-center gap-6">
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/index.html">Accueil</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/pages/shop.html">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/pages/custom-order.html">Commande sur mesure</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/pages/gift-ideas.html">Idées cadeaux</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/pages/my-orders.html">Suivi de commande</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/pages/contact.html">Contact</a>
+  </div>
+  <div class="flex items-center gap-4 md:gap-6">
+    <div class="flex items-center gap-3 md:gap-5">
+      <span class="material-symbols-outlined text-primary cursor-pointer transition-all hover:scale-110">search</span>
+      <span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-all hover:scale-110">favorite</span>
+      <div class="relative">
+        <span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-all hover:scale-110">shopping_cart</span>
+        <span data-cart-badge class="absolute -top-2 -right-2 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full" style="display:none">0</span>
+      </div>
+      <span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-all hover:scale-110">account_circle</span>
+    </div>
+    <button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+  </div>
+</nav>
+
+<main class="pt-32 pb-20 px-6 md:px-10 max-w-container-max-width mx-auto min-h-screen">
+  <!-- Search Header -->
+  <header class="mb-10">
+    <h1 class="font-display-lg text-display-lg text-primary mb-2">Recherche</h1>
+    <p id="search-subtitle" class="font-headline-sm text-headline-sm text-text-secondary">Tapez ce que vous cherchez ci-dessous.</p>
+    <div class="relative w-full max-w-2xl mt-6">
+      <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+      <input id="search-input" type="text" autofocus
+        class="w-full bg-surface-deep border border-white/10 rounded-xl pl-12 pr-5 py-4 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md"
+        placeholder="Rechercher : lampes, porte-clés, anime, cadeaux…">
+    </div>
+  </header>
+
+  <!-- Résultats -->
+  <section>
+    <div id="search-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-16 px-6 md:px-10 max-w-container-max-width mx-auto flex flex-col gap-10 bg-surface-deep border-t border-white/5">
+  <div class="flex flex-col md:flex-row justify-between items-start gap-12">
+    <div>
+      <a href="/index.html" class="flex items-center gap-3 mb-4">
+        <img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-90"/>
+        <span class="font-extrabold text-primary text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+      </a>
+      <p class="font-body-md text-body-md text-text-secondary max-w-xs">Gravure laser & impression 3D personnalisées. Vos idées, façonnées avec précision.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+      <div class="flex flex-col gap-4">
+        <h5 class="font-label-md text-label-md text-primary uppercase tracking-widest">Boutique</h5>
+        <a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/shop.html">Tout le catalogue</a>
+        <a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/gift-ideas.html">Idées cadeaux</a>
+        <a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/custom-order.html">Commande sur mesure</a>
+      </div>
+      <div class="flex flex-col gap-4">
+        <h5 class="font-label-md text-label-md text-primary uppercase tracking-widest">Aide</h5>
+        <a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">Contact</a>
+        <a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/my-orders.html">Suivi de commande</a>
+        <a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/wishlist.html">Mes favoris</a>
+      </div>
+      <div class="flex flex-col gap-4">
+        <h5 class="font-label-md text-label-md text-primary uppercase tracking-widest">Suivez-nous</h5>
+        <div class="flex gap-4">
+          <span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">share</span>
+          <span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">camera</span>
+          <span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">alternate_email</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+    <p class="font-label-sm text-label-sm text-text-secondary">© 2026 Laserya.tn — Gravure laser & impression 3D.</p>
+    <div class="flex items-center gap-2">
+      <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+      <span class="font-label-sm text-label-sm text-text-secondary">Livraison gratuite partout en Tunisie</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script>
+const query = new URLSearchParams(location.search).get('q') || '';
+const searchInput = document.getElementById('search-input');
+if (searchInput && query) searchInput.value = query;
+
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function renderSearchCard(p) {
+  const onSale = Number(p.compare_at_price) > Number(p.price);
+  const pct = onSale ? Math.round((1 - Number(p.price) / Number(p.compare_at_price)) * 100) : 0;
+  const fav = window.Wishlist && Wishlist.has(p.id);
+  const priceHtml = onSale
+    ? `<span class="flex items-baseline gap-2"><span class="font-headline-sm text-headline-sm text-primary">${formatPrice(p.price)}</span><span class="line-through text-on-surface-variant text-label-sm">${formatPrice(p.compare_at_price)}</span></span>`
+    : `<span class="font-headline-sm text-headline-sm text-primary">${formatPrice(p.price)}</span>`;
+  return `
+  <div class="glass-panel rounded-xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 flex flex-col" data-id="${p.id}">
+    <div class="h-56 overflow-hidden relative cursor-pointer" onclick="viewProduct('${p.id}')">
+      <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+           src="${p.image_url || '/assets/images/placeholder.svg'}" alt="${esc(p.name)}"
+           onerror="this.src='/assets/images/placeholder.svg'">
+      <div class="absolute top-3 left-3 px-3 py-1 bg-surface-deep/80 backdrop-blur-md rounded-full border border-secondary/30">
+        <span class="font-label-sm text-label-sm text-secondary">${esc(p.material || p.category || '')}</span>
+      </div>
+      ${onSale ? `<span class="absolute bottom-3 left-3 bg-error text-white text-[11px] font-bold px-2.5 py-1 rounded-full">-${pct}%</span>` : ''}
+      <button onclick="toggleFav(event,'${p.id}')" title="Favoris"
+        class="fav-btn absolute top-3 right-3 w-9 h-9 bg-surface-deep/60 backdrop-blur-md rounded-full flex items-center justify-center ${fav ? 'text-error' : 'text-on-surface'} hover:text-error transition-colors">
+        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' ${fav ? 1 : 0}">favorite</span>
+      </button>
+    </div>
+    <div class="p-5 flex-grow flex flex-col">
+      <h4 class="font-headline-sm text-[17px] text-text-primary leading-tight mb-2 line-clamp-2 cursor-pointer hover:text-primary transition-colors" onclick="viewProduct('${p.id}')">${esc(p.name)}</h4>
+      <p class="font-body-md text-text-secondary text-label-sm mb-4 line-clamp-2 cursor-pointer" onclick="viewProduct('${p.id}')">${esc(p.description || '')}</p>
+      <div class="mt-auto">
+        <div class="flex items-center justify-between mb-4">
+          ${priceHtml}
+          <span class="font-label-sm text-on-surface-variant">${p.stock > 0 ? 'En stock' : 'Sur commande'}</span>
+        </div>
+        <button onclick="addToCart('${p.id}')" class="w-full py-2.5 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:shadow-[0_0_15px_rgba(168,232,255,0.4)] transition-all">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+let allResults = [];
+
+function addToCart(id) {
+  const p = allResults.find(x => x.id === id);
+  if (!p) return;
+  Cart.add(p, 1);
+  showToast(`"${p.name}" ajouté au panier`, 'success');
+}
+
+function toggleFav(e, id) {
+  e.preventDefault(); e.stopPropagation();
+  const on = Wishlist.toggle(id);
+  const btn = e.currentTarget;
+  btn.classList.toggle('text-error', on);
+  btn.classList.toggle('text-on-surface', !on);
+  const ic = btn.querySelector('.material-symbols-outlined');
+  if (ic) ic.style.fontVariationSettings = `'FILL' ${on ? 1 : 0}`;
+  const p = allResults.find(x => x.id === id);
+  showToast(on ? `"${p?.name || 'Produit'}" ajouté aux favoris ❤️` : 'Retiré des favoris', on ? 'success' : 'info');
+}
+
+// ── Ouvrir la fiche produit (page dédiée + produits similaires) ──
+function viewProduct(productId) {
+  window.location.href = `/pages/product.html?id=${productId}`;
+}
+
+function setSubtitle(q, n) {
+  const el = document.getElementById('search-subtitle');
+  if (!el) return;
+  el.innerHTML = q
+    ? `${n} résultat${n > 1 ? 's' : ''} pour <span class="text-secondary italic">« ${esc(q)} »</span>`
+    : `${n} produit${n > 1 ? 's' : ''} dans le catalogue.`;
+}
+
+async function runSearch(q) {
+  const grid = document.getElementById('search-grid');
+  if (!grid) return;
+  grid.innerHTML = '<div class="col-span-full py-16 text-center text-on-surface-variant"><span class="material-symbols-outlined text-4xl block mb-2 animate-spin">progress_activity</span>Recherche en cours…</div>';
+  try {
+    allResults = await ProductsAPI.getAll(q ? { search: q } : {});
+    setSubtitle(q, allResults.length);
+    if (!allResults.length) {
+      grid.innerHTML = `<div class="col-span-full glass-card rounded-2xl p-12 text-center max-w-xl mx-auto">
+          <span class="material-symbols-outlined text-5xl text-primary/60 block mb-4">search_off</span>
+          <h2 class="font-headline-md text-headline-md text-text-primary mb-3">Aucun résultat${q ? ` pour « ${esc(q)} »` : ''}</h2>
+          <p class="font-body-lg text-text-secondary max-w-md mx-auto mb-8">Vous ne trouvez pas ce que vous cherchez ? Envoyez-nous votre idée et on la crée sur mesure rien que pour vous.</p>
+          <a href="/pages/custom-order.html" class="custom-gradient-btn inline-block text-on-primary font-headline-sm text-[18px] px-10 py-4 rounded-xl hover:scale-105 transition-all shadow-lg shadow-primary/20">Commande sur mesure</a>
+        </div>`;
+      return;
+    }
+    grid.innerHTML = allResults.map(renderSearchCard).join('');
+  } catch {
+    grid.innerHTML = '<div class="col-span-full py-16 text-center text-error">Erreur de chargement</div>';
+  }
+}
+
+// Recherche en direct (300 ms après la frappe)
+let timer;
+searchInput?.addEventListener('input', e => { clearTimeout(timer); timer = setTimeout(() => runSearch(e.target.value.trim()), 300); });
+searchInput?.addEventListener('keydown', e => { if (e.key === 'Enter') { clearTimeout(timer); runSearch(searchInput.value.trim()); } });
+
+runSearch(query);
+</script>
+</body></html>

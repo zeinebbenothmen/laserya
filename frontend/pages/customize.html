@@ -1,0 +1,534 @@
+<!DOCTYPE html><html class="" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Customize Your Product | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&amp;family=Geist:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        .neon-glow-primary-hover:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            transform: scale(1.02);
+        }
+        .neon-border-focus:focus {
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            border-color: #a8e8ff;
+            outline: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .active-step {
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary/30 min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface-deep/80 backdrop-blur-xl border-b border-border-glass shadow-[0_0_20px_rgba(0,212,255,0.15)]">
+<nav class="flex items-center justify-between px-gutter py-4 max-w-container-max-width mx-auto">
+<a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/">Accueil</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/shop">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:scale-105 transition-all duration-300" href="/custom-order">Commande sur mesure</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/track-order">Suivi de commande</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/contact">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors active:scale-95 transition-transform">search</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors active:scale-95 transition-transform">favorite</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors active:scale-95 transition-transform">shopping_cart</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors active:scale-95 transition-transform">account_circle</span>
+</div>
+<button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-32 max-w-container-max-width mx-auto px-gutter">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-6 text-on-surface-variant font-label-md">
+<a class="hover:text-primary transition-colors" href="/index.html">Accueil</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="/pages/shop.html">Boutique</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="/pages/product.html">Custom Anime LED Lamp</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-bold">Customize</span>
+</nav>
+<!-- Title & Stepper -->
+<div class="mb-12">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-8">Customize Your Product</h1>
+<!-- Horizontal Stepper -->
+<div class="relative flex justify-between items-center w-full max-w-4xl">
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-surface-variant -translate-y-1/2 -z-10"></div>
+<div class="absolute top-1/2 left-0 w-[40%] h-0.5 bg-primary -translate-y-1/2 -z-10 transition-all duration-500"></div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold active-step ring-4 ring-primary/20">1</div>
+<span class="font-label-sm text-primary">Options</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold active-step ring-4 ring-primary/20">2</div>
+<span class="font-label-sm text-primary">Personalization</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-bold">3</div>
+<span class="font-label-sm text-on-surface-variant">Upload</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-bold">4</div>
+<span class="font-label-sm text-on-surface-variant">Preview</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-bold">5</div>
+<span class="font-label-sm text-on-surface-variant">Finish</span>
+</div>
+</div>
+</div>
+<!-- Main Customization Content -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Left Column: Live Preview -->
+<div class="lg:col-span-7 sticky top-28">
+<div class="glass-panel rounded-xl overflow-hidden relative aspect-square flex items-center justify-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] from-primary/5">
+<!-- Floating Controls -->
+<div class="absolute top-6 right-6 flex flex-col gap-3">
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">3d_rotation</span>
+</button>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">restart_alt</span>
+</button>
+</div>
+<!-- Lamp Preview -->
+<div class="relative w-4/5 h-4/5 flex flex-col items-center justify-center group">
+<!-- Pedestal -->
+<div class="absolute bottom-0 w-48 h-12 bg-surface-deep border border-border-glass rounded-lg shadow-[0_4px_30px_rgba(0,0,0,0.5)] z-10"></div>
+<!-- Glow Filament Effect -->
+<div class="absolute bottom-12 w-40 h-64 bg-primary/20 blur-[60px] rounded-full -z-10 group-hover:bg-primary/30 transition-all duration-700"></div>
+<!-- Acrylic Sheet -->
+<div class="w-56 h-72 border-2 border-primary/40 rounded-t-2xl relative mb-10 overflow-hidden group-hover:border-primary transition-all duration-500">
+<img alt="Anime Character Preview" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-500" data-alt="A high-fidelity digital preview of a custom anime acrylic lamp with a glowing cyan light base. The acrylic plate features a sleek line art engraving of a Japanese anime character, illuminated from beneath by a vibrant electric cyan light. The lamp sits on a minimalist black cylindrical pedestal within a dark, moody workshop setting that highlights the neon luminosity and the transparent material properties." src="/assets/images/placeholder.svg">
+<!-- Dynamic Text Overlay -->
+<div class="absolute bottom-8 left-0 w-full text-center text-primary font-bold text-headline-sm drop-shadow-[0_0_8px_rgba(168,232,255,0.8)]" id="preview-text">
+                                YOUR NAME
+                            </div>
+</div>
+</div>
+<!-- Disclaimer -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 font-label-sm text-on-surface-variant bg-surface-deep/60 px-4 py-1.5 rounded-full border border-border-glass">
+                        * Digital Preview: Final product colors may vary slightly
+                    </div>
+</div>
+</div>
+<!-- Right Column: Customization Panel -->
+<div class="lg:col-span-5 space-y-8">
+<!-- Step 1: Product Options -->
+<section class="space-y-6"><h2 class="font-headline-sm text-primary flex items-center gap-2"><span class="text-label-md bg-primary/10 text-primary w-6 h-6 rounded-full flex items-center justify-center">1</span> Product Options</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="space-y-2"><label class="font-label-md text-on-surface-variant">Size</label><select class="w-full bg-surface-deep border border-border-glass rounded-lg px-4 py-3 text-on-surface neon-border-focus transition-all appearance-none cursor-pointer font-body-md"><option>Small (15cm)</option><option selected="">Medium (20cm)</option><option>Large (25cm)</option></select></div><div class="space-y-2"><label class="font-label-md text-on-surface-variant">Material</label><select class="w-full bg-surface-deep border border-border-glass rounded-lg px-4 py-3 text-on-surface neon-border-focus transition-all appearance-none cursor-pointer font-body-md"><option>Acrylic (Standard)</option><option>Premium Acrylic</option><option>3D Printed Resin</option></select></div></div><div class="space-y-3"><label class="font-label-md text-on-surface-variant">Base Type</label><div class="flex flex-wrap gap-3"><button class="flex-1 min-w-[100px] py-3 px-2 border-2 border-primary bg-primary/10 text-primary rounded-lg font-bold text-center transition-all">Standard</button><button class="flex-1 min-w-[100px] py-3 px-2 border border-border-glass bg-surface-deep text-on-surface-variant rounded-lg font-medium text-center hover:border-primary/50 transition-all">RGB Smart</button><button class="flex-1 min-w-[100px] py-3 px-2 border border-border-glass bg-surface-deep text-on-surface-variant rounded-lg font-medium text-center hover:border-primary/50 transition-all">Solid Wood</button></div></div><div class="space-y-3"><label class="font-label-md text-on-surface-variant">LED Color</label><div class="flex flex-wrap gap-4"><button class="w-10 h-10 rounded-full border-2 border-primary bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all transform hover:scale-110"></button><button class="w-10 h-10 rounded-full border-2 border-border-glass bg-[#00d4ff] hover:border-primary transition-all transform hover:scale-110"></button><button class="w-10 h-10 rounded-full border-2 border-border-glass bg-[#22C55E] hover:border-primary transition-all transform hover:scale-110"></button><button class="w-10 h-10 rounded-full border-2 border-border-glass bg-[#EF4444] hover:border-primary transition-all transform hover:scale-110"></button><button class="w-10 h-10 rounded-full border-2 border-border-glass bg-[conic-gradient(from_0deg,#ff0000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000)] hover:border-primary transition-all transform hover:scale-110"></button></div></div><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 py-4 border-y border-border-glass"><div class="space-y-2"><label class="font-label-md text-on-surface-variant">Quantity</label><div class="flex items-center gap-4 bg-surface-deep border border-border-glass rounded-lg px-3 py-2 w-fit"><button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">remove</button><span class="w-8 text-center font-bold text-on-surface">1</span><button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">add</button></div></div><div class="flex items-center justify-between gap-8 pt-4 sm:pt-0"><div class="flex flex-col"><span class="font-body-md text-on-surface font-bold">Gift Packaging</span><span class="font-label-sm text-on-surface-variant">+ 5 TND Extra</span></div><label class="relative inline-flex items-center cursor-pointer"><input class="sr-only peer" type="checkbox" value=""><div class="w-12 h-7 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div></label></div></div></section>
+<!-- Step 2: Personalization -->
+<section class="space-y-6">
+<h2 class="font-headline-sm text-primary flex items-center gap-2">
+<span class="text-label-md bg-primary/10 text-primary w-6 h-6 rounded-full flex items-center justify-center">2</span>
+                        Personalization
+                    </h2>
+<div class="space-y-2">
+<div class="flex justify-between">
+<label class="font-label-md text-on-surface-variant">Engraved Name/Message</label>
+<span class="font-label-sm text-on-surface-variant">0 / 25 characters</span>
+</div>
+<input class="w-full bg-surface-deep border border-border-glass rounded-lg px-4 py-3 text-on-surface neon-border-focus transition-all" oninput="document.getElementById('preview-text').innerText = this.value || 'YOUR NAME'" placeholder="Enter text here..." type="text">
+</div>
+<div class="space-y-3">
+<label class="font-label-md text-on-surface-variant">Font Style</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border-2 border-primary bg-primary/10 text-primary font-bold font-label-md transition-all">Modern Bold</button>
+<button class="px-4 py-2 rounded-full border border-border-glass bg-surface-deep text-on-surface-variant hover:border-primary/50 transition-all font-label-md">Elegant Script</button>
+<button class="px-4 py-2 rounded-full border border-border-glass bg-surface-deep text-on-surface-variant hover:border-primary/50 transition-all font-label-md">Arabic Calligraphy</button>
+</div>
+</div>
+</section>
+<!-- Step 3: Upload -->
+<section class="space-y-6">
+<h2 class="font-headline-sm text-primary flex items-center gap-2">
+<span class="text-label-md bg-primary/10 text-primary w-6 h-6 rounded-full flex items-center justify-center">3</span>
+                        Art Asset
+                    </h2>
+<!-- Upload artwork -->
+<div id="art-drop-zone" class="border-2 border-dashed border-border-glass rounded-xl p-6 text-center bg-surface-deep/30 transition-all">
+
+  <!-- Aperçu après upload -->
+  <div id="art-preview-wrap" style="display:none">
+    <img id="art-preview-img" class="w-full max-h-48 object-contain rounded-xl border border-primary/30 mb-2" alt="Aperçu">
+    <p id="art-preview-name" class="text-label-sm text-primary font-bold mb-2"></p>
+  </div>
+
+  <!-- État initial -->
+  <div id="art-placeholder">
+    <span class="material-symbols-outlined text-primary text-[40px] block mb-3">cloud_upload</span>
+    <p class="font-bold text-on-surface mb-1">Glissez votre image ici</p>
+    <p class="text-on-surface-variant font-label-sm mb-4">PNG, JPG, WEBP — max 10 MB</p>
+  </div>
+
+  <!-- Bouton : label HTML natif qui ouvre le sélecteur de fichier -->
+  <label for="art-file-input"
+         class="inline-block px-8 py-2.5 bg-primary text-on-primary font-label-md rounded-full cursor-pointer hover:scale-105 transition-transform">
+    Choisir une image
+    <input type="file" id="art-file-input"
+           accept="image/png,image/jpeg,image/webp,image/gif"
+           onchange="handleArtUpload(this)"
+           style="position:absolute;width:0;height:0;opacity:0">
+  </label>
+
+</div>
+<button class="w-full flex items-center justify-center gap-3 py-3 border border-border-glass rounded-lg hover:bg-surface-variant transition-all font-medium text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">link</span>
+                        Import from Instagram Reference
+                    </button>
+</section>
+<!-- Step 4: Summary -->
+<section class="glass-panel rounded-xl p-6 space-y-4">
+<div class="flex items-center justify-between border-b border-border-glass pb-4">
+<span class="text-on-surface font-bold text-headline-sm">Total: 55 TND</span>
+<div class="flex items-center gap-2 text-success font-label-md">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                            Price Confirmed
+                        </div>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant font-label-md">
+<span class="material-symbols-outlined text-primary">schedule</span>
+                        Estimated Production: 2-4 business days
+                    </div>
+</section>
+</div>
+</div>
+</main>
+<!-- Bottom Fixed Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-deep/90 backdrop-blur-2xl border-t border-border-glass z-50">
+<div class="max-w-container-max-width mx-auto px-gutter py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-8">
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface-variant">Subtotal</span>
+<span class="font-display-lg text-headline-md text-primary font-extrabold">55.000 TND</span>
+</div>
+<div class="hidden sm:flex items-center gap-2 px-4 py-2 bg-surface-variant rounded-lg">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">remove</button>
+<span class="w-8 text-center font-bold">1</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">add</button>
+</div>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-3 border border-border-glass text-on-surface font-label-md rounded-lg hover:bg-surface-variant transition-all">Back</button>
+<button class="flex-1 md:flex-none px-6 py-3 border border-primary text-primary font-label-md rounded-lg hover:bg-primary/10 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                    Save Design
+                </button>
+<button class="flex-[2] md:flex-none px-10 py-3 bg-primary text-on-primary font-bold font-label-md rounded-lg neon-glow-primary neon-glow-primary-hover active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                    Add to Cart
+                </button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full bg-surface-deep border-t border-border-glass mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-gutter py-section-gap max-w-container-max-width mx-auto">
+<div class="col-span-1 md:col-span-1 space-y-4">
+<a href="/index.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-80"/>
+<span class="font-bold text-primary text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-on-surface-variant font-body-md leading-relaxed">Precision craftsmanship meets futuristic design. We bring your digital concepts to life with cutting-edge laser and 3D tech.</p>
+<p class="text-on-surface-variant font-label-sm mt-4">© 2024 Laserya.tn. Precision Craftsmanship.</p>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 font-label-md">Shop</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/shop.html?category=led-lamps">Custom LED Lamps</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/shop.html">Engraved Wood</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/3d-print.html">3D Printed Figures</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/shop.html">Wall Art</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 font-label-md">Support</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/contact.html">Shipping Info</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/contact.html">Returns</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/contact.html">FAQ</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/contact.html">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 font-label-md">Legal</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/contact.html">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm" href="/pages/contact.html">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script>
+// ── State ──────────────────────────────────────────────────
+const productId = new URLSearchParams(location.search).get('id');
+let currentProduct = null;
+let opts = { size:'Medium (20cm)', material:'Acrylic (Standard)', base:'Standard', color:'Blanc', font:'Modern Bold', text:'', gift:false };
+let qty = 1;
+let uploadedFile = null;
+
+// ── Charger le produit depuis l'API ───────────────────────
+async function loadProduct() {
+    if (!productId) return;
+    try {
+        currentProduct = await ProductsAPI.getOne(productId);
+        document.querySelector('h1').textContent = `Personnaliser : ${currentProduct.name}`;
+        updatePriceDisplay();
+    } catch {}
+}
+
+// ── Texte prévisualisation ────────────────────────────────
+const previewText = document.getElementById('preview-text');
+const textInput   = document.querySelector('input[placeholder="Enter text here..."]');
+const charCounter = document.querySelector('.flex.justify-between span:last-child');
+
+textInput?.addEventListener('input', e => {
+    const val = e.target.value.trim().toUpperCase();
+    if (previewText) previewText.textContent = val || 'YOUR NAME';
+    opts.text = e.target.value;
+    if (charCounter) charCounter.textContent = `${e.target.value.length} / 25 characters`;
+    if (e.target.value.length > 25) e.target.value = e.target.value.slice(0, 25);
+});
+
+// ── Size & Material selects ───────────────────────────────
+const selects = document.querySelectorAll('select');
+selects[0]?.addEventListener('change', e => { opts.size = e.target.value; updatePriceDisplay(); });
+selects[1]?.addEventListener('change', e => { opts.material = e.target.value; updatePriceDisplay(); });
+
+// ── Base type buttons ─────────────────────────────────────
+document.querySelectorAll('.flex.flex-wrap.gap-3 button.flex-1').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.flex.flex-wrap.gap-3 button.flex-1').forEach(b => {
+            b.classList.remove('border-primary','bg-primary/10','text-primary','border-2','font-bold');
+            b.classList.add('border-border-glass','bg-surface-deep','text-on-surface-variant','border','font-medium');
+        });
+        btn.classList.add('border-primary','bg-primary/10','text-primary','border-2','font-bold');
+        btn.classList.remove('border-border-glass','bg-surface-deep','text-on-surface-variant','border','font-medium');
+        opts.base = btn.textContent.trim();
+        updatePriceDisplay();
+    });
+});
+
+// ── LED color swatches ────────────────────────────────────
+const colorLabels = ['Blanc','Cyan','Vert','Rouge','RGB Multi'];
+document.querySelectorAll('.flex.flex-wrap.gap-4 button.w-10.h-10').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.flex.flex-wrap.gap-4 button.w-10.h-10').forEach(b => b.classList.remove('ring-2','ring-primary','ring-offset-2','ring-offset-surface-deep'));
+        btn.classList.add('ring-2','ring-primary','ring-offset-2','ring-offset-surface-deep');
+        opts.color = colorLabels[i] || 'Autre';
+        // Change glow color on preview
+        const glow = document.querySelector('.bg-primary\\/20.blur-\\[60px\\]');
+        const colors = ['rgba(255,255,255,0.2)','rgba(0,212,255,0.2)','rgba(34,197,94,0.2)','rgba(239,68,68,0.2)','rgba(168,85,247,0.2)'];
+        if (glow) glow.style.background = colors[i] || colors[1];
+    });
+});
+
+// ── Font buttons ──────────────────────────────────────────
+const fontFamilies = ['Sora,sans-serif', 'Georgia,serif', 'Arial,sans-serif'];
+document.querySelectorAll('.flex.flex-wrap.gap-2 button.px-4.py-2').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.flex.flex-wrap.gap-2 button.px-4.py-2').forEach(b => {
+            b.classList.remove('border-primary','bg-primary/10','text-primary','border-2','font-bold');
+            b.classList.add('border-border-glass','bg-surface-deep','text-on-surface-variant','border');
+        });
+        btn.classList.add('border-2','border-primary','bg-primary/10','text-primary','font-bold');
+        btn.classList.remove('border-border-glass','bg-surface-deep','text-on-surface-variant','border');
+        opts.font = btn.textContent.trim();
+        if (previewText) previewText.style.fontFamily = fontFamilies[i] || fontFamilies[0];
+    });
+});
+
+// ── Quantity (main + fixed bar) ───────────────────────────
+document.querySelectorAll('button.material-symbols-outlined, span.material-symbols-outlined').forEach(btn => {
+    const icon = btn.textContent?.trim() || btn.querySelector?.('span')?.textContent?.trim();
+    if (btn.tagName === 'BUTTON' && (btn.textContent.trim() === 'remove' || btn.textContent.trim() === 'add')) {
+        btn.addEventListener('click', () => {
+            if (btn.textContent.trim() === 'remove') qty = Math.max(1, qty - 1);
+            else qty++;
+            document.querySelectorAll('.w-8.text-center.font-bold').forEach(el => el.textContent = qty);
+            updatePriceDisplay();
+        });
+    }
+});
+
+// ── Gift packaging toggle ─────────────────────────────────
+document.querySelector('input[type="checkbox"].sr-only')?.addEventListener('change', e => {
+    opts.gift = e.target.checked;
+    updatePriceDisplay();
+});
+
+// ── Art Asset upload — fonction globale appelée par onchange ──
+window.handleArtUpload = function(input) {
+    const file = input.files[0];
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) {
+        showToast('Image trop grande (max 10 MB)', 'error');
+        input.value = '';
+        return;
+    }
+    uploadedFile = file;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        const src = ev.target.result;
+        // Aperçu dans la zone upload
+        const previewWrap = document.getElementById('art-preview-wrap');
+        const previewImg  = document.getElementById('art-preview-img');
+        const previewName = document.getElementById('art-preview-name');
+        const placeholder = document.getElementById('art-placeholder');
+        const dropZone    = document.getElementById('art-drop-zone');
+
+        if (previewImg)  previewImg.src = src;
+        if (previewName) previewName.textContent = '✅ ' + file.name;
+        // Utiliser style direct (pas de classe Tailwind hidden)
+        if (previewWrap) previewWrap.style.display = 'block';
+        if (placeholder) placeholder.style.display = 'none';
+        // Bordure succès sur le label
+        if (dropZone) {
+            dropZone.style.borderColor = 'var(--color-success, #22C55E)';
+        }
+        // Aperçu dans l'acrylique — remplace l'image anime
+        const acrylicImg = document.querySelector('img[alt="Anime Character Preview"]');
+        if (acrylicImg) {
+            acrylicImg.src = src;
+            acrylicImg.style.opacity = '0.95';
+        }
+        showToast('Image "' + file.name + '" chargée !', 'success');
+    };
+    reader.readAsDataURL(file);
+};
+
+// ── Drag & Drop sur le label ──────────────────────────────
+const dropZoneEl = document.getElementById('art-drop-zone');
+if (dropZoneEl) {
+    dropZoneEl.addEventListener('dragover', e => {
+        e.preventDefault();
+        dropZoneEl.style.borderColor = '#a8e8ff';
+        dropZoneEl.style.background  = 'rgba(0,212,255,0.05)';
+    });
+    dropZoneEl.addEventListener('dragleave', () => {
+        dropZoneEl.style.borderColor = '';
+        dropZoneEl.style.background  = '';
+    });
+    dropZoneEl.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZoneEl.style.borderColor = '';
+        dropZoneEl.style.background  = '';
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            const fileInput = document.getElementById('art-file-input');
+            fileInput.files = dt.files;
+            handleArtUpload(fileInput);
+        } else {
+            showToast('Format non supporté — utilisez PNG, JPG ou WEBP', 'error');
+        }
+    });
+}
+
+// ── Calcul prix ───────────────────────────────────────────
+function calcPrice() {
+    let base = currentProduct?.price || 55;
+    if (opts.material.includes('Premium')) base += 15;
+    if (opts.material.includes('Resin'))   base += 30;
+    if (opts.base === 'RGB Smart')         base += 10;
+    if (opts.base === 'Solid Wood')        base += 8;
+    if (opts.size.includes('Large'))       base += 15;
+    if (opts.size.includes('Small'))       base -= 10;
+    if (opts.gift)                         base += 5;
+    return Math.round(base * qty * 10) / 10;
+}
+
+function updatePriceDisplay() {
+    const price = calcPrice();
+    const fmt   = `${price.toFixed(3)} TND`;
+    document.querySelectorAll('.text-primary.font-extrabold, .font-headline-md.text-primary.font-extrabold').forEach(el => {
+        if (el.textContent.includes('TND') || el.textContent.includes('DT')) el.textContent = fmt;
+    });
+    document.querySelectorAll('.font-headline-sm').forEach(el => {
+        if (el.textContent.includes('TND') && el.textContent.includes('Total')) el.textContent = `Total: ${price} TND`;
+    });
+}
+
+// ── Boutons barre du bas ──────────────────────────────────
+document.querySelectorAll('button').forEach(btn => {
+    const t = btn.textContent.trim();
+
+    // Micro-interaction
+    btn.addEventListener('click', () => {
+        btn.style.transform = 'scale(0.95)';
+        setTimeout(() => btn.style.transform = '', 150);
+    });
+
+    if (t === 'Back')  btn.addEventListener('click', () => history.back());
+
+    if (t === 'Save Design') btn.addEventListener('click', () => {
+        const design = { productId, opts, qty, price: calcPrice(), ts: Date.now() };
+        const saved  = JSON.parse(localStorage.getItem('laserya_saved_designs') || '[]');
+        saved.unshift(design);
+        localStorage.setItem('laserya_saved_designs', JSON.stringify(saved.slice(0, 20)));
+        showToast('Design sauvegardé !', 'success');
+    });
+
+    if (t === 'Add to Cart') btn.addEventListener('click', () => {
+        const product = currentProduct || {
+            id:        productId || `custom-${Date.now()}`,
+            name:      'Lampe LED Personnalisée',
+            price:     calcPrice(),
+            image_url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400',
+        };
+        const customKey = `${product.id}-${opts.size}-${opts.base}-${opts.color}-${Date.now()}`;
+        Cart.add({ ...product, price: calcPrice() }, qty, {
+            customKey,
+            Taille:   opts.size,
+            Matière:  opts.material,
+            Base:     opts.base,
+            Couleur:  opts.color,
+            Texte:    opts.text || '—',
+            Police:   opts.font,
+            Cadeau:   opts.gift ? 'Oui (+5 TND)' : 'Non',
+        });
+        showToast('Ajouté au panier avec vos options !', 'success');
+        setTimeout(() => window.location.href = '/pages/cart.html', 1200);
+    });
+});
+
+// ── Init ──────────────────────────────────────────────────
+loadProduct();
+updatePriceDisplay();
+</script>
+
+
+</body></html>

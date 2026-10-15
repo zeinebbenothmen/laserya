@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+<html class="" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Boutique — Produits personnalisés | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+        }
+        .neon-glow-hover:hover {
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.35);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #070A0F;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3cd7ff;
+            border-radius: 10px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #a8e8ff;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface selection:bg-primary/30 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface-deep/80 backdrop-blur-xl border-b border-border-glass shadow-[0_0_20px_rgba(0,212,255,0.15)]">
+<div class="flex items-center justify-between px-gutter py-4 max-w-container-max-width mx-auto">
+<a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover transition-all group-hover:scale-105"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/index.html">Accueil</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="/pages/shop.html">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/custom-order.html">Commande sur mesure</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/gift-ideas.html">Idées cadeaux</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/my-orders.html">Suivi de commande</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/contact.html">Contact</a>
+</div>
+<div class="flex items-center space-x-5">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-primary transition-colors">search</span>
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-primary transition-colors">favorite</span>
+<div class="relative" onclick="window.location='/pages/cart.html'" style="cursor:pointer">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-primary transition-colors">shopping_cart</span>
+<span data-cart-badge class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] font-bold px-1 rounded-full">0</span>
+</div>
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-primary transition-colors">account_circle</span>
+<button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+</div>
+</div>
+</nav>
+<!-- Header Section -->
+<header class="pt-32 pb-12 px-gutter max-w-container-max-width mx-auto">
+<div class="text-center md:text-left mb-10">
+<h1 class="font-display-lg text-display-lg mb-4 text-text-primary tracking-tight">Boutique — Produits personnalisés</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Parcourez nos produits prêts à offrir ou choisissez des créations personnalisables à votre image.</p>
+</div>
+<!-- Search and Filter Bar -->
+<div class="flex flex-col gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-medium border border-border-glass rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-on-surface transition-all glass-panel" placeholder="Rechercher : lampes, porte-clés, anime, cadeaux..." type="text"/>
+</div>
+<div id="quick-tabs" class="flex flex-wrap gap-3 overflow-x-auto pb-2 custom-scrollbar">
+<button data-quick="all" class="px-6 py-2 rounded-full bg-primary text-on-primary font-bold text-label-md">Tout</button>
+<button data-quick="perso" class="px-6 py-2 rounded-full border border-border-glass text-on-surface-variant hover:border-primary hover:text-primary transition-all text-label-md glass-panel">Personnalisable</button>
+<button data-quick="gift" class="px-6 py-2 rounded-full border border-border-glass text-on-surface-variant hover:border-primary hover:text-primary transition-all text-label-md glass-panel">Prêt à offrir</button>
+<button data-quick="new" class="px-6 py-2 rounded-full border border-border-glass text-on-surface-variant hover:border-primary hover:text-primary transition-all text-label-md glass-panel">Nouveautés</button>
+<button data-quick="best" class="px-6 py-2 rounded-full border border-border-glass text-on-surface-variant hover:border-primary hover:text-primary transition-all text-label-md glass-panel">Meilleures ventes</button>
+<button data-quick="promo" class="px-6 py-2 rounded-full border border-border-glass text-on-surface-variant hover:border-primary hover:text-primary transition-all text-label-md glass-panel">En promo</button>
+</div>
+<!-- Bouton Filtres (mobile uniquement) -->
+<button id="mobile-filter-toggle" class="lg:hidden flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-border-glass glass-panel text-on-surface font-bold hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined">tune</span> <span id="mobile-filter-label">Filtres</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="px-gutter max-w-container-max-width mx-auto pb-section-gap grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10">
+<!-- Sidebar Filters (masquée sur mobile, ouverte via le bouton « Filtres ») -->
+<aside id="filter-sidebar" class="space-y-8 lg:sticky lg:top-28 h-fit hidden lg:block">
+<!-- Tout le catalogue -->
+<button id="filter-all" class="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left font-bold transition-all bg-primary text-on-primary">
+<span class="material-symbols-outlined text-[20px]">grid_view</span> Tout le catalogue
+</button>
+<!-- Type de produit -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-4 text-primary">Type de produit</h3>
+<div id="filter-type" class="space-y-1"></div>
+</section>
+<!-- Univers / Anime -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-4 text-primary">Univers / Anime</h3>
+<div id="filter-universe" class="space-y-1 max-h-80 overflow-y-auto custom-scrollbar pr-1"></div>
+</section>
+<!-- Price Range -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-4 text-primary">Prix</h3>
+<input class="w-full h-1 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="500" min="10" type="range" value="250"/>
+<div class="flex justify-between mt-2 text-label-sm text-on-surface-variant font-bold">
+<span>10 TND</span>
+<span>500 TND</span>
+</div>
+</section>
+<button id="clear-filters" class="w-full py-3 border border-error text-error font-bold rounded-lg hover:bg-error/10 transition-all active:scale-95">Effacer les filtres</button>
+</aside>
+<!-- Product Grid -->
+<div class="space-y-6">
+<!-- Top Sorting Row -->
+<div class="flex flex-col sm:flex-row justify-between items-center bg-surface-medium/50 p-4 rounded-xl border border-border-glass backdrop-blur-md">
+<div class="flex items-center gap-3 mb-4 sm:mb-0">
+<p class="text-on-surface-variant text-label-md">Affichage de <span id="product-count" class="text-primary font-bold">0</span> produit(s)</p>
+<button id="active-filter-chip" class="hidden items-center gap-1 pl-3 pr-2 py-1 rounded-full bg-primary/15 text-primary border border-primary/40 text-label-sm hover:bg-primary/25 transition-colors">
+<span id="active-filter-label"></span>
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<div class="flex items-center gap-4">
+<label class="text-on-surface-variant text-label-md font-medium">Trier par :</label>
+<select id="sort-select" class="bg-surface-deep border border-border-glass rounded-lg py-2 px-4 text-on-surface-variant text-label-md outline-none focus:ring-1 focus:ring-primary">
+<option value="featured">En vedette</option>
+<option value="newest">Plus récents</option>
+<option value="price-asc">Prix croissant</option>
+<option value="price-desc">Prix décroissant</option>
+<option value="rating">Mieux notés</option>
+<option value="customizable">Plus personnalisables</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+<!-- Skeleton loader -->
+<div class="skeleton-card glass-panel rounded-2xl overflow-hidden flex flex-col" style="min-height:380px"><div class="h-64 bg-surface-variant animate-pulse"></div><div class="p-5 space-y-3"><div class="h-4 bg-surface-variant animate-pulse rounded w-3/4"></div><div class="h-3 bg-surface-variant animate-pulse rounded w-full"></div><div class="h-8 bg-surface-variant animate-pulse rounded mt-4"></div></div></div>
+<div class="skeleton-card glass-panel rounded-2xl overflow-hidden flex flex-col" style="min-height:380px"><div class="h-64 bg-surface-variant animate-pulse"></div><div class="p-5 space-y-3"><div class="h-4 bg-surface-variant animate-pulse rounded w-3/4"></div><div class="h-3 bg-surface-variant animate-pulse rounded w-full"></div><div class="h-8 bg-surface-variant animate-pulse rounded mt-4"></div></div></div>
+<div class="skeleton-card glass-panel rounded-2xl overflow-hidden flex flex-col" style="min-height:380px"><div class="h-64 bg-surface-variant animate-pulse"></div><div class="p-5 space-y-3"><div class="h-4 bg-surface-variant animate-pulse rounded w-3/4"></div><div class="h-3 bg-surface-variant animate-pulse rounded w-full"></div><div class="h-8 bg-surface-variant animate-pulse rounded mt-4"></div></div></div>
+<!-- Products injected by JS -->
+<!-- Product 1: Anime LED Lamp -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 neon-glow-hover flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A high-tech laser engraved acrylic LED lamp featuring a detailed anime character design glowing in a vibrant electric cyan light. The lamp base is sleek matte black wood, and it is set against a dark, moody desk setup with soft purple ambient backlighting. The aesthetic is clean, futuristic, and showcases high-precision laser craftsmanship." src="/assets/images/placeholder.svg"/>
+<span class="absolute top-4 left-4 bg-secondary-container text-secondary text-[10px] font-bold px-3 py-1 rounded-full border border-secondary/30">Personnalisable</span>
+<button class="absolute top-4 right-4 w-10 h-10 bg-surface-deep/60 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-[18px] text-text-primary leading-tight">Custom Anime LED Lamp</h3>
+</div>
+<p class="text-on-surface-variant text-label-sm mb-4 line-clamp-2">Premium acrylic engraving with remote control RGB base.</p>
+<div class="mt-auto">
+<div class="flex items-center justify-between mb-4">
+<span class="text-primary font-bold text-headline-sm">85 TND</span>
+<div class="flex items-center gap-1 text-warning text-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 border border-border-glass rounded-lg text-label-md font-bold hover:bg-white/5 transition-colors">Aperçu rapide</button>
+<button class="py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all">Personnaliser</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 2: Couple Keychain -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 neon-glow-hover flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Two sleek metal keychains featuring precision laser-engraved names and a special date in a minimalist modern font. The keychains are laying on a dark textured granite surface with a single spotlight highlighting the metallic sheen and the depth of the engraving. The scene is intimate and sophisticated, emphasizing the personalized artisanal quality." src="/assets/images/placeholder.svg"/>
+<span class="absolute top-4 left-4 bg-surface-container-highest text-primary text-[10px] font-bold px-3 py-1 rounded-full border border-primary/30">Gravure laser</span>
+<button class="absolute top-4 right-4 w-10 h-10 bg-surface-deep/60 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-[18px] text-text-primary leading-tight">Personalized Couple Keychain</h3>
+</div>
+<p class="text-on-surface-variant text-label-sm mb-4 line-clamp-2">High-grade stainless steel with deep fiber laser marking.</p>
+<div class="mt-auto">
+<div class="flex items-center justify-between mb-4">
+<span class="text-primary font-bold text-headline-sm">25 TND</span>
+<div class="flex items-center gap-1 text-warning text-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.7</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 border border-border-glass rounded-lg text-label-md font-bold hover:bg-white/5 transition-colors">Aperçu rapide</button>
+<button class="py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all">Ajouter au panier</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 3: 3D Printed Figure -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 neon-glow-hover flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A highly detailed 3D printed character miniature of a legendary gaming hero, printed with high-resolution resin. The figure shows intricate textures on the armor and weapons. It is displayed on a high-tech illuminated stand with purple neon rings. The background is a dark laboratory setting with blurred 3D printers and tools." src="/assets/images/placeholder.svg"/>
+<span class="absolute top-4 left-4 bg-primary/20 text-primary text-[10px] font-bold px-3 py-1 rounded-full border border-primary/30">Impression 3D</span>
+<button class="absolute top-4 right-4 w-10 h-10 bg-surface-deep/60 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-[18px] text-text-primary leading-tight">3D Printed Character Figure</h3>
+</div>
+<p class="text-on-surface-variant text-label-sm mb-4 line-clamp-2">4K Resin printing for ultimate detail and smooth finish.</p>
+<div class="mt-auto">
+<div class="flex items-center justify-between mb-4">
+<span class="text-primary font-bold text-headline-sm">120 TND</span>
+<div class="flex items-center gap-1 text-warning text-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>5.0</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 border border-border-glass rounded-lg text-label-md font-bold hover:bg-white/5 transition-colors">Aperçu rapide</button>
+<button class="py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all">Personnaliser</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 4: Business QR Stand -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 neon-glow-hover flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A professional acrylic QR code stand for a modern business, featuring a gold mirrored acrylic finish with deep laser-etched logos and icons. The stand reflects soft overhead lights. It is placed on a clean white reception desk, creating a sharp contrast against the dark background of a tech startup office. Clean, elegant, and functional design." src="/assets/images/placeholder.svg"/>
+<span class="absolute top-4 left-4 bg-secondary-container text-secondary text-[10px] font-bold px-3 py-1 rounded-full border border-secondary/30">Personnalisable</span>
+<button class="absolute top-4 right-4 w-10 h-10 bg-surface-deep/60 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-[18px] text-text-primary leading-tight">Acrylic QR Business Stand</h3>
+</div>
+<p class="text-on-surface-variant text-label-sm mb-4 line-clamp-2">Perfect for Instagram, Payment, or Website links.</p>
+<div class="mt-auto">
+<div class="flex items-center justify-between mb-4">
+<span class="text-primary font-bold text-headline-sm">45 TND</span>
+<div class="flex items-center gap-1 text-warning text-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.8</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 border border-border-glass rounded-lg text-label-md font-bold hover:bg-white/5 transition-colors">Aperçu rapide</button>
+<button class="py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all">Personnaliser</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 5: Car Desk Display -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 neon-glow-hover flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A custom laser-cut wood and acrylic desktop display featuring a stylized luxury sports car profile. The design is layered to create a 3D effect, with hidden LED lighting highlighting the car's curves. The materials are walnut wood and smoked acrylic. The atmosphere is upscale and masculine, perfect for an executive desk." src="/assets/images/placeholder.svg"/>
+<span class="absolute top-4 left-4 bg-success/20 text-success text-[10px] font-bold px-3 py-1 rounded-full border border-success/30">New</span>
+<button class="absolute top-4 right-4 w-10 h-10 bg-surface-deep/60 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-[18px] text-text-primary leading-tight">Custom Car Desk Display</h3>
+</div>
+<p class="text-on-surface-variant text-label-sm mb-4 line-clamp-2">Hand-assembled multi-layer design for car enthusiasts.</p>
+<div class="mt-auto">
+<div class="flex items-center justify-between mb-4">
+<span class="text-primary font-bold text-headline-sm">65 TND</span>
+<div class="flex items-center gap-1 text-warning text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span>New</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 border border-border-glass rounded-lg text-label-md font-bold hover:bg-white/5 transition-colors">Aperçu rapide</button>
+<button class="py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all">Ajouter au panier</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 6: Music Plaque -->
+<div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 neon-glow-hover flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A transparent acrylic music plaque featuring a custom photo of a couple and a Spotify-style playback interface. The plaque is illuminated from below by a soft purple LED light, causing the laser-engraved details to glow. The setting is a cozy bedroom at night, with fairy lights in the background creating a romantic and modern vibe." src="/assets/images/placeholder.svg"/>
+<span class="absolute top-4 left-4 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold px-3 py-1 rounded-full">Meilleure vente</span>
+<button class="absolute top-4 right-4 w-10 h-10 bg-surface-deep/60 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-[18px] text-text-primary leading-tight">Music Plaque LED Lamp</h3>
+</div>
+<p class="text-on-surface-variant text-label-sm mb-4 line-clamp-2">Your favorite song and memory, engraved forever.</p>
+<div class="mt-auto">
+<div class="flex items-center justify-between mb-4">
+<span class="text-primary font-bold text-headline-sm">55 TND</span>
+<div class="flex items-center gap-1 text-warning text-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 border border-border-glass rounded-lg text-label-md font-bold hover:bg-white/5 transition-colors">Aperçu rapide</button>
+<button class="py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all">Personnaliser</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 7-12 placeholders simplified for layout consistency -->
+<div class="glass-panel rounded-2xl p-5 flex flex-col justify-between opacity-80 hover:opacity-100 transition-opacity">
+<div>
+<div class="h-48 bg-surface-variant rounded-xl mb-4 animate-pulse"></div>
+<h3 class="font-headline-sm text-[18px] text-text-primary mb-2">Name Desk Plate</h3>
+<p class="text-on-surface-variant text-label-sm">Professional office accessory.</p>
+</div>
+<span class="text-primary font-bold mt-4">35 TND</span>
+</div>
+<div class="glass-panel rounded-2xl p-5 flex flex-col justify-between opacity-80 hover:opacity-100 transition-opacity">
+<div>
+<div class="h-48 bg-surface-variant rounded-xl mb-4 animate-pulse"></div>
+<h3 class="font-headline-sm text-[18px] text-text-primary mb-2">Gaming Setup Lamp</h3>
+<p class="text-on-surface-variant text-label-sm">Custom RGB gamertag stand.</p>
+</div>
+<span class="text-primary font-bold mt-4">95 TND</span>
+</div>
+<div class="glass-panel rounded-2xl p-5 flex flex-col justify-between opacity-80 hover:opacity-100 transition-opacity">
+<div>
+<div class="h-48 bg-surface-variant rounded-xl mb-4 animate-pulse"></div>
+<h3 class="font-headline-sm text-[18px] text-text-primary mb-2">Jewelry Holder</h3>
+<p class="text-on-surface-variant text-label-sm">Laser-cut tree design.</p>
+</div>
+<span class="text-primary font-bold mt-4">40 TND</span>
+</div>
+<div class="glass-panel rounded-2xl p-5 flex flex-col justify-between opacity-80 hover:opacity-100 transition-opacity">
+<div>
+<div class="h-48 bg-surface-variant rounded-xl mb-4 animate-pulse"></div>
+<h3 class="font-headline-sm text-[18px] text-text-primary mb-2">Pokeball Keychain Set</h3>
+<p class="text-on-surface-variant text-label-sm">Pack of 4 glow-in-dark.</p>
+</div>
+<span class="text-primary font-bold mt-4">15 TND</span>
+</div>
+<div class="glass-panel rounded-2xl p-5 flex flex-col justify-between opacity-80 hover:opacity-100 transition-opacity">
+<div>
+<div class="h-48 bg-surface-variant rounded-xl mb-4 animate-pulse"></div>
+<h3 class="font-headline-sm text-[18px] text-text-primary mb-2">Personalized Valentine Gift</h3>
+<p class="text-on-surface-variant text-label-sm">Engraved wooden heart box.</p>
+</div>
+<span class="text-primary font-bold mt-4">50 TND</span>
+</div>
+<div class="glass-panel rounded-2xl p-5 flex flex-col justify-between opacity-80 hover:opacity-100 transition-opacity">
+<div>
+<div class="h-48 bg-surface-variant rounded-xl mb-4 animate-pulse"></div>
+<h3 class="font-headline-sm text-[18px] text-text-primary mb-2">Anime Wall Panel</h3>
+<p class="text-on-surface-variant text-label-sm">Large scale LED art piece.</p>
+</div>
+<span class="text-primary font-bold mt-4">180 TND</span>
+</div>
+</div>
+<!-- Pagination (remplie dynamiquement par renderPagination) -->
+<nav id="pagination" class="flex flex-wrap justify-center items-center gap-2 pt-10"></nav>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-border-glass bg-surface-deep">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-gutter py-section-gap max-w-container-max-width mx-auto">
+<div class="space-y-4">
+<a href="/index.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-80"/>
+<span class="font-bold text-primary text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-on-surface-variant text-body-md">L'alliance du savoir-faire de précision et de l'innovation numérique pour donner vie à vos créations uniques.</p>
+<div class="flex space-x-4">
+<span class="material-symbols-outlined text-primary cursor-pointer">social_leaderboard</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">share</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">mail</span>
+</div>
+</div>
+<div>
+<h4 class="text-text-primary font-bold mb-4">Liens utiles</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/contact.html">Politique de confidentialité</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/contact.html">Conditions générales</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/contact.html">Livraison</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/contact.html">Retours</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="/pages/contact.html">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-text-primary font-bold mb-4">Nos services</h4>
+<ul class="space-y-2">
+<li class="text-on-surface-variant text-label-md">Gravure laser</li>
+<li class="text-on-surface-variant text-label-md">Impression 3D</li>
+<li class="text-on-surface-variant text-label-md">Électronique sur mesure</li>
+<li class="text-on-surface-variant text-label-md">Cadeaux d'entreprise</li>
+</ul>
+</div>
+<div>
+<h4 class="text-text-primary font-bold mb-4">Newsletter</h4>
+<p class="text-on-surface-variant text-label-sm mb-4">Recevez nos nouveautés et éditions limitées.</p>
+<div class="flex gap-2">
+<input class="bg-surface-medium border border-border-glass rounded-lg py-2 px-3 flex-grow focus:ring-1 focus:ring-primary outline-none" placeholder="Adresse e-mail" type="email"/>
+<button class="bg-primary-container text-on-primary-container px-4 rounded-lg font-bold">S'inscrire</button>
+</div>
+</div>
+</div>
+<div class="border-t border-border-glass py-6 text-center text-on-surface-variant text-label-sm">
+            © 2024 Laserya.tn. Savoir-faire de précision.
+        </div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script>
+// ── State ──────────────────────────────────────────────────
+let allProducts = [];
+let searchQuery = '';
+let activeFilter = null; // { label, handles } sélectionné, ou null = tout le catalogue
+let activeCategory = null; // catégorie large depuis l'accueil (?category=)
+let quickMode = 'all'; // onglet rapide : all | perso | gift | new | best | promo
+
+// Regroupement des 35 collections laserya.fr en 2 familles de filtres.
+const FILTER_TYPE = [
+  { label: 'Shadow Box',            handles: ['shadow-box-vos-heros-dans-la-lumiere'] },
+  { label: 'Light Box',             handles: ['light-boxs'] },
+  { label: 'Lampes & déco',         handles: ['lampes','lampe-decorative','lamp-led-cadeaux','lamp-led-jobs'] },
+  { label: 'Figurines',             handles: ['figurines','anime-figurine'] },
+  { label: 'Porte-clés',            handles: ['porte-cles','anime-porte-cle','porte-cle-jobs'] },
+  { label: 'Cadres anime',          handles: ['anime-frames'] },
+  { label: 'Keyboard Keys',         handles: ['keyboard-keys'] },
+  { label: 'Accessoires Crocs',     handles: ['accessoires-crocs'] },
+  { label: 'Couvercles de briquet', handles: ['couvercles-de-briquet'] },
+  { label: 'Supports cartes',       handles: ['support-de-cartes-de-visites'] },
+  { label: 'Jeux de cartes',        handles: ['jeux-de-cartes-accessoires'] },
+  { label: 'Gaming Setup',          handles: ['gaming-setup'] },
+  { label: 'Auto / Moto',           handles: ['lunivers-auto-moto'] },
+  { label: 'Déco maison',           handles: ['decoration-maison'] },
+  { label: 'Cadeaux métiers',       handles: ['cadeaux-metiers'] },
+  { label: 'Mariage & fiançailles', handles: ['mariage-et-fiancaille'] },
+  { label: 'Cadeaux',               handles: ['gift-for-our-loved-ones'] },
+];
+const FILTER_UNIVERSE = [
+  { label: 'One Piece',        handles: ['one-piece'] },
+  { label: 'Naruto',           handles: ['naruto'] },
+  { label: 'Dragon Ball',      handles: ['dragon-ball'] },
+  { label: 'Demon Slayer',     handles: ['demon-slayer'] },
+  { label: 'Jujutsu Kaisen',   handles: ['jujutsu-kaisen'] },
+  { label: 'Hunter x Hunter',  handles: ['hunter-x-hunter'] },
+  { label: 'Chainsaw Man',     handles: ['chainsaw-man'] },
+  { label: 'My Hero Academia', handles: ['my-hero-academia'] },
+  { label: 'Tokyo Ghoul',      handles: ['tokyo-ghoul'] },
+  { label: 'Marvel',           handles: ['marvel-univers'] },
+  { label: 'Pokémon',          handles: ['pokemon-world'] },
+];
+
+function getCols(p) {
+  try { const a = JSON.parse(p.collections || '[]'); return Array.isArray(a) ? a : []; }
+  catch { return []; }
+}
+function matchesAny(p, handles) {
+  const cols = getCols(p);
+  return handles.some(h => cols.includes(h));
+}
+
+// ── Render one product card ────────────────────────────────
+function renderCard(p) {
+  const img = p.image_url || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400';
+  const catLabel = getCategoryLabel(p.category);
+  const onSale = Number(p.compare_at_price) > Number(p.price);
+  const pct = onSale ? Math.round((1 - Number(p.price) / Number(p.compare_at_price)) * 100) : 0;
+  const priceHtml = onSale
+    ? `<span class="flex items-baseline gap-2"><span class="text-primary font-bold text-headline-sm">${formatPrice(p.price)}</span><span class="text-on-surface-variant line-through text-label-sm">${formatPrice(p.compare_at_price)}</span></span>`
+    : `<span class="text-primary font-bold text-headline-sm">${formatPrice(p.price)}</span>`;
+  const promoBadge = onSale
+    ? `<span class="absolute bottom-4 left-4 bg-error text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.5)]">-${pct}%</span>`
+    : '';
+  return `
+  <div class="glass-panel rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 neon-glow-hover flex flex-col"
+       data-id="${p.id}">
+    <div class="relative h-64 overflow-hidden cursor-pointer" onclick="viewProduct('${p.id}')">
+      <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+           src="${img}" alt="${p.name}"
+           onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400'"/>
+      <span class="absolute top-4 left-4 bg-secondary-container text-secondary text-[10px] font-bold px-3 py-1 rounded-full border border-secondary/30">${catLabel}</span>
+      <button onclick="toggleFav(event, '${p.id}')" title="Ajouter aux favoris"
+        class="fav-btn absolute top-4 right-4 w-10 h-10 bg-surface-deep/60 backdrop-blur-md rounded-full flex items-center justify-center ${Wishlist.has(p.id) ? 'text-error' : 'text-on-surface'} hover:text-error transition-colors">
+        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings:'FILL' ${Wishlist.has(p.id) ? 1 : 0}">favorite</span>
+      </button>
+      ${promoBadge}
+    </div>
+    <div class="p-5 flex-grow flex flex-col">
+      <h3 class="font-headline-sm text-[18px] text-text-primary leading-tight mb-2 cursor-pointer hover:text-primary transition-colors" onclick="viewProduct('${p.id}')">${p.name}</h3>
+      <p class="text-on-surface-variant text-label-sm mb-4 line-clamp-2 cursor-pointer" onclick="viewProduct('${p.id}')">${p.description || ''}</p>
+      <div class="mt-auto">
+        <div class="flex items-center justify-between mb-4">
+          ${priceHtml}
+          <span class="text-on-surface-variant text-label-sm">${p.material || ''}</span>
+        </div>
+        <button onclick="addToCart('${p.id}')"
+          class="w-full py-2.5 bg-primary text-on-primary rounded-lg text-label-md font-bold hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all add-to-cart-btn"
+          data-id="${p.id}">
+          Ajouter au panier
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── Add to cart ────────────────────────────────────────────
+function addToCart(productId) {
+  const product = allProducts.find(p => p.id === productId);
+  if (!product) return;
+  Cart.add(product, 1);
+  showToast(`"${product.name}" ajouté au panier`, 'success');
+  // Animate badge
+  const badge = document.querySelector('[data-cart-badge]');
+  if (badge) { badge.classList.add('scale-150'); setTimeout(() => badge.classList.remove('scale-150'), 200); }
+}
+
+// ── Favoris (cœur sur la carte) ────────────────────────────
+function toggleFav(e, productId) {
+  e.stopPropagation();
+  const on  = Wishlist.toggle(productId);
+  const btn = e.currentTarget;
+  btn.classList.toggle('text-error', on);
+  btn.classList.toggle('text-on-surface', !on);
+  const ic = btn.querySelector('.material-symbols-outlined');
+  if (ic) ic.style.fontVariationSettings = `'FILL' ${on ? 1 : 0}`;
+  const prod = allProducts.find(p => p.id === productId);
+  showToast(on ? `"${prod?.name || 'Produit'}" ajouté aux favoris ❤️` : 'Retiré des favoris', on ? 'success' : 'info');
+}
+
+// ── Ouvrir la fiche produit (page dédiée + produits similaires) ──
+function viewProduct(productId) {
+  window.location.href = `/pages/product.html?id=${productId}`;
+}
+
+// ── État tri / pagination ──────────────────────────────────
+let sortMode       = 'featured';   // featured|newest|price-asc|price-desc|rating|customizable
+let materialFilter = '';           // '' | Acrylique | Bois | PLA | Résine
+let currentPage    = 1;
+const PER_PAGE     = 21;
+let _filtered      = [];           // résultat filtré + trié (toutes pages)
+
+// Tri effectif : les onglets « Nouveautés » / « Meilleures ventes » priment, sinon le menu déroulant.
+function effectiveSort() {
+  if (quickMode === 'new')  return 'newest';
+  if (quickMode === 'best') return 'best';
+  return sortMode;
+}
+function sortList(list, mode) {
+  const a = list.slice();
+  switch (mode) {
+    case 'price-asc':    a.sort((x, y) => Number(x.price) - Number(y.price)); break;
+    case 'price-desc':   a.sort((x, y) => Number(y.price) - Number(x.price)); break;
+    case 'newest':       a.sort((x, y) => new Date(y.created_at) - new Date(x.created_at)); break;
+    case 'rating':       a.sort((x, y) => (Number(y.rating) || 0) - (Number(x.rating) || 0)); break;
+    case 'customizable': a.sort((x, y) => (Number(y.requires_name) || 0) - (Number(x.requires_name) || 0)); break;
+    case 'best':
+    case 'featured':
+    default:             a.sort((x, y) => (Number(y.featured) || 0) - (Number(x.featured) || 0)); break;
+  }
+  return a;
+}
+
+// ── Filtrer + trier (recalcule tout, revient à la page 1) ──
+function applyFilters() {
+  let filtered = allProducts;
+  if (activeCategory) filtered = filtered.filter(p => p.category === activeCategory);
+  if (activeFilter)   filtered = filtered.filter(p => matchesAny(p, activeFilter.handles));
+  if (materialFilter) filtered = filtered.filter(p => (p.material || '').toLowerCase().includes(materialFilter.toLowerCase()));
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || (p.description || '').toLowerCase().includes(q));
+  }
+  const priceVal = document.getElementById('price-range')?.value;
+  if (priceVal) filtered = filtered.filter(p => p.price <= parseInt(priceVal));
+
+  // Onglets rapides : filtres perso / gift / promo
+  if (quickMode === 'perso')      filtered = filtered.filter(p => Number(p.requires_name) === 1);
+  else if (quickMode === 'gift')  filtered = filtered.filter(p => matchesAny(p, ['mariage-et-fiancaille', 'gift-for-our-loved-ones']) || p.category === 'gifts');
+  else if (quickMode === 'promo') filtered = filtered.filter(p => Number(p.compare_at_price) > Number(p.price));
+
+  _filtered   = sortList(filtered, effectiveSort());
+  currentPage = 1;
+  renderPage();
+}
+
+// ── Afficher la page courante (21 produits) + pagination ──
+function renderPage() {
+  updateActiveChip();
+  const grid  = document.getElementById('products-grid');
+  const total = _filtered.length;
+  const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+  if (currentPage > pages) currentPage = pages;
+
+  const start = (currentPage - 1) * PER_PAGE;
+  const slice = _filtered.slice(start, start + PER_PAGE);
+  document.getElementById('product-count').textContent = total;
+
+  if (total === 0) {
+    grid.innerHTML = `<div class="col-span-full text-center py-20 text-on-surface-variant">
+      <span class="material-symbols-outlined text-5xl mb-4 block">search_off</span>
+      <p class="text-body-lg">Aucun produit trouvé</p></div>`;
+    renderPagination(1, 1);
+    return;
+  }
+  grid.innerHTML = slice.map(renderCard).join('');
+  grid.querySelectorAll('.glass-panel').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+    });
+  });
+  renderPagination(pages, currentPage);
+}
+
+// ── Barre de pagination ────────────────────────────────────
+function goToPage(n) {
+  currentPage = n;
+  renderPage();
+  document.getElementById('products-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function renderPagination(pages, page) {
+  let bar = document.getElementById('pagination');
+  if (!bar) {
+    bar = document.createElement('nav');
+    bar.id = 'pagination';
+    bar.className = 'flex flex-wrap items-center justify-center gap-2 mt-12';
+    document.getElementById('products-grid').after(bar);
+  }
+  if (pages <= 1) { bar.innerHTML = ''; return; }
+  const mk = (label, n, opts = {}) => {
+    const dis = opts.disabled ? 'opacity-40 pointer-events-none' : '';
+    const on  = opts.active
+      ? 'bg-primary text-on-primary font-bold border-primary'
+      : 'glass-panel text-on-surface-variant hover:text-primary hover:border-primary';
+    return `<button data-page="${n}" class="min-w-10 h-10 px-3 rounded-lg border border-border-glass text-label-md transition-all ${on} ${dis}">${label}</button>`;
+  };
+  const win = [];
+  const push = n => { if (n >= 1 && n <= pages && !win.includes(n)) win.push(n); };
+  push(1); push(2);
+  for (let n = page - 1; n <= page + 1; n++) push(n);
+  push(pages - 1); push(pages);
+  win.sort((a, b) => a - b);
+  let html = mk('‹', page - 1, { disabled: page === 1 });
+  let prev = 0;
+  for (const n of win) {
+    if (prev && n - prev > 1) html += `<span class="px-1 text-on-surface-variant">…</span>`;
+    html += mk(String(n), n, { active: n === page });
+    prev = n;
+  }
+  html += mk('›', page + 1, { disabled: page === pages });
+  bar.innerHTML = html;
+  bar.querySelectorAll('button[data-page]').forEach(b =>
+    b.addEventListener('click', () => goToPage(parseInt(b.getAttribute('data-page'))))
+  );
+}
+
+// ── Build collection filter list (sélection unique, cliquable) ──
+function buildFilterGroup(containerId, config) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  let shown = 0;
+  const activeKey = activeFilter ? activeFilter.handles.join(',') : '';
+  config.forEach(entry => {
+    const count = allProducts.filter(p => matchesAny(p, entry.handles)).length;
+    if (!count) return; // masque les collections sans produit
+    shown++;
+    const key = entry.handles.join(',');
+    const isActive = key === activeKey;
+    const row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-left transition-all ' +
+      (isActive ? 'bg-primary/15 text-primary border border-primary/40'
+                : 'text-on-surface-variant hover:text-primary hover:bg-white/5 border border-transparent');
+    row.innerHTML = `<span class="font-body-md text-body-md">${entry.label}</span>
+      <span class="text-label-sm ${isActive ? 'text-primary' : 'text-on-surface-variant/60'}">${count}</span>`;
+    row.addEventListener('click', () => {
+      activeFilter = isActive ? null : entry; // re-clic sur l'actif = revenir à tout
+      activeCategory = null; // choisir une collection annule la catégorie large
+      buildFilters();
+      applyFilters();
+    });
+    container.appendChild(row);
+  });
+  if (!shown) container.innerHTML = '<p class="text-label-sm text-on-surface-variant/60">—</p>';
+}
+function allBtnClass(active) {
+  return 'w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left font-bold transition-all ' +
+    (active ? 'bg-primary text-on-primary' : 'text-on-surface-variant hover:text-primary hover:bg-white/5');
+}
+function buildFilters() {
+  buildFilterGroup('filter-type', FILTER_TYPE);
+  buildFilterGroup('filter-universe', FILTER_UNIVERSE);
+  const allBtn = document.getElementById('filter-all');
+  if (allBtn) allBtn.className = allBtnClass(!activeFilter);
+}
+
+// ── Clear all filters ──────────────────────────────────────
+function clearFilters() {
+  activeFilter = null; activeCategory = null; searchQuery = ''; quickMode = 'all';
+  const s = document.querySelector('input[type="text"]'); if (s) s.value = '';
+  document.querySelectorAll('#quick-tabs button').forEach(b => {
+    b.className = b.getAttribute('data-quick') === 'all'
+      ? 'px-6 py-2 rounded-full bg-primary text-on-primary font-bold text-label-md'
+      : 'px-6 py-2 rounded-full border border-border-glass text-on-surface-variant hover:border-primary hover:text-primary transition-all text-label-md glass-panel';
+  });
+  buildFilters(); applyFilters();
+}
+document.getElementById('clear-filters')?.addEventListener('click', clearFilters);
+document.getElementById('filter-all')?.addEventListener('click', () => { activeFilter = null; activeCategory = null; buildFilters(); applyFilters(); });
+document.getElementById('active-filter-chip')?.addEventListener('click', clearFilters);
+
+// ── Onglets rapides (Tout / Personnalisable / Prêt à offrir / Nouveautés / Meilleures ventes / En promo) ──
+const QUICK_ON  = 'px-6 py-2 rounded-full bg-primary text-on-primary font-bold text-label-md';
+const QUICK_OFF = 'px-6 py-2 rounded-full border border-border-glass text-on-surface-variant hover:border-primary hover:text-primary transition-all text-label-md glass-panel';
+document.querySelectorAll('#quick-tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    quickMode = btn.getAttribute('data-quick') || 'all';
+    document.querySelectorAll('#quick-tabs button').forEach(b => { b.className = QUICK_OFF; });
+    btn.className = QUICK_ON;
+    applyFilters();
+  });
+});
+
+// ── Bandeau « filtre actif » (catégorie ou sélection venant de l'accueil) ──
+function updateActiveChip() {
+  const chip = document.getElementById('active-filter-chip');
+  const lbl = document.getElementById('active-filter-label');
+  if (!chip || !lbl) return;
+  let text = '';
+  if (activeCategory) text = getCategoryLabel(activeCategory);
+  else if (activeFilter) text = activeFilter.label;
+  if (text) { lbl.textContent = text; chip.classList.remove('hidden'); chip.classList.add('inline-flex'); }
+  else { chip.classList.add('hidden'); chip.classList.remove('inline-flex'); }
+}
+
+// ── Pré-sélection depuis l'URL (cartes « Explorez notre univers ») ──
+function applyUrlParams() {
+  const params = new URLSearchParams(location.search);
+  const cat   = params.get('category');
+  const cols  = params.get('cols');
+  const label = params.get('label');
+  if (cat) {
+    activeCategory = cat;
+  } else if (cols) {
+    activeFilter = { label: label || 'Sélection', handles: cols.split(',').map(h => h.trim()).filter(Boolean) };
+  }
+}
+
+// ── Init ───────────────────────────────────────────────────
+async function init() {
+  try {
+    allProducts = await ProductsAPI.getAll();
+    applyUrlParams();
+    buildFilters();
+    applyFilters();
+  } catch (e) {
+    document.getElementById('products-grid').innerHTML = `<div class="col-span-full text-center py-20 text-error">
+      <span class="material-symbols-outlined text-5xl mb-4 block">error</span>
+      <p>Impossible de charger les produits. Vérifiez que le serveur est démarré.</p></div>`;
+  }
+}
+
+// ── Search input ───────────────────────────────────────────
+document.querySelector('input[type="text"]')?.addEventListener('input', e => {
+  searchQuery = e.target.value;
+  applyFilters();
+});
+
+// ── Price range ────────────────────────────────────────────
+document.querySelector('input[type="range"]')?.setAttribute('id', 'price-range');
+document.querySelector('input[type="range"]')?.addEventListener('input', applyFilters);
+
+// ── Tri (menu déroulant « Trier par ») ─────────────────────
+function highlightQuickTab(mode) {
+  document.querySelectorAll('#quick-tabs button').forEach(b => {
+    b.className = (b.getAttribute('data-quick') || 'all') === mode ? QUICK_ON : QUICK_OFF;
+  });
+}
+document.getElementById('sort-select')?.addEventListener('change', e => {
+  sortMode = e.target.value;
+  // si un onglet de tri (Nouveautés/Meilleures ventes) était actif, le menu reprend la main
+  if (quickMode === 'new' || quickMode === 'best') { quickMode = 'all'; highlightQuickTab('all'); }
+  applyFilters();
+});
+
+// ── Filtre par matière ─────────────────────────────────────
+document.getElementById('material-select')?.addEventListener('change', e => {
+  const v = e.target.value || '';
+  materialFilter = /^toutes/i.test(v) ? '' : v.split(' (')[0];   // « PLA (impression 3D) » → « PLA »
+  applyFilters();
+});
+
+// ── Filtres mobiles : bouton ouvrir/fermer + fermeture après sélection ──
+(function mobileFilters(){
+  const toggle  = document.getElementById('mobile-filter-toggle');
+  const sidebar = document.getElementById('filter-sidebar');
+  const label   = document.getElementById('mobile-filter-label');
+  if (!toggle || !sidebar) return;
+  const icon = toggle.querySelector('.material-symbols-outlined');
+
+  function setOpen(open){
+    sidebar.classList.toggle('hidden', !open);
+    if (label) label.textContent = open ? 'Masquer les filtres' : 'Filtres';
+    if (icon)  icon.textContent  = open ? 'close' : 'tune';
+  }
+  toggle.addEventListener('click', () => setOpen(sidebar.classList.contains('hidden')));
+
+  // Après avoir choisi un filtre sur mobile, on referme le panneau.
+  sidebar.addEventListener('click', (e) => {
+    if (window.innerWidth >= 1024) return;             // desktop : sidebar toujours visible
+    if (e.target.closest('button, label, a, input')) setOpen(false);
+  });
+})();
+
+init();
+</script>
+</body></html>

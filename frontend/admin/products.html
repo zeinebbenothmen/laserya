@@ -1,0 +1,433 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Laserya.tn Admin | Products Catalog</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .sidebar-blur {
+            backdrop-filter: blur(20px);
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(168, 232, 255, 0.15);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3c494e;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30 selection:text-primary overflow-hidden">
+<!-- SIDEBAR -->
+<aside id="admin-sidebar" data-active="products"></aside>
+<!-- TOP BAR -->
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-[400px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container border border-outline-variant/20 rounded-full py-2 pl-10 pr-12 text-body-sm focus:outline-none focus:border-primary/50 transition-all placeholder:text-on-surface-variant/50" placeholder="Rechercher produit ou réf…" type="text">
+<div class="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 border border-outline-variant/30 rounded text-[10px] font-mono-ui text-on-surface-variant/60">⌘K</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/15 flex items-center justify-center text-primary"><span class="material-symbols-outlined">person</span></div>
+<p class="font-label-md text-on-surface hidden lg:block">Administrateur</p>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="ml-sidebar_width mt-topbar_height p-stack_lg h-[calc(100vh-64px)] overflow-y-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-stack_lg">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Catalogue produits</h2>
+<p class="text-on-surface-variant text-body-md mt-1">Gérez votre catalogue gravure laser & impression 3D.</p>
+</div>
+<div class="flex items-center gap-3">
+<button onclick="window.location.href='/admin/add-product.html'" class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-md hover:opacity-90 transition-all shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+                    Nouveau produit
+                </button>
+</div>
+</div>
+<!-- STATS CARDS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-stack_md mb-stack_lg">
+<div class="glass-card p-stack_md rounded-xl">
+<div class="flex items-center justify-between mb-2">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Total Products</span>
+<span class="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+</div>
+<div class="text-headline-md font-bold text-on-surface">1,284</div>
+<div class="mt-2 text-[12px] text-primary/80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                    +12% from last month
+                </div>
+</div>
+<div class="glass-card p-stack_md rounded-xl">
+<div class="flex items-center justify-between mb-2">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Active Listings</span>
+<span class="material-symbols-outlined text-tertiary-fixed text-[20px]">check_circle</span>
+</div>
+<div class="text-headline-md font-bold text-on-surface">1,120</div>
+<div class="mt-2 text-[12px] text-on-surface-variant/60">87% of total catalog</div>
+</div>
+<div class="glass-card p-stack_md rounded-xl">
+<div class="flex items-center justify-between mb-2">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Low Stock</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">warning</span>
+</div>
+<div class="text-headline-md font-bold text-secondary">42</div>
+<div class="mt-2 text-[12px] text-secondary/80">Requires replenishment</div>
+</div>
+<div class="glass-card p-stack_md rounded-xl">
+<div class="flex items-center justify-between mb-2">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Out of Stock</span>
+<span class="material-symbols-outlined text-error text-[20px]">block</span>
+</div>
+<div class="text-headline-md font-bold text-error">12</div>
+<div class="mt-2 text-[12px] text-error/80">Action required immediately</div>
+</div>
+</div>
+<!-- FILTERS BAR -->
+<div class="glass-card rounded-xl p-stack_md mb-stack_md flex flex-wrap items-center gap-stack_md">
+<div class="flex flex-col gap-1.5 min-w-[180px]">
+<label class="font-label-sm text-on-surface-variant/70 ml-1">Category</label>
+<div class="relative">
+<select class="w-full bg-background border border-outline-variant/30 rounded-lg px-3 py-2 text-body-sm focus:outline-none focus:border-primary/50 appearance-none">
+<option>All Categories</option>
+<option>Laser</option>
+<option>3D Print</option>
+<option>Material</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">unfold_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 min-w-[150px]">
+<label class="font-label-sm text-on-surface-variant/70 ml-1">Status</label>
+<div class="relative">
+<select class="w-full bg-background border border-outline-variant/30 rounded-lg px-3 py-2 text-body-sm focus:outline-none focus:border-primary/50 appearance-none">
+<option>All Status</option>
+<option>Active</option>
+<option>Draft</option>
+<option>Out of Stock</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">unfold_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 min-w-[200px]">
+<label class="font-label-sm text-on-surface-variant/70 ml-1">Price Range</label>
+<div class="flex items-center gap-2">
+<input class="w-20 bg-background border border-outline-variant/30 rounded-lg px-2 py-2 text-body-sm focus:outline-none" placeholder="Min" type="number">
+<span class="text-on-surface-variant">-</span>
+<input class="w-20 bg-background border border-outline-variant/30 rounded-lg px-2 py-2 text-body-sm focus:outline-none" placeholder="Max" type="number">
+</div>
+</div>
+<div class="ml-auto self-end pb-0.5">
+<button onclick="document.querySelector('input[type=text]').value=''; loadProducts('')" class="text-primary font-label-md hover:underline">Effacer les filtres</button>
+</div>
+</div>
+<!-- PRODUCT TABLE -->
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-high">
+<tr class="border-b border-outline-variant/20">
+<th class="px-gutter py-4 w-10">
+<input class="w-4 h-4 rounded border-outline-variant bg-transparent checked:bg-primary checked:border-primary focus:ring-offset-background" type="checkbox">
+</th>
+<th class="px-gutter py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Produit</th>
+<th class="px-4 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Catégorie</th>
+<th class="px-4 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Réf.</th>
+<th class="px-4 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Prix</th>
+<th class="px-4 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Stock</th>
+<th class="px-4 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Statut</th>
+<th class="px-gutter py-4 font-label-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody id="products-tbody" class="divide-y divide-outline-variant/10">
+<!-- Skeleton rows while loading -->
+<tr class="skeleton-row"><td colspan="8" class="px-gutter py-4 text-center text-on-surface-variant text-body-sm">Chargement des produits...</td></tr>
+<!-- Product 1 -->
+<tr class="group hover:bg-surface-variant/30 transition-colors" style="display:none">
+<td class="px-gutter py-4">
+<input class="w-4 h-4 rounded border-outline-variant bg-transparent" type="checkbox">
+</td>
+<td class="px-gutter py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded overflow-hidden border border-outline-variant/20 bg-surface-container-highest">
+<img alt="Anime Lamp" class="w-full h-full object-cover" data-alt="A detailed digital artwork of an Anime LED Lamp, featuring etched acrylic with glowing blue and cyan neon lines on a minimalist black circular base. The lamp is displayed in a futuristic dark room with subtle glassmorphic elements and professional studio lighting. The style is ultra-modern and tech-focused." src="/assets/images/placeholder.svg">
+</div>
+<div>
+<div class="font-label-md text-on-surface group-hover:text-primary transition-colors">Anime LED Lamp</div>
+<div class="text-[11px] text-on-surface-variant/60">ID: PRD-7281</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded text-[10px] font-label-sm uppercase">Laser</span>
+</td>
+<td class="px-4 py-4 font-mono-ui text-on-surface-variant text-[13px]">AL-LED-001</td>
+<td class="px-4 py-4 text-on-surface font-semibold">TND 45.00</td>
+<td class="px-4 py-4 text-on-surface">124</td>
+<td class="px-4 py-4">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-[11px] font-bold">
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+                                    Active
+                                </div>
+</td>
+<td class="px-gutter py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">content_copy</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Product 2 -->
+<tr class="group hover:bg-surface-variant/30 transition-colors">
+<td class="px-gutter py-4">
+<input class="w-4 h-4 rounded border-outline-variant bg-transparent" type="checkbox">
+</td>
+<td class="px-gutter py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded overflow-hidden border border-outline-variant/20 bg-surface-container-highest">
+<img alt="Map" class="w-full h-full object-cover" data-alt="A sophisticated 3D topographic map carved into dark wood and layered with translucent acrylic. The textures are high-density, showing intricate mountain ranges and river paths illuminated from beneath by a soft cyan glow. The image is set against an obsidian background with sharp, clean lines in a premium tech product photography style." src="/assets/images/placeholder.svg">
+</div>
+<div>
+<div class="font-label-md text-on-surface group-hover:text-primary transition-colors">3D Topographic Map</div>
+<div class="text-[11px] text-on-surface-variant/60">ID: PRD-9912</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded text-[10px] font-label-sm uppercase">3D Print</span>
+</td>
+<td class="px-4 py-4 font-mono-ui text-on-surface-variant text-[13px]">TP-3D-021</td>
+<td class="px-4 py-4 text-on-surface font-semibold">TND 120.00</td>
+<td class="px-4 py-4 text-on-surface">5</td>
+<td class="px-4 py-4">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary/10 border border-secondary/30 text-secondary text-[11px] font-bold">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+                                    Active
+                                </div>
+</td>
+<td class="px-gutter py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">content_copy</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Product 3 -->
+<tr class="group hover:bg-surface-variant/30 transition-colors">
+<td class="px-gutter py-4">
+<input class="w-4 h-4 rounded border-outline-variant bg-transparent" type="checkbox">
+</td>
+<td class="px-gutter py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded overflow-hidden border border-outline-variant/20 bg-surface-container-highest">
+<img alt="Acrylic Sign" class="w-full h-full object-cover" data-alt="A premium custom acrylic office sign with laser-etched professional typography. The acrylic is thick and crystal clear with flame-polished edges, mounted on an obsidian black wall with silver offsets. The lighting is focused and clean, highlighting the precision of the laser cutting in a high-end corporate setting." src="/assets/images/placeholder.svg">
+</div>
+<div>
+<div class="font-label-md text-on-surface group-hover:text-primary transition-colors">Acrylic Sign</div>
+<div class="text-[11px] text-on-surface-variant/60">ID: PRD-3341</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded text-[10px] font-label-sm uppercase">Laser</span>
+</td>
+<td class="px-4 py-4 font-mono-ui text-on-surface-variant text-[13px]">AS-LSR-552</td>
+<td class="px-4 py-4 text-on-surface font-semibold">TND 85.00</td>
+<td class="px-4 py-4 text-on-surface">0</td>
+<td class="px-4 py-4">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error/10 border border-error/30 text-error text-[11px] font-bold">
+<div class="w-1.5 h-1.5 rounded-full bg-error"></div>
+                                    Out of Stock
+                                </div>
+</td>
+<td class="px-gutter py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">content_copy</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Product 4 -->
+<tr class="group hover:bg-surface-variant/30 transition-colors">
+<td class="px-gutter py-4">
+<input class="w-4 h-4 rounded border-outline-variant bg-transparent" type="checkbox">
+</td>
+<td class="px-gutter py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded overflow-hidden border border-outline-variant/20 bg-surface-container-highest">
+<img alt="Coasters" class="w-full h-full object-cover" data-alt="Set of geometric coasters made from dark slate and laser-engraved with intricate gold-filled patterns. The coasters are arranged on a dark, reflective granite surface under dramatic top-lighting that emphasizes the sharp geometric lines and premium material quality. Deep blacks and vibrant gold accents dominate the palette." src="/assets/images/placeholder.svg">
+</div>
+<div>
+<div class="font-label-md text-on-surface group-hover:text-primary transition-colors">Geometric Coasters</div>
+<div class="text-[11px] text-on-surface-variant/60">ID: PRD-1029</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded text-[10px] font-label-sm uppercase">Laser</span>
+</td>
+<td class="px-4 py-4 font-mono-ui text-on-surface-variant text-[13px]">GC-LSR-088</td>
+<td class="px-4 py-4 text-on-surface font-semibold">TND 35.00</td>
+<td class="px-4 py-4 text-on-surface">62</td>
+<td class="px-4 py-4">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-on-surface-variant/10 border border-outline-variant/30 text-on-surface-variant text-[11px] font-bold">
+<div class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></div>
+                                    Draft
+                                </div>
+</td>
+<td class="px-gutter py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">content_copy</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pied de tableau -->
+<div class="px-gutter py-4 bg-surface-container-high/50 flex items-center justify-between border-t border-outline-variant/10">
+<span id="product-pagination-info" class="text-body-sm text-on-surface-variant">Chargement…</span>
+</div>
+</div>
+</main>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+// ── Admin auth guard ───────────────────────────────────────
+if (!Auth.isAdmin()) window.location.href = '/admin/dashboard.html';
+
+let products = [];
+
+// ── Render a product row ───────────────────────────────────
+function renderRow(p) {
+  const img = p.image_url || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=60';
+  const catLabel = getCategoryLabel(p.category);
+  const statusBadge = p.active
+    ? `<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-[11px] font-bold"><div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>Actif</div>`
+    : `<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error/10 border border-error/30 text-error text-[11px] font-bold"><div class="w-1.5 h-1.5 rounded-full bg-error"></div>Inactif</div>`;
+  const stockClass = p.stock === 0 ? 'text-error' : p.stock < 5 ? 'text-warning' : 'text-on-surface';
+  return `<tr class="group hover:bg-surface-variant/30 transition-colors" data-id="${p.id}">
+    <td class="px-gutter py-4"><input class="w-4 h-4 rounded border-outline-variant bg-transparent" type="checkbox"></td>
+    <td class="px-gutter py-4">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded overflow-hidden border border-outline-variant/20 bg-surface-container-highest flex-shrink-0">
+          <img alt="${p.name}" class="w-full h-full object-cover" src="${img}" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=60'">
+        </div>
+        <div>
+          <div class="font-label-md text-on-surface group-hover:text-primary transition-colors">${p.name}</div>
+          <div class="text-[11px] text-on-surface-variant/60">${p.id.slice(0,8).toUpperCase()}</div>
+        </div>
+      </div>
+    </td>
+    <td class="px-4 py-4"><span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded text-[10px] font-label-sm uppercase">${catLabel}</span></td>
+    <td class="px-4 py-4 font-mono-ui text-on-surface-variant text-[13px]">${p.material || '—'}</td>
+    <td class="px-4 py-4 text-on-surface font-semibold">${formatPrice(p.price)}</td>
+    <td class="px-4 py-4 font-semibold ${stockClass}">${p.stock}</td>
+    <td class="px-4 py-4">${statusBadge}</td>
+    <td class="px-gutter py-4 text-right">
+      <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <button onclick="editProduct('${p.id}')" class="p-1.5 text-on-surface-variant hover:text-primary transition-colors" title="Modifier"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+        <button onclick="toggleActive('${p.id}', ${p.active})" class="p-1.5 text-on-surface-variant hover:text-warning transition-colors" title="${p.active ? 'Désactiver' : 'Activer'}"><span class="material-symbols-outlined text-[20px]">${p.active ? 'visibility_off' : 'visibility'}</span></button>
+        <button onclick="deleteProduct('${p.id}', '${p.name.replace(/'/g,"\\'")}')}" class="p-1.5 text-on-surface-variant hover:text-error transition-colors" title="Supprimer"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+      </div>
+    </td>
+  </tr>`;
+}
+
+// ── Load products ──────────────────────────────────────────
+async function loadProducts(search = '') {
+  const tbody = document.getElementById('products-tbody');
+  try {
+    const params = search ? { search } : {};
+    products = await ProductsAPI.getAll({ ...params, active: 'all' });
+    // Remove skeleton & static rows
+    tbody.querySelectorAll('tr').forEach(r => r.remove());
+    if (products.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" class="px-gutter py-10 text-center text-on-surface-variant">Aucun produit trouvé</td></tr>`;
+    } else {
+      tbody.innerHTML = products.map(renderRow).join('');
+    }
+    document.getElementById('product-pagination-info').textContent = `${products.length} produit(s)`;
+    // Update stats
+    const total = products.length;
+    const active = products.filter(p => p.active).length;
+    const lowStock = products.filter(p => p.stock > 0 && p.stock < 5).length;
+    const outOfStock = products.filter(p => p.stock === 0).length;
+    document.querySelectorAll('.glass-card .text-headline-md')[0].textContent = total;
+    document.querySelectorAll('.glass-card .text-headline-md')[1].textContent = active;
+    document.querySelectorAll('.glass-card .text-headline-md')[2].textContent = lowStock;
+    document.querySelectorAll('.glass-card .text-headline-md')[3].textContent = outOfStock;
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="8" class="px-gutter py-10 text-center text-error">Erreur de chargement. Vérifiez que le serveur est démarré.<br><small>${e.message}</small></td></tr>`;
+  }
+}
+
+// ── Actions ────────────────────────────────────────────────
+function editProduct(id) {
+  window.location.href = `/admin/add-product.html?id=${id}`;
+}
+
+async function toggleActive(id, current) {
+  try {
+    const fd = new FormData();
+    fd.append('active', current ? '0' : '1');
+    await ProductsAPI.update(id, fd);
+    showToast(current ? 'Produit désactivé' : 'Produit activé', 'success');
+    loadProducts();
+  } catch (e) { showToast(e.message, 'error'); }
+}
+
+async function deleteProduct(id, name) {
+  if (!confirm(`Supprimer "${name}" ?`)) return;
+  try {
+    await ProductsAPI.delete(id);
+    showToast('Produit supprimé', 'success');
+    loadProducts();
+  } catch (e) { showToast(e.message, 'error'); }
+}
+
+// ── Search ─────────────────────────────────────────────────
+let searchTimer;
+document.querySelector('input[type="text"]')?.addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => loadProducts(e.target.value), 300);
+});
+
+
+// ── Nav sidebar links ──────────────────────────────────────
+const navMap = { 'Dashboard': '/admin/dashboard.html', 'Orders': '/admin/orders.html', 'Custom Requests': '/admin/custom-requests.html', '3D Print Requests': '/pages/3d-print.html', 'Production Board': '/admin/production-board.html' };
+document.querySelectorAll('aside nav a').forEach(a => { const t = a.textContent.trim(); if (navMap[t]) a.href = navMap[t]; });
+
+// ── Keyboard shortcut ──────────────────────────────────────
+window.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.querySelector('input[type="text"]')?.focus(); } });
+
+// ── Logout ─────────────────────────────────────────────────
+document.querySelectorAll('a, button').forEach(el => { if (el.textContent.trim() === 'Logout') el.addEventListener('click', () => Auth.logout()); });
+
+loadProducts();
+</script>
+
+
+</body></html>

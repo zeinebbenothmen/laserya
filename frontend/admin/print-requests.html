@@ -1,0 +1,195 @@
+<!DOCTYPE html><html class="dark" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Demandes impression 3D | Laserya.tn Admin</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+  body { background-color: #070A0F; color: #e0e2ea; -webkit-font-smoothing: antialiased; }
+  .glass-panel { background: rgba(17,24,39,.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.08); }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b0e13; }
+  ::-webkit-scrollbar-thumb { background: #3c494e; border-radius: 10px; }
+</style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<aside id="admin-sidebar" data-active="print3d"></aside>
+
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+  <div>
+    <h2 class="font-headline-sm text-headline-sm text-on-surface">Demandes impression 3D</h2>
+    <p class="font-label-sm text-label-sm text-on-surface-variant">Fichiers envoyés par les clients à imprimer</p>
+  </div>
+  <div class="relative w-full max-w-xs">
+    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+    <input id="search" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-4 py-1.5 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary transition-all" placeholder="Rechercher un client…" type="text">
+  </div>
+</header>
+
+<main class="ml-[260px] pt-[88px] min-h-screen p-container_padding">
+
+  <!-- Mini stats -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-stack_md mb-stack_lg">
+    <div class="glass-panel p-5 rounded-xl">
+      <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Total demandes</p>
+      <h3 id="stat-total" class="font-display-lg text-display-lg mt-1 text-on-surface">—</h3>
+    </div>
+    <div class="glass-panel p-5 rounded-xl">
+      <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Nouvelles</p>
+      <h3 id="stat-new" class="font-display-lg text-display-lg mt-1 text-warning">—</h3>
+    </div>
+    <div class="glass-panel p-5 rounded-xl">
+      <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">En impression</p>
+      <h3 id="stat-printing" class="font-display-lg text-display-lg mt-1 text-primary">—</h3>
+    </div>
+  </div>
+
+  <!-- Filter tabs -->
+  <div id="tabs" class="flex items-center bg-surface-container-low p-1 rounded-xl border border-outline-variant/10 w-fit mb-6 flex-wrap">
+    <button data-status="all" class="px-5 py-2 rounded-lg font-label-md text-label-md bg-primary/10 text-primary border border-primary/20">Toutes</button>
+    <button data-status="new" class="px-5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Nouvelles</button>
+    <button data-status="quoted" class="px-5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Devis envoyé</button>
+    <button data-status="printing" class="px-5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">En impression</button>
+    <button data-status="done" class="px-5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Terminées</button>
+  </div>
+
+  <!-- Table -->
+  <div class="glass-panel rounded-xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-surface-container-high/50 border-b border-outline-variant/20">
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Réf.</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Client</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Fichier</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Détails</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Prix estimé</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Statut</th>
+            <th class="p-4 w-10"></th>
+          </tr>
+        </thead>
+        <tbody id="tbody" class="divide-y divide-outline-variant/10">
+          <tr><td colspan="8" class="p-10 text-center text-on-surface-variant">Chargement…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+if (!Auth.isAdmin()) window.location.href = '/admin/dashboard.html';
+
+const STATUS_LABELS = { new:'Nouvelle', reviewing:'En étude', quoted:'Devis envoyé', approved:'Acceptée', printing:'En impression', done:'Terminée', cancelled:'Annulée' };
+const STATUS_COLORS = { new:'text-warning border-warning/30 bg-warning/10', reviewing:'text-secondary border-secondary/30 bg-secondary/10', quoted:'text-primary border-primary/30 bg-primary/10', approved:'text-primary border-primary/30 bg-primary/10', printing:'text-primary border-primary/30 bg-primary/10', done:'text-success border-success/30 bg-success/10', cancelled:'text-error border-error/30 bg-error/10' };
+
+let activeStatus = 'all';
+
+function esc(s) { return String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function rowHtml(q) {
+  const d = new Date(q.created_at);
+  const dateStr = d.toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric' });
+  const timeStr = d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+  const initials = (q.customer_name || '?').split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+  const file = q.file_url
+    ? `<a href="${esc(q.file_url)}" download target="_blank" class="inline-flex items-center gap-1 text-primary hover:underline">
+         <span class="material-symbols-outlined text-[18px]">download</span>
+         <span class="truncate max-w-[120px]">${esc(q.file_name || 'fichier')}</span></a>`
+    : '<span class="text-on-surface-variant italic text-xs">aucun fichier</span>';
+  const details = [
+    q.material ? `<span class="px-1.5 py-0.5 bg-surface-container-high rounded text-[10px]">${esc(q.material)}</span>` : '',
+    q.quality ? `<span class="px-1.5 py-0.5 bg-surface-container-high rounded text-[10px]">${esc(q.quality)}</span>` : '',
+    `<span class="px-1.5 py-0.5 bg-surface-container-high rounded text-[10px]">x${parseInt(q.quantity)||1}</span>`,
+    q.color ? `<span class="px-1.5 py-0.5 bg-surface-container-high rounded text-[10px]">${esc(q.color)}</span>` : '',
+    q.dimensions ? `<span class="px-1.5 py-0.5 bg-surface-container-high rounded text-[10px]">${esc(q.dimensions)}</span>` : '',
+  ].join(' ');
+  const statusOpts = Object.entries(STATUS_LABELS).map(([v,l]) => `<option value="${v}" ${q.status===v?'selected':''}>${l}</option>`).join('');
+  return `<tr class="hover:bg-surface-variant/20 transition-colors align-top" data-id="${q.id}">
+    <td class="p-4"><span class="font-mono-ui text-mono-ui text-primary font-bold">#${q.id.slice(0,8).toUpperCase()}</span></td>
+    <td class="p-4"><span class="block font-body-sm text-body-sm text-on-surface">${dateStr}</span><span class="block text-[11px] text-on-surface-variant">${timeStr}</span></td>
+    <td class="p-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary font-bold text-xs flex-shrink-0">${initials}</div>
+        <div><p class="font-label-md text-label-md text-on-surface">${esc(q.customer_name)}</p><p class="text-[11px] text-on-surface-variant">${esc(q.customer_phone)}</p>${q.customer_email?`<p class="text-[11px] text-on-surface-variant">${esc(q.customer_email)}</p>`:''}</div>
+      </div>
+    </td>
+    <td class="p-4 text-sm">${file}</td>
+    <td class="p-4"><div class="flex flex-wrap gap-1 max-w-[200px]">${details}</div>${q.notes?`<p class="text-[11px] text-on-surface-variant mt-1 italic max-w-[200px]">${esc(q.notes)}</p>`:''}</td>
+    <td class="p-4">
+      <div class="flex items-center gap-1">
+        <input id="pr-${q.id}" type="number" min="0" step="1" value="${Number(q.estimated_price)||0}" onchange="saveRow('${q.id}')"
+          class="w-20 bg-surface-container border border-outline-variant/30 rounded px-2 py-1 text-sm text-on-surface focus:border-primary outline-none">
+        <span class="text-[11px] text-on-surface-variant">TND</span>
+      </div>
+    </td>
+    <td class="p-4">
+      <select id="st-${q.id}" onchange="saveRow('${q.id}')" class="bg-surface-container border border-outline-variant/30 rounded px-2 py-1 text-xs text-on-surface outline-none focus:border-primary">
+        ${statusOpts}
+      </select>
+      <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border text-[10px] uppercase font-bold ${STATUS_COLORS[q.status]||STATUS_COLORS.new}">${STATUS_LABELS[q.status]||q.status}</span></div>
+    </td>
+    <td class="p-4">
+      <button onclick="del('${q.id}')" class="p-1 hover:bg-error/10 hover:text-error rounded transition-colors" title="Supprimer">
+        <span class="material-symbols-outlined text-[18px]">delete</span>
+      </button>
+    </td>
+  </tr>`;
+}
+
+async function saveRow(id) {
+  const st = document.getElementById('st-' + id)?.value;
+  const pr = document.getElementById('pr-' + id)?.value;
+  try { await Print3DAPI.setStatus(id, st, pr); showToast('Demande mise à jour', 'success'); load(); }
+  catch (e) { showToast(e.message, 'error'); }
+}
+
+async function del(id) {
+  if (!confirm('Supprimer cette demande ?')) return;
+  try { await Print3DAPI.delete(id); showToast('Demande supprimée', 'success'); load(); }
+  catch (e) { showToast(e.message, 'error'); }
+}
+
+async function load() {
+  const tbody = document.getElementById('tbody');
+  try {
+    const params = {};
+    if (activeStatus !== 'all') params.status = activeStatus;
+    const search = document.getElementById('search').value.trim();
+    if (search) params.search = search;
+    const list = await Print3DAPI.getAll(params);
+
+    document.getElementById('stat-total').textContent    = list.length;
+    document.getElementById('stat-new').textContent      = list.filter(q => q.status === 'new').length;
+    document.getElementById('stat-printing').textContent = list.filter(q => q.status === 'printing').length;
+
+    tbody.innerHTML = list.length
+      ? list.map(rowHtml).join('')
+      : `<tr><td colspan="8" class="p-12 text-center text-on-surface-variant">
+          <span class="material-symbols-outlined text-5xl block mb-3 opacity-50">3d_rotation</span>
+          Aucune demande d'impression 3D pour le moment.</td></tr>`;
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="8" class="p-10 text-center text-error">${e.message}</td></tr>`;
+  }
+}
+
+// Tabs
+document.querySelectorAll('#tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#tabs button').forEach(b => { b.classList.remove('bg-primary/10','text-primary','border','border-primary/20'); b.classList.add('text-on-surface-variant'); });
+    btn.classList.add('bg-primary/10','text-primary','border','border-primary/20'); btn.classList.remove('text-on-surface-variant');
+    activeStatus = btn.getAttribute('data-status');
+    load();
+  });
+});
+
+// Search
+let t;
+document.getElementById('search').addEventListener('input', () => { clearTimeout(t); t = setTimeout(load, 300); });
+
+load();
+</script>
+</body></html>

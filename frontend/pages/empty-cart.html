@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cart | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #070A0F;
+            color: #e0e2ea;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        .laser-beam {
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            height: 1px;
+            width: 100%;
+            position: absolute;
+            animation: laser-scan 4s linear infinite;
+        }
+        @keyframes laser-scan {
+            0% { top: 0%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface-deep/80 backdrop-blur-xl border-b border-border-glass shadow-[0_0_20px_rgba(0,212,255,0.15)]">
+<div class="flex items-center justify-between px-gutter py-4 max-w-container-max-width mx-auto">
+<div class="font-display-lg text-headline-md font-extrabold text-primary tracking-tight">
+                Laserya.tn
+            </div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/">Accueil</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/shop">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/custom-order">Commande sur mesure</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/track-order">Suivi de commande</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors hover:scale-105 transition-all duration-300" href="/contact">Contact</a>
+</nav>
+<div class="flex items-center space-x-6">
+<div class="hidden lg:flex items-center space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">search</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">favorite</span>
+<div class="relative">
+<span class="material-symbols-outlined text-primary cursor-pointer" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary-fixed text-[10px] font-bold px-1 rounded-full">0</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">account_circle</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-md text-label-md font-bold hover:scale-105 transition-all duration-300 shadow-primary/30">
+                    Create Custom Design
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content: Empty State -->
+<main class="flex-grow pt-32 pb-section-gap flex items-center justify-center px-gutter relative">
+<!-- Background Atmosphere -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<div class="absolute top-1/4 -left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]"></div>
+</div>
+<div class="max-w-4xl w-full text-center relative z-10">
+<!-- Large Illustration -->
+<div class="mb-12 relative inline-block">
+<div class="floating">
+<img alt="Empty Cart Illustration" class="w-64 h-64 md:w-80 md:h-80 mx-auto object-cover rounded-3xl glass-card p-4 shadow-2xl" data-alt="A highly detailed 3D render of a futuristic, translucent acrylic cube with a laser-etched shopping cart icon inside. The cube glows with vibrant electric cyan and neon purple internal lighting, casting soft refractions on a dark, reflective workshop surface. The style is sleek, minimalist, and high-tech, emphasizing precision craftsmanship and digital artistry within a deep ink-black environment." src="/assets/images/placeholder.svg"/>
+<div class="laser-beam"></div>
+</div>
+<!-- Radial Glow behind illustration -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl -z-10"></div>
+</div>
+<!-- Text Content -->
+<div class="space-y-6">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg font-extrabold text-text-primary tracking-tight">
+                    Your cart is empty
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">
+                    Discover our unique collection or start your own custom creation. Your next masterpiece is just a few clicks away.
+                </p>
+</div>
+<!-- Action Buttons -->
+<div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="w-full sm:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary-container to-secondary-container text-on-primary-fixed font-headline-sm text-headline-sm font-bold active:scale-95 transition-all duration-300 neon-glow-cyan hover:scale-105">
+                    Start Shopping
+                </button>
+<button class="w-full sm:w-auto px-10 py-4 rounded-xl border-2 border-primary text-primary font-headline-sm text-headline-sm font-bold active:scale-95 transition-all duration-300 hover:bg-primary/5 hover:scale-105">
+                    Create Custom Design
+                </button>
+</div>
+<!-- Quick Access Bento Grid (Optional Contextual Content) -->
+<div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+<div class="glass-card p-card-padding rounded-2xl group hover:border-primary/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 text-4xl">inventory_2</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">New Arrivals</h3>
+<p class="text-on-surface-variant text-label-md">Check out our latest laser-cut precision designs.</p>
+</div>
+<div class="glass-card p-card-padding rounded-2xl group hover:border-primary/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 text-4xl">architecture</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">3D Services</h3>
+<p class="text-on-surface-variant text-label-md">Turn your digital dreams into physical reality with resin &amp; FDM.</p>
+</div>
+<div class="glass-card p-card-padding rounded-2xl group hover:border-primary/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 text-4xl">history</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Track Order</h3>
+<p class="text-on-surface-variant text-label-md">Already have something coming? Track its journey here.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-deep border-t border-border-glass">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-gutter py-section-gap max-w-container-max-width mx-auto">
+<div class="space-y-4">
+<a href="/index.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-80"/>
+<span class="hidden sm:inline font-bold text-on-surface text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-on-surface-variant text-label-sm">Precision craftsmanship meets futuristic design. We bring your wildest concepts to life through laser and 3D technology.</p>
+</div>
+<div class="flex flex-col space-y-3">
+<span class="text-text-primary font-bold mb-2 font-label-md">Shop</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/shop.html">Bestsellers</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/shop.html">Custom Acrylics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/shop.html">Wooden Crafts</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/3d-print.html">3D Printing</a>
+</div>
+<div class="flex flex-col space-y-3">
+<span class="text-text-primary font-bold mb-2 font-label-md">Support</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/contact.html">Shipping Info</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/contact.html">Returns</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/contact.html">FAQ</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/contact.html">Contact</a>
+</div>
+<div class="flex flex-col space-y-3">
+<span class="text-text-primary font-bold mb-2 font-label-md">Legal</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/contact.html">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="/pages/contact.html">Terms of Service</a>
+<div class="pt-4 flex space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">share</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">mail</span>
+</div>
+</div>
+</div>
+<div class="border-t border-border-glass py-6 text-center text-on-surface-variant text-label-sm">
+            © 2024 Laserya.tn. Precision Craftsmanship.
+        </div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script>
+// Si le panier n'est pas vide → rediriger vers le panier
+if (Cart.count() > 0) window.location.href = '/pages/cart.html';
+
+// Boutons
+document.querySelectorAll('button').forEach(btn => {
+  const t = btn.textContent.trim();
+  if (t === 'Start Shopping' || t === 'Shop Ready-Made Products')
+    btn.addEventListener('click', () => window.location.href = '/pages/shop.html');
+  if (t === 'Create Custom Design')
+    btn.addEventListener('click', () => window.location.href = '/pages/create-design.html');
+});
+
+// Glow cards
+document.querySelectorAll('.glass-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.background = `radial-gradient(circle at ${e.clientX - r.left}px ${e.clientY - r.top}px, rgba(168,232,255,0.05) 0%, rgba(22,27,34,0.7) 80%)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.background = 'rgba(22,27,34,0.7)'; });
+});
+</script>
+</body></html>

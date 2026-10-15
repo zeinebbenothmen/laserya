@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estimation IA d’impression 3D | Laserya</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script src="/assets/js/theme.js"></script>
+<style>
+  body{font-family:Geist,sans-serif}
+  .font-display{font-family:Sora,sans-serif}
+  .field{background:#fff;border:1px solid rgba(20,17,12,.14);color:#1a150c}
+  .field:focus{outline:none;border-color:#8a6a12;box-shadow:0 0 0 3px rgba(138,106,18,.12)}
+  input[type=number]::-webkit-inner-spin-button{opacity:1}
+</style>
+</head>
+<body class="min-h-screen bg-background text-text-primary selection:bg-primary/30">
+<header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-border-glass">
+  <div class="max-w-[1440px] mx-auto px-5 xl:px-8 py-4 flex items-center justify-between gap-6">
+    <a href="/index.html" class="flex shrink-0 items-center gap-2">
+      <img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover">
+      <span class="font-display font-extrabold text-on-surface text-xl tracking-tight">Laserya.tn</span>
+    </a>
+    <nav class="hidden xl:flex items-center gap-6" aria-label="Navigation principale">
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/index.html">Accueil</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/shop">Boutique</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/pages/collections.html">Collections</a>
+      <a class="text-primary font-semibold" href="/custom-order">Commande sur mesure</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/gift-ideas">Idées cadeaux</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/track-order">Suivi de commande</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/contact">Contact</a>
+    </nav>
+    <div class="flex items-center gap-4 text-on-surface-variant">
+      <a href="/search" class="hover:text-primary transition-colors" aria-label="Rechercher"><span class="material-symbols-outlined">search</span></a>
+      <a href="/cart" class="relative hover:text-primary transition-colors" aria-label="Voir le panier"><span class="material-symbols-outlined">shopping_cart</span><span data-cart-badge class="absolute -top-2 -right-2 min-w-4 h-4 rounded-full bg-primary px-1 text-[10px] font-bold text-on-primary flex items-center justify-center">0</span></a>
+      <a href="/login" class="hidden sm:inline-flex hover:text-primary transition-colors" aria-label="Mon compte"><span class="material-symbols-outlined">person</span></a>
+    </div>
+  </div>
+</header>
+<main class="max-w-7xl mx-auto px-5 py-10 md:py-14">
+  <header class="max-w-3xl mb-8">
+    <p class="uppercase tracking-[.2em] text-xs font-semibold text-primary mb-3">Fabrication sur mesure · estimation assistée par IA</p>
+    <h1 class="font-display text-3xl md:text-5xl font-bold mb-4">Faites imprimer votre modèle 3D</h1>
+    <p class="text-on-surface-variant leading-relaxed">Trouvez le modèle qui vous plaît sur MakerWorld ou un autre site de modèles 3D, collez son lien et indiquez la taille souhaitée. Nous consultons la page et vous proposons un prix estimatif.</p>
+  </header>
+
+  <div class="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,.85fr)] gap-6 items-start">
+    <form id="estimate-form" class="glass-panel rounded-2xl p-5 md:p-7 space-y-6">
+      <div>
+        <h2 class="font-display text-xl font-semibold mb-1">1. Choisissez votre modèle</h2>
+        <p class="text-sm text-on-surface-variant">Ouvrez la page du produit qui vous plaît, copiez son adresse et collez-la ici. Vous n’avez pas besoin de télécharger le fichier.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 text-xs">
+        <a class="rounded-full border border-border-glass px-3 py-1.5 text-on-surface-variant hover:text-primary hover:border-primary" href="https://makerworld.com/" target="_blank" rel="noopener noreferrer">Explorer MakerWorld ↗</a>
+        <a class="rounded-full border border-border-glass px-3 py-1.5 text-on-surface-variant hover:text-primary hover:border-primary" href="https://www.printables.com/" target="_blank" rel="noopener noreferrer">Printables ↗</a>
+        <a class="rounded-full border border-border-glass px-3 py-1.5 text-on-surface-variant hover:text-primary hover:border-primary" href="https://www.thingiverse.com/" target="_blank" rel="noopener noreferrer">Thingiverse ↗</a>
+      </div>
+      <label class="block text-sm text-on-surface-variant">Lien de la page du modèle *
+        <input id="model-link" class="field mt-2 w-full rounded-lg px-3 py-3" type="url" inputmode="url" placeholder="https://makerworld.com/..." maxlength="2048" autocomplete="url" required>
+      </label>
+
+      <div>
+        <h2 class="font-display text-xl font-semibold mb-1">2. Indiquez la taille souhaitée</h2>
+        <p class="text-sm text-on-surface-variant mb-4">Mesurez les dimensions finales de l’objet en centimètres.</p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-3">
+        <label class="text-sm text-on-surface-variant">Longueur (cm) *<input id="dim-x" class="field mt-2 w-full rounded-lg px-3 py-3" type="number" min="0.1" max="30" step="0.1" placeholder="8" required></label>
+        <label class="text-sm text-on-surface-variant">Largeur (cm) *<input id="dim-y" class="field mt-2 w-full rounded-lg px-3 py-3" type="number" min="0.1" max="30" step="0.1" placeholder="6" required></label>
+        <label class="text-sm text-on-surface-variant">Hauteur (cm) *<input id="dim-z" class="field mt-2 w-full rounded-lg px-3 py-3" type="number" min="0.1" max="30" step="0.1" placeholder="4" required></label>
+      </div>
+      <label class="block text-sm text-on-surface-variant">Quantité
+        <input id="quantity" class="field mt-2 w-full rounded-lg px-3 py-3" type="number" min="1" max="100" value="1" required>
+      </label>
+      <p class="rounded-xl bg-primary/5 p-4 text-sm text-on-surface-variant">Le lien public et les dimensions seront transmis à OpenAI pour analyser la page du modèle. Le prix affiché inclut une estimation des coûts de fabrication et la marge de l’atelier.</p>
+
+      <div id="error-message" class="hidden rounded-lg border border-red-400/30 bg-red-400/10 p-3 text-sm text-red-200" role="alert"></div>
+      <button id="analyze-button" type="submit" class="w-full rounded-xl bg-primary px-5 py-4 font-bold text-on-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-wait">
+        <span class="material-symbols-outlined align-middle mr-1">auto_awesome</span> Consulter le modèle et estimer le prix
+      </button>
+    </form>
+
+    <aside class="space-y-5">
+      <div class="glass-panel rounded-2xl p-5 md:p-6">
+        <h2 class="font-display text-lg font-semibold mb-3">Comment ça marche ?</h2>
+        <ol class="space-y-3 text-sm text-on-surface-variant list-decimal list-inside">
+          <li>Parcourez MakerWorld, Printables, Thingiverse ou un autre site de modèles 3D.</li>
+          <li>Ouvrez la page du modèle choisi et copiez son adresse.</li>
+          <li>Collez le lien ici et saisissez les dimensions souhaitées.</li>
+        </ol>
+        <p id="mesh-status" class="mt-4 text-sm text-text-secondary">L’estimation apparaît après consultation de la page du modèle.</p>
+      </div>
+
+      <section id="result-card" class="hidden glass-panel rounded-2xl p-5 md:p-6 border-primary/30" aria-live="polite">
+        <p class="uppercase tracking-[.18em] text-xs font-semibold text-primary">Votre estimation</p>
+        <p class="text-on-surface-variant mt-2">Prix estimé pour votre commande</p>
+        <strong id="total-price" class="font-display block text-4xl font-bold text-primary mt-2"></strong>
+        <div class="mt-5 space-y-3">
+          <button id="add-to-cart" type="button" class="w-full rounded-xl bg-primary px-5 py-4 font-bold text-on-primary hover:bg-primary/90">Ajouter au panier et continuer mes achats</button>
+          <button id="cancel-estimate" type="button" class="w-full rounded-xl border border-border-glass px-5 py-3 text-on-surface-variant hover:bg-primary/5">Annuler cette estimation</button>
+        </div>
+      </section>
+      <a href="/custom-order" class="inline-flex items-center gap-2 text-sm text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">arrow_back</span> Retour à la commande sur mesure</a>
+    </aside>
+  </div>
+</main>
+<footer class="mt-12 border-t border-border-glass bg-surface-deep">
+  <div class="max-w-7xl mx-auto px-5 py-9 flex flex-col sm:flex-row items-center justify-between gap-5">
+    <a href="/index.html" class="font-display font-bold text-white">Laserya.tn</a>
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm" aria-label="Liens de pied de page">
+      <a class="text-on-surface-variant hover:text-primary" href="/contact">Confidentialité</a>
+      <a class="text-on-surface-variant hover:text-primary" href="/contact">Conditions</a>
+      <a class="text-on-surface-variant hover:text-primary" href="/contact">Livraison</a>
+      <a class="text-on-surface-variant hover:text-primary" href="/contact">Nous contacter</a>
+    </nav>
+    <span class="text-on-surface-variant text-sm">© 2026 Laserya.tn</span>
+  </div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script>
+(() => {
+  const form = document.getElementById('estimate-form');
+  const modelLink = document.getElementById('model-link');
+  const errorBox = document.getElementById('error-message');
+  const analyzeButton = document.getElementById('analyze-button');
+  const resultCard = document.getElementById('result-card');
+  let estimate = null;
+
+  function money(value) { return `${Number(value).toFixed(2)} TND`; }
+  function showError(message) { errorBox.textContent = message; errorBox.classList.remove('hidden'); }
+  function clearError() { errorBox.textContent = ''; errorBox.classList.add('hidden'); }
+  function clearDraft() {
+    if (estimate?.estimateId) Print3DAPI.cancelEstimate(estimate.estimateId).catch(() => {});
+    estimate = null;
+    resultCard.classList.add('hidden');
+  }
+
+  form.addEventListener('input', () => { clearDraft(); clearError(); });
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault(); clearError();
+    let parsedUrl;
+    try { parsedUrl = new URL(modelLink.value.trim()); } catch { return showError('Collez un lien web valide vers la page du modèle.'); }
+    if (!['http:', 'https:'].includes(parsedUrl.protocol)) return showError('Le lien doit commencer par https:// ou http://.');
+    const payload = {
+      model_url: parsedUrl.href,
+      dimension_x: document.getElementById('dim-x').value,
+      dimension_y: document.getElementById('dim-y').value,
+      dimension_z: document.getElementById('dim-z').value,
+      quantity: document.getElementById('quantity').value,
+    };
+
+    analyzeButton.disabled = true;
+    analyzeButton.innerHTML = '<span class="material-symbols-outlined align-middle mr-1 animate-spin">progress_activity</span> Consultation du modèle…';
+    document.getElementById('mesh-status').textContent = 'OpenAI consulte le lien public. Cela peut prendre quelques secondes.';
+    resultCard.classList.add('hidden');
+    try {
+      estimate = await Print3DAPI.estimateLink(payload);
+      document.getElementById('total-price').textContent = money(estimate.price);
+      document.getElementById('mesh-status').textContent = 'Modèle consulté. Votre estimation est prête.';
+      resultCard.classList.remove('hidden');
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (error) {
+      estimate = null;
+      showError(error.message || 'La page n’a pas pu être consultée. Vérifiez le lien public et réessayez.');
+      document.getElementById('mesh-status').textContent = 'Estimation non terminée.';
+    } finally {
+      analyzeButton.disabled = false;
+      analyzeButton.innerHTML = '<span class="material-symbols-outlined align-middle mr-1">auto_awesome</span> Consulter le modèle et estimer le prix';
+    }
+  });
+
+  document.getElementById('add-to-cart').addEventListener('click', async event => {
+    if (!estimate?.estimateId) return showError('Relancez l’analyse avant d’ajouter ce produit au panier.');
+    const button = event.currentTarget;
+    button.disabled = true; button.textContent = 'Ajout au panier…'; clearError();
+    try {
+      const attachments = await Print3DAPI.commitEstimate(estimate.estimateId);
+      const x = document.getElementById('dim-x').value;
+      const y = document.getElementById('dim-y').value;
+      const z = document.getElementById('dim-z').value;
+      const quantity = estimate.quantity;
+      const customKey = `print3d-${estimate.estimateId}`;
+      Cart.add({
+        id: customKey,
+        name: attachments.name,
+        price: estimate.unitPrice,
+      }, quantity, {
+        customKey,
+        quote_id: attachments.quoteId,
+        type: 'Impression 3D sur mesure',
+        model_url: attachments.modelUrl,
+        dimensions: `${x} × ${y} × ${z} cm`,
+        prix_total_estime: money(estimate.price),
+      });
+      estimate = null;
+      window.location.href = '/shop?ajout=impression-3d';
+    } catch (error) {
+      showError(error.message || 'Impossible d’ajouter le devis au panier.');
+      button.disabled = false; button.textContent = 'Ajouter au panier et continuer mes achats';
+    }
+  });
+
+  document.getElementById('cancel-estimate').addEventListener('click', async () => {
+    if (estimate?.estimateId) {
+      try { await Print3DAPI.cancelEstimate(estimate.estimateId); } catch {}
+    }
+    estimate = null;
+    form.reset();
+    document.getElementById('mesh-status').textContent = 'L’estimation apparaît après consultation de la page du modèle.';
+    resultCard.classList.add('hidden'); clearError();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>

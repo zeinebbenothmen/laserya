@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>3D Print Estimate | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        .glow-text-cyan {
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #070A0F;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3c494e;
+            border-radius: 10px;
+        }
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-slow {
+            animation: subtle-pulse 4s infinite ease-in-out;
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#070A0F]/80 backdrop-blur-xl border-b border-glass">
+    <div class="flex justify-between items-center px-gutter py-4 max-w-container-max-width mx-auto">
+        <div class="flex items-center gap-8">
+            <a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="/index.html" class="font-body-md text-on-surface-variant hover:text-primary transition-colors">Accueil</a>
+                <a href="/pages/shop.html" class="font-body-md text-on-surface-variant hover:text-primary transition-colors">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+                <a href="/pages/custom-order.html" class="font-body-md text-on-surface-variant hover:text-primary transition-colors">Commande sur mesure</a>
+                <a href="/pages/gift-ideas.html" class="font-body-md text-on-surface-variant hover:text-primary transition-colors">Idées cadeaux</a>
+                <a href="/pages/my-orders.html" class="font-body-md text-on-surface-variant hover:text-primary transition-colors">Suivi de commande</a>
+                <a href="/pages/contact.html" class="font-body-md text-on-surface-variant hover:text-primary transition-colors">Contact</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-1">
+                <button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2">search</button>
+                <button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2">favorite</button>
+                <div class="relative">
+                    <button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2">shopping_cart</button>
+                    <span class="absolute top-1 right-1 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </div>
+                <button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2">account_circle</button>
+            </div>
+            <button class="hidden md:block bg-primary-container text-on-primary-container px-5 py-2.5 rounded-lg font-bold hover:scale-105 active:scale-95 transition-all duration-200 text-label-md">
+                Create Custom Design
+            </button>
+        </div>
+    </div>
+</nav>
+<main class="pt-24 min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Left Pane: 3D Preview -->
+<section class="relative w-full md:w-3/5 lg:w-2/3 h-[50vh] md:h-[calc(100vh-6rem)] bg-surface-deep overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none"></div>
+<!-- Grid Background Overlay -->
+<div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(0, 212, 255, 0.05) 1px, transparent 0); background-size: 40px 40px;"></div>
+<div class="absolute inset-0 flex items-center justify-center p-gutter">
+<!-- Main 3D Asset Mockup -->
+<div class="relative group w-full h-full max-w-2xl max-h-[600px] flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full animate-pulse-slow"></div>
+<img alt="3D Model Preview" class="relative z-10 w-full h-full object-contain drop-shadow-[0_0_30px_rgba(0,212,255,0.4)]" data-alt="A highly complex 3D-printed geometric artifact with intricate lattice structures and organic curves, displayed in a cinematic dark studio environment. The object is illuminated by sharp neon cyan lighting that highlights its precision edges and translucent acrylic textures. The mood is high-tech, futuristic, and artisanal." src="/assets/images/placeholder.svg" style="transform: rotateY(-13.4889deg) rotateX(0.344444deg);">
+</div>
+</div>
+<!-- Preview Controls -->
+<div class="absolute bottom-6 left-6 flex gap-2">
+<button class="glass-panel p-3 rounded-xl hover:text-primary transition-all active:scale-95 group">
+<span class="material-symbols-outlined block group-hover:rotate-180 transition-transform">view_in_ar</span>
+</button>
+<button class="glass-panel p-3 rounded-xl hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined block">rotate_right</span>
+</button>
+<button class="glass-panel p-3 rounded-xl hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined block">zoom_in</span>
+</button>
+</div>
+<div class="absolute top-6 left-6">
+<div class="flex items-center gap-2 bg-surface-deep/60 backdrop-blur-md px-4 py-2 rounded-full border border-glass">
+<div class="w-2 h-2 rounded-full bg-success animate-pulse"></div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest">Live Renderer Active</span>
+</div>
+</div>
+</section>
+<!-- Right Pane: Quote Summary -->
+<section class="w-full md:w-2/5 lg:w-1/3 p-6 md:p-gutter flex flex-col gap-6 bg-surface-medium overflow-y-auto custom-scrollbar h-full">
+<header>
+<h1 class="font-headline-md text-headline-md text-primary glow-text-cyan mb-2">Estimation impression 3D</h1>
+<p class="font-body-md text-on-surface-variant">Vérifiez vos réglages et le prix estimé.</p>
+</header>
+<!-- Summary Card -->
+<div class="glass-panel rounded-2xl p-6 flex flex-col gap-6">
+<div class="flex justify-between items-start border-b border-glass pb-4">
+<div>
+<h3 id="est-file" class="font-headline-sm text-headline-sm text-white mb-1">modele.stl</h3>
+<p id="est-size" class="text-label-md font-label-md text-on-surface-variant">Taille moyenne</p>
+</div>
+<span class="material-symbols-outlined text-primary">token</span>
+</div>
+<div class="grid grid-cols-2 gap-y-4 gap-x-2">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-1 block">Type</span>
+<p id="est-type" class="text-body-md font-body-md font-bold text-white">—</p>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-1 block">Taille</span>
+<p id="est-sizecell" class="text-body-md font-body-md font-bold text-white">—</p>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-1 block">Détail</span>
+<p id="est-detail" class="text-body-md font-body-md text-white">—</p>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-1 block">Couleurs</span>
+<p id="est-colors" class="text-body-md font-body-md text-white">—</p>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-1 block">Matière</span>
+<p id="est-material" class="text-body-md font-body-md text-white">—</p>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-1 block">Quantité</span>
+<p id="est-qty" class="text-body-md font-body-md text-white">—</p>
+</div>
+<div class="col-span-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-1 block">Prix unitaire</span>
+<p id="est-unit" class="text-body-md font-body-md text-white">—</p>
+</div>
+</div>
+<!-- Détail du calcul -->
+<div id="est-breakdown" class="border-t border-glass pt-4 space-y-1 text-label-sm text-on-surface-variant"></div>
+<div class="pt-6 border-t border-glass mt-2">
+<div class="flex justify-between items-center mb-1">
+<span class="text-body-lg font-body-lg text-on-surface-variant">Prix estimé</span>
+<span id="est-price" class="text-display-lg text-[32px] font-extrabold text-primary glow-text-cyan">—</span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="">Délai : 2 à 4 jours ouvrés</span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-success mt-1">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+<span class="">Livraison incluse</span>
+</div>
+</div>
+</div>
+<!-- Notice -->
+<div class="flex items-start gap-3 p-4 rounded-xl bg-warning/10 border border-warning/20">
+<span class="material-symbols-outlined text-warning shrink-0">info</span>
+<p class="text-label-md font-label-md text-warning">Prix estimé indicatif. L'atelier vérifie votre fichier et vous <b>confirme le prix final</b> avant toute production.</p>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3 mt-auto pb-6">
+<button id="btn-send" class="w-full bg-primary-container text-on-primary-container py-4 rounded-xl font-bold text-body-lg glow-cyan hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+                    Envoyer la demande à l'atelier
+                </button>
+<button id="btn-edit" class="w-full bg-transparent border border-primary text-primary py-4 rounded-xl font-bold text-body-lg hover:bg-primary/5 active:scale-95 transition-all">
+                    Modifier les réglages
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-deep border-t border-glass py-12 px-gutter">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-container-max-width mx-auto">
+<div class="col-span-1 md:col-span-1">
+<a href="/index.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-80 flex-shrink-0"/>
+<span class="font-bold text-primary text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-on-surface-variant text-body-md leading-relaxed">Precision engineering meet digital craftsmanship. We turn your complex designs into tactile reality.</p>
+</div>
+<div>
+<h4 class="font-bold text-white mb-4">Resources</h4>
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="/pages/contact.html">Material Guide</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="/pages/contact.html">FAQ</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="/pages/contact.html">Design Tips</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-4">Company</h4>
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="/pages/contact.html">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="/pages/contact.html">Terms of Service</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="/pages/contact.html">Contact Support</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-4">Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-surface-deep border border-glass rounded-lg px-4 py-2 text-body-md w-full focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Email address" type="email">
+<button class="bg-primary text-on-primary font-bold px-4 rounded-lg hover:scale-105 transition-transform">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max-width mx-auto mt-12 pt-8 border-t border-glass/30">
+<p class="text-on-surface-variant text-label-md text-center">© 2024 Laserya.tn. Precision Engineered.</p>
+</div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script>
+// ── 3D preview mouse effect ────────────────────────────────
+const previewImg = document.querySelector('img[alt="3D Model Preview"]');
+document.addEventListener('mousemove', e => {
+    const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+    const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+    if (previewImg && window.innerWidth > 768)
+        previewImg.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+});
+
+// ── Charger la config depuis sessionStorage ────────────────
+const config = JSON.parse(sessionStorage.getItem('print3d_config') || '{}');
+const est    = config.estimate || {};
+
+const TYPE_LABELS = { keychain:'Porte-clés', figurine:'Figurine', deco:'Objet déco / vase', part:'Pièce / prototype', other:'Autre' };
+const SIZE_LABELS = { small:'Petite', medium:'Moyenne', large:'Grande' };
+
+function setText(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+
+setText('est-file', config.fileName || 'Produit personnalisé');
+setText('est-size', (SIZE_LABELS[config.size] || 'Moyenne') + (config.dims ? ` · ${config.dims}` : ''));
+setText('est-type', est.typeLabel || TYPE_LABELS[config.type] || 'Produit');
+setText('est-sizecell', SIZE_LABELS[config.size] || 'Moyenne');
+setText('est-detail', config.detailed ? 'Détaillé' : 'Simple');
+setText('est-colors', config.multicolor ? 'Plusieurs couleurs' : '1 couleur');
+setText('est-material', config.material || 'PLA');
+setText('est-qty', config.qty || config.quantity || 1);
+setText('est-unit', est.unit != null ? `${est.unit} TND / unité` : '—');
+setText('est-price', `${est.range != null ? est.range : (config.price != null ? config.price : '—')} TND`);
+
+// Détail (fourchette)
+if (est.low != null && est.high != null && est.low !== est.high) {
+    document.getElementById('est-breakdown').innerHTML =
+        `<div class="flex justify-between"><span>Fourchette estimée</span><span class="text-on-surface">${est.low} – ${est.high} TND</span></div>` +
+        ((config.qty || config.quantity) > 1 ? `<div class="flex justify-between"><span>${config.qty || config.quantity} pièces × ${est.unit} TND</span><span></span></div>` : '');
+}
+
+// ── Boutons ────────────────────────────────────────────────
+document.getElementById('btn-edit')?.addEventListener('click', () => window.location.href = '/pages/3d-upload.html');
+
+document.getElementById('btn-send')?.addEventListener('click', async function () {
+    const name = prompt('Votre nom complet :');
+    if (name === null) return;
+    const phone = prompt('Votre numéro de téléphone :');
+    if (!name || !phone) { showToast('Nom et téléphone requis', 'error'); return; }
+    const btn = this;
+    const label = btn.innerHTML;
+    btn.disabled = true; btn.textContent = 'Envoi...';
+    try {
+        const fd = new FormData();
+        fd.append('customer_name',  name);
+        fd.append('customer_phone', phone);
+        fd.append('type',       config.type || 'other');
+        fd.append('size',       config.size || 'medium');
+        fd.append('detailed',   config.detailed ? 1 : 0);
+        fd.append('multicolor', config.multicolor ? 1 : 0);
+        fd.append('material',   config.material || 'PLA');
+        fd.append('quantity',   config.qty || config.quantity || 1);
+        fd.append('dims',       config.dims || '');
+        const res = await Print3DAPI.create(fd);
+        sessionStorage.removeItem('print3d_config');
+        showToast(`Demande envoyée ! Estimation ${res.range || res.estimated_price} TND — l'atelier vous confirmera.`, 'success');
+        setTimeout(() => window.location.href = '/pages/3d-print.html', 2800);
+    } catch (e) {
+        showToast(e.message, 'error');
+        btn.disabled = false; btn.innerHTML = label;
+    }
+});
+</script>
+
+
+</body></html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html><html class="dark" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Machines 3D | Laserya.tn Admin</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+  body { background-color: #070A0F; color: #e0e2ea; -webkit-font-smoothing: antialiased; }
+  .glass-panel { background: rgba(17,24,39,.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.08); }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b0e13; }
+  ::-webkit-scrollbar-thumb { background: #3c494e; border-radius: 10px; }
+  .modal-bg { background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+  input, select { color-scheme: dark; }
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.35} }
+  .live-dot { animation: pulse-dot 1.6s infinite; }
+</style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<aside id="admin-sidebar" data-active="printers"></aside>
+
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+  <div>
+    <h2 class="font-headline-sm text-headline-sm text-on-surface">Machines 3D</h2>
+    <p class="font-label-sm text-label-sm text-on-surface-variant">Suivi en direct de vos imprimantes Bambu Lab</p>
+  </div>
+  <div class="flex items-center gap-3">
+    <span id="poll-state" class="font-label-sm text-label-sm text-on-surface-variant hidden sm:flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-success live-dot"></span> Live
+    </span>
+    <button onclick="openModal()" class="flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap">
+      <span class="material-symbols-outlined text-lg">add</span> Ajouter une imprimante
+    </button>
+  </div>
+</header>
+
+<main class="ml-[260px] pt-[88px] min-h-screen p-container_padding">
+  <div id="grid" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-stack_lg"></div>
+</main>
+
+<!-- Modal ajout/édition -->
+<div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-bg">
+  <div class="glass-panel rounded-2xl w-full max-w-lg p-6 relative max-h-[90vh] overflow-y-auto">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+    <h3 id="modal-title" class="font-headline-sm text-headline-sm mb-1">Ajouter une imprimante</h3>
+    <p class="font-label-sm text-label-sm text-on-surface-variant mb-5">Connexion locale (même réseau Wi-Fi que l'imprimante).</p>
+    <form id="form" class="space-y-4">
+      <input type="hidden" id="f-id">
+      <div>
+        <label class="block font-label-md text-label-md text-on-surface-variant mb-1">Nom</label>
+        <input id="f-name" required class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary" placeholder="Ex. Bambu X1C — Atelier">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block font-label-md text-label-md text-on-surface-variant mb-1">Modèle</label>
+          <select id="f-model" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary">
+            <option value="">—</option><option>X1 Carbon</option><option>X1E</option><option>P1S</option><option>P1P</option><option>A1</option><option>A1 mini</option><option>Autre</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-on-surface-variant mb-1">Adresse IP locale</label>
+          <input id="f-host" required class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary" placeholder="192.168.1.50">
+        </div>
+      </div>
+      <div>
+        <label class="block font-label-md text-label-md text-on-surface-variant mb-1">Numéro de série</label>
+        <input id="f-serial" required class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary" placeholder="01P00A0000000000">
+      </div>
+      <div>
+        <label class="block font-label-md text-label-md text-on-surface-variant mb-1">Code d'accès LAN</label>
+        <input id="f-code" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary" placeholder="8 chiffres (écran imprimante)">
+        <p id="code-hint" class="font-label-sm text-label-sm text-on-surface-variant mt-1">Imprimante → Réglages ⚙️ → Wi-Fi / Réseau → « Code d'accès ».</p>
+      </div>
+      <div class="rounded-lg bg-primary/5 border border-primary/15 p-3 font-body-sm text-on-surface-variant">
+        <p class="mb-1"><b class="text-primary">Où trouver ces infos ?</b></p>
+        <p>Sur l'écran de l'imprimante : <b>Réglages → Réseau (WLAN)</b> affiche l'<b>IP</b> et le <b>code d'accès</b>. Le <b>numéro de série</b> est sous « Appareil / Device » (ou dans Bambu Studio).</p>
+      </div>
+      <div class="flex gap-3 pt-2">
+        <button type="submit" id="save-btn" class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg hover:opacity-90 transition-opacity">Enregistrer</button>
+        <button type="button" onclick="closeModal()" class="px-5 py-3 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-variant/30 font-label-md text-label-md">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+if (!Auth.isAdmin()) window.location.href = '/admin/dashboard.html';
+
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtTime(min) {
+  min = Math.max(0, Math.round(min));
+  if (!min) return '—';
+  const h = Math.floor(min / 60), m = min % 60;
+  return h ? `${h} h ${m.toString().padStart(2,'0')} min` : `${m} min`;
+}
+
+const STATE_STYLE = {
+  'En impression': 'border-primary/30 bg-primary/10 text-primary',
+  'En pause':      'border-warning/30 bg-warning/10 text-warning',
+  'Terminée':      'border-success/30 bg-success/10 text-success',
+  'Échec':         'border-error/30 bg-error/10 text-error',
+  'Hors ligne':    'border-outline-variant/30 bg-surface-variant/30 text-on-surface-variant',
+};
+
+function card(p) {
+  const cls = STATE_STYLE[p.state_label] || 'border-outline-variant/30 bg-surface-variant/20 text-on-surface-variant';
+  const printing = p.state === 'RUNNING' || p.state === 'PAUSE';
+  const dot = p.online ? 'bg-success live-dot' : 'bg-error';
+  const progressBlock = printing ? `
+    <div class="mt-4">
+      <div class="flex justify-between font-label-sm text-label-sm mb-1">
+        <span class="text-on-surface-variant truncate max-w-[70%]">${esc(p.job) || 'Impression en cours'}</span>
+        <span class="text-primary font-bold">${p.progress}%</span>
+      </div>
+      <div class="h-2 rounded-full bg-surface-container-low overflow-hidden">
+        <div class="h-full bg-primary transition-all duration-500" style="width:${p.progress}%"></div>
+      </div>
+      <div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mt-1.5">
+        <span>Couche ${p.layer}/${p.total_layers || '—'}</span>
+        <span>⏱ ${fmtTime(p.remaining_min)} restant</span>
+      </div>
+    </div>` : '';
+  const offlineNote = (!p.online && p.error)
+    ? `<p class="font-label-sm text-label-sm text-error/80 mt-2">⚠️ ${esc(p.error)}</p>` : '';
+
+  return `<div class="glass-panel rounded-2xl p-5" data-id="${p.id}">
+    <div class="flex items-start justify-between gap-3">
+      <div class="min-w-0">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full ${dot} flex-shrink-0"></span>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface truncate">${esc(p.name)}</h3>
+        </div>
+        <p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">${esc(p.model || 'Bambu Lab')} · ${esc(p.host)}</p>
+      </div>
+      <span class="px-2.5 py-1 rounded-full border text-[11px] font-bold uppercase tracking-wider whitespace-nowrap ${cls}">${esc(p.state_label)}</span>
+    </div>
+
+    ${progressBlock}${offlineNote}
+
+    <div class="grid grid-cols-2 gap-3 mt-4">
+      <div class="bg-surface-container-low rounded-lg p-3">
+        <p class="font-label-sm text-label-sm text-on-surface-variant">Buse</p>
+        <p class="font-headline-sm text-headline-sm text-on-surface">${p.nozzle_temp}°<span class="text-on-surface-variant text-body-sm"> / ${p.nozzle_target}°</span></p>
+      </div>
+      <div class="bg-surface-container-low rounded-lg p-3">
+        <p class="font-label-sm text-label-sm text-on-surface-variant">Plateau</p>
+        <p class="font-headline-sm text-headline-sm text-on-surface">${p.bed_temp}°<span class="text-on-surface-variant text-body-sm"> / ${p.bed_target}°</span></p>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-2 mt-4 pt-3 border-t border-outline-variant/10">
+      <button onclick='editPrinter(${JSON.stringify({id:p.id,name:p.name,model:p.model,host:p.host,serial:p.serial})})' class="text-on-surface-variant hover:text-primary transition-colors p-1.5" title="Modifier"><span class="material-symbols-outlined text-lg">edit</span></button>
+      <button onclick="removePrinter('${p.id}','${esc(p.name)}')" class="text-on-surface-variant hover:text-error transition-colors p-1.5" title="Supprimer"><span class="material-symbols-outlined text-lg">delete</span></button>
+    </div>
+  </div>`;
+}
+
+function emptyState() {
+  return `<div class="glass-panel rounded-2xl p-10 text-center col-span-full max-w-2xl mx-auto">
+    <span class="material-symbols-outlined text-5xl text-primary/60 block mb-3">print</span>
+    <h3 class="font-headline-sm text-headline-sm mb-2">Aucune imprimante reliée</h3>
+    <p class="text-on-surface-variant mb-2">Ajoutez vos imprimantes Bambu Lab pour suivre leur état en direct (avancement, températures, temps restant).</p>
+    <p class="font-label-sm text-label-sm text-on-surface-variant mb-6">⚠️ Le serveur doit être sur le <b>même réseau Wi-Fi</b> que les imprimantes.</p>
+    <button onclick="openModal()" class="bg-primary text-on-primary font-bold px-6 py-2.5 rounded-lg hover:opacity-90 transition-opacity">Ajouter une imprimante</button>
+  </div>`;
+}
+
+async function refresh() {
+  const grid = document.getElementById('grid');
+  try {
+    const list = await PrintersAPI.status();
+    grid.innerHTML = list.length ? list.map(card).join('') : emptyState();
+  } catch (e) {
+    if (!grid.children.length) grid.innerHTML = `<div class="col-span-full text-center py-10 text-error">${esc(e.message)}</div>`;
+  }
+}
+
+// ── Modal ──────────────────────────────────────────────────
+const modal = document.getElementById('modal');
+function openModal() {
+  document.getElementById('form').reset();
+  document.getElementById('f-id').value = '';
+  document.getElementById('modal-title').textContent = 'Ajouter une imprimante';
+  document.getElementById('f-code').required = true;
+  document.getElementById('code-hint').textContent = "Imprimante → Réglages ⚙️ → Wi-Fi / Réseau → « Code d'accès ».";
+  modal.classList.remove('hidden'); modal.classList.add('flex');
+}
+function closeModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); }
+function editPrinter(p) {
+  openModal();
+  document.getElementById('modal-title').textContent = 'Modifier l’imprimante';
+  document.getElementById('f-id').value = p.id;
+  document.getElementById('f-name').value = p.name || '';
+  document.getElementById('f-model').value = p.model || '';
+  document.getElementById('f-host').value = p.host || '';
+  document.getElementById('f-serial').value = p.serial || '';
+  document.getElementById('f-code').required = false;
+  document.getElementById('code-hint').textContent = "Laissez vide pour conserver le code actuel.";
+}
+
+document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('f-id').value;
+  const data = {
+    name:   document.getElementById('f-name').value.trim(),
+    model:  document.getElementById('f-model').value,
+    host:   document.getElementById('f-host').value.trim(),
+    serial: document.getElementById('f-serial').value.trim(),
+    access_code: document.getElementById('f-code').value.trim(),
+  };
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true; btn.textContent = 'Enregistrement…';
+  try {
+    if (id) await PrintersAPI.update(id, data);
+    else    await PrintersAPI.create(data);
+    closeModal();
+    refresh();
+  } catch (err) {
+    alert(err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Enregistrer';
+  }
+});
+
+async function removePrinter(id, name) {
+  if (!confirm(`Supprimer « ${name} » ?`)) return;
+  try { await PrintersAPI.delete(id); refresh(); } catch (e) { alert(e.message); }
+}
+
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+refresh();
+setInterval(refresh, 4000); // rafraîchit l'état toutes les 4 s
+</script>
+</body></html>

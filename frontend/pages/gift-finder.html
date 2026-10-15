@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gift Finder Quiz | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&amp;family=Geist:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-border {
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.1);
+        }
+        .neon-glow-primary:hover {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+        .step-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes laser-pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+        .laser-line {
+            animation: laser-pulse 2s infinite ease-in-out;
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface-container/80 backdrop-blur-xl border-b border-border-glass shadow-lg shadow-black/20">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max-width mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary drop-shadow-[0_0_10px_rgba(168,232,255,0.5)]">
+                Laserya.tn
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/">Accueil</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/shop">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/custom-order">Commande sur mesure</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/gift-ideas">Idées cadeaux</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/track-order">Suivi de commande</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contact">Contact</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">search</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">shopping_cart</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">person</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-label-md text-label-md hover:scale-105 hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all duration-300 active:scale-95">
+                    Create Custom Design
+                </button>
+</div>
+</div>
+</nav>
+<!-- Background Elements -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]"></div>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
+</div>
+<!-- Quiz Section -->
+<main class="pt-32 pb-20 px-gutter min-h-screen flex flex-col items-center">
+<div class="max-w-4xl w-full text-center mb-12">
+<h1 class="font-headline-md text-headline-md text-primary mb-4">The Precision Gift Finder</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">Tell us who you're surprising, and our laser-accurate algorithm will suggest the perfect handcrafted piece.</p>
+</div>
+<!-- Quiz Container -->
+<div class="max-w-3xl w-full glass-card neon-border rounded-xl overflow-hidden relative shadow-2xl">
+<!-- Progress Bar -->
+<div class="h-1.5 w-full bg-surface-container">
+<div class="h-full bg-primary shadow-[0_0_10px_rgba(168,232,255,0.8)] transition-all duration-700 ease-out w-[20%]"></div>
+</div>
+<div class="p-card-padding md:p-12">
+<!-- Header -->
+<div class="flex justify-between items-center mb-10">
+<span class="text-primary font-label-md text-label-md tracking-widest uppercase laser-line">Step 01 / 05</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Subject Identification</span>
+</div>
+<!-- Question -->
+<div class="mb-10 text-center md:text-left">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2">Who is the gift for?</h2>
+<p class="text-on-surface-variant font-body-md text-body-md">Select the recipient category to refine the design aesthetics.</p>
+</div>
+<!-- Options Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+<!-- Partner -->
+<label class="group relative cursor-pointer">
+<input checked="" class="peer hidden" name="recipient" type="radio"/>
+<div class="h-full flex flex-col items-center justify-center p-6 rounded-lg bg-surface-container border border-border-glass transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-[0_0_15px_rgba(0,212,255,0.2)] group-hover:bg-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant transition-colors peer-checked:text-primary group-hover:text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface peer-checked:text-primary">Partner</span>
+</div>
+</label>
+<!-- Friend -->
+<label class="group relative cursor-pointer">
+<input class="peer hidden" name="recipient" type="radio"/>
+<div class="h-full flex flex-col items-center justify-center p-6 rounded-lg bg-surface-container border border-border-glass transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-[0_0_15px_rgba(0,212,255,0.2)] group-hover:bg-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant transition-colors peer-checked:text-primary group-hover:text-primary">group</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface peer-checked:text-primary">Friend</span>
+</div>
+</label>
+<!-- Family -->
+<label class="group relative cursor-pointer">
+<input class="peer hidden" name="recipient" type="radio"/>
+<div class="h-full flex flex-col items-center justify-center p-6 rounded-lg bg-surface-container border border-border-glass transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-[0_0_15px_rgba(0,212,255,0.2)] group-hover:bg-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant transition-colors peer-checked:text-primary group-hover:text-primary">people</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface peer-checked:text-primary">Family</span>
+</div>
+</label>
+<!-- Gamer -->
+<label class="group relative cursor-pointer">
+<input class="peer hidden" name="recipient" type="radio"/>
+<div class="h-full flex flex-col items-center justify-center p-6 rounded-lg bg-surface-container border border-border-glass transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-[0_0_15px_rgba(0,212,255,0.2)] group-hover:bg-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant transition-colors peer-checked:text-primary group-hover:text-primary">sports_esports</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface peer-checked:text-primary">Gamer</span>
+</div>
+</label>
+<!-- Anime Fan -->
+<label class="group relative cursor-pointer">
+<input class="peer hidden" name="recipient" type="radio"/>
+<div class="h-full flex flex-col items-center justify-center p-6 rounded-lg bg-surface-container border border-border-glass transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-[0_0_15px_rgba(0,212,255,0.2)] group-hover:bg-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant transition-colors peer-checked:text-primary group-hover:text-primary">auto_awesome</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface peer-checked:text-primary">Anime fan</span>
+</div>
+</label>
+<!-- Business Owner -->
+<label class="group relative cursor-pointer">
+<input class="peer hidden" name="recipient" type="radio"/>
+<div class="h-full flex flex-col items-center justify-center p-6 rounded-lg bg-surface-container border border-border-glass transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-[0_0_15px_rgba(0,212,255,0.2)] group-hover:bg-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant transition-colors peer-checked:text-primary group-hover:text-primary">business_center</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface peer-checked:text-primary">Business owner</span>
+</div>
+</label>
+<!-- Teacher -->
+<label class="group relative cursor-pointer">
+<input class="peer hidden" name="recipient" type="radio"/>
+<div class="h-full flex flex-col items-center justify-center p-6 rounded-lg bg-surface-container border border-border-glass transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-[0_0_15px_rgba(0,212,255,0.2)] group-hover:bg-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant transition-colors peer-checked:text-primary group-hover:text-primary">school</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface peer-checked:text-primary">Teacher</span>
+</div>
+</label>
+<!-- Other -->
+<label class="group relative cursor-pointer">
+<input class="peer hidden" name="recipient" type="radio"/>
+<div class="h-full flex flex-col items-center justify-center p-6 rounded-lg bg-surface-container border border-border-glass transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-[0_0_15px_rgba(0,212,255,0.2)] group-hover:bg-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-3 text-on-surface-variant transition-colors peer-checked:text-primary group-hover:text-primary">add_circle</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface peer-checked:text-primary">Someone else</span>
+</div>
+</label>
+</div>
+<!-- Footer Buttons -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-border-glass pt-8">
+<button class="w-full md:w-auto px-8 py-3 rounded-lg border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-primary hover:border-primary transition-all duration-200">
+                        Back
+                    </button>
+<div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+<button class="hidden px-8 py-3 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary/10 transition-all">
+                            Show Results
+                        </button>
+<button class="w-full md:w-auto px-10 py-3 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md font-bold neon-glow-primary hover:scale-105 active:scale-95 transition-all">
+                            Next
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Material Quick View -->
+<div class="mt-20 max-w-container-max-width w-full">
+<h3 class="text-center font-headline-sm text-headline-sm text-primary mb-12">Crafted from Premium Materials</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group relative h-64 rounded-xl overflow-hidden glass-card">
+<img class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" data-alt="A close-up shot of laser-cut black acrylic material with glowing cyan edges being engraved. The precision of the laser is evident in the sharp, clean lines against the deep black surface. The atmosphere is tech-focused and moody with vibrant blue lighting accents reflecting off the glossy acrylic. Minimalist and futuristic vibe." src="/assets/images/placeholder.svg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-deep via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<span class="inline-block bg-surface-deep/80 border border-secondary text-secondary px-3 py-1 rounded-full text-xs font-bold mb-2">Premium Acrylic</span>
+<h4 class="text-xl font-bold">Industrial Chic</h4>
+</div>
+</div>
+<div class="group relative h-64 rounded-xl overflow-hidden glass-card">
+<img class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" data-alt="Intricate laser engraving on a natural dark walnut wood surface showing complex geometric patterns. The wood grain is rich and textured, contrasting with the precise, dark burnt lines of the laser engraving. Warm ambient lighting hits the surface from the side, emphasizing the depth and craftsmanship. High-end artisanal workshop aesthetic." src="/assets/images/placeholder.svg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-deep via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<span class="inline-block bg-surface-deep/80 border border-secondary text-secondary px-3 py-1 rounded-full text-xs font-bold mb-2">Walnut Wood</span>
+<h4 class="text-xl font-bold">Natural Precision</h4>
+</div>
+</div>
+<div class="group relative h-64 rounded-xl overflow-hidden glass-card">
+<img class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" data-alt="Close-up of a 3D printing nozzle depositing translucent neon filament layer by layer. The glowing purple filament creates a complex structural mesh with crystalline clarity. The background is a dark high-tech lab environment with soft blue glows. Focused on the intersection of additive manufacturing and artistic design." src="/assets/images/placeholder.svg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-deep via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<span class="inline-block bg-surface-deep/80 border border-secondary text-secondary px-3 py-1 rounded-full text-xs font-bold mb-2">Neon Resin</span>
+<h4 class="text-xl font-bold">Futuristic Glow</h4>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-deep border-t border-border-glass py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-container-max-width mx-auto">
+<div class="flex flex-col gap-4">
+<a href="/admin/dashboard.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-bold text-on-surface text-lg leading-none" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-on-surface-variant font-body-md text-body-md">© 2024 Laserya.tn. All rights reserved. Precision in every pulse.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-primary font-bold">Company</h5>
+<nav class="flex flex-col gap-2">
+<a class="text-secondary-fixed hover:text-primary transition-colors font-label-md text-label-md" href="/pages/contact.html">About Us</a>
+<a class="text-secondary-fixed hover:text-primary transition-colors font-label-md text-label-md" href="/pages/shop.html">Material Catalog</a>
+<a class="text-secondary-fixed hover:text-primary transition-colors font-label-md text-label-md" href="/pages/contact.html">Sustainability</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-primary font-bold">Support</h5>
+<nav class="flex flex-col gap-2">
+<a class="text-secondary-fixed hover:text-primary transition-colors font-label-md text-label-md" href="/pages/contact.html">FAQ</a>
+<a class="text-secondary-fixed hover:text-primary transition-colors font-label-md text-label-md" href="/pages/contact.html">Shipping Policy</a>
+<a class="text-secondary-fixed hover:text-primary transition-colors font-label-md text-label-md" href="/pages/contact.html">Contact Us</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-primary font-bold">Newsletter</h5>
+<p class="text-on-surface-variant text-sm">Join the pulse for exclusive drops and design insights.</p>
+<div class="flex gap-2">
+<input class="bg-surface-container border border-border-glass rounded-lg px-4 py-2 w-full focus:outline-none focus:border-primary transition-all" placeholder="Pulse email..." type="email"/>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg material-symbols-outlined">send</button>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for radio buttons
+        const radioInputs = document.querySelectorAll('input[name="recipient"]');
+        radioInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                // Add a subtle "ping" effect when selected
+                const container = e.target.nextElementSibling;
+                container.animate([
+                    { transform: 'scale(1)', boxShadow: '0 0 0 rgba(0,212,255,0)' },
+                    { transform: 'scale(1.05)', boxShadow: '0 0 20px rgba(0,212,255,0.4)' },
+                    { transform: 'scale(1)', boxShadow: '0 0 15px rgba(0,212,255,0.2)' }
+                ], {
+                    duration: 400,
+                    easing: 'ease-out'
+                });
+            });
+        });
+
+        // Background parallax or light movement effect
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const glows = document.querySelectorAll('.blur-[120px]');
+            glows[0].style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+            glows[1].style.transform = `translate(${-x * 50}px, ${-y * 50}px)`;
+        });
+    </script>
+</body></html>

@@ -1,0 +1,22 @@
+# ── Secrets — NE JAMAIS pousser ──────────────────────────
+backend/*.db
+backend/uploads/
+backend/.env
+.env
+
+# ── Dépendances (réinstallées par le serveur via npm install) ──
+node_modules/
+
+# ── Sauvegardes de base de données ───────────────────────
+backend/*.db.bak
+backend/*.db.bak2
+backend/laserya.db.bak*
+
+# ── Artefacts de dev / captures de test ──────────────────
+backend/_test-shots/
+backend/_mobile-shots/
+
+# ── Fichiers système ─────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log

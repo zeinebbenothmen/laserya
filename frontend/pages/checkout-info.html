@@ -1,0 +1,359 @@
+<!DOCTYPE html><html class="" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Informations de commande | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        .neon-text-glow {
+            text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #a8e8ff 0%, #d0bcff 100%);
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #00d4ff !important;
+            box-shadow: 0 0 0 1px #00d4ff, 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+        .stepper-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 2px;
+            background: #a8e8ff;
+            box-shadow: 0 0 8px #00d4ff;
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-[#070a0fcc] backdrop-blur-md border-b border-white/10 shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+    <div class="max-w-[1440px] mx-auto flex justify-between items-center px-6 md:px-10 py-4">
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+            </div>
+            <div class="hidden xl:flex items-center gap-5">
+                <a href="/index.html" class="font-label-md text-on-surface-variant hover:text-primary transition-all duration-300">Accueil</a>
+                <a href="/pages/shop.html" class="font-label-md text-on-surface-variant hover:text-primary transition-all duration-300">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+                <a href="/pages/custom-order.html" class="font-label-md text-on-surface-variant hover:text-primary transition-all duration-300">Commande sur mesure</a>
+                <a href="/pages/gift-ideas.html" class="font-label-md text-on-surface-variant hover:text-primary transition-all duration-300">Idées cadeaux</a>
+                <a href="/pages/my-orders.html" class="font-label-md text-on-surface-variant hover:text-primary transition-all duration-300">Suivi de commande</a>
+                <a href="/pages/contact.html" class="font-label-md text-on-surface-variant hover:text-primary transition-all duration-300">Contact</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 text-on-surface-variant">
+                <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">search</span>
+                <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">favorite</span>
+                <div class="relative">
+                    <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">shopping_cart</span>
+                    <span class="absolute -top-2 -right-2 bg-primary-container text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">3</span>
+                </div>
+                <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">person</span>
+            </div>
+            <button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+        </div>
+    </div>
+</nav>
+<main class="pt-28 pb-20 px-6 md:px-10 max-w-[1440px] mx-auto">
+<!-- Progress Stepper -->
+<div class="flex items-center justify-between max-w-2xl mx-auto mb-16 relative">
+<div class="flex flex-col items-center gap-2 relative z-10 stepper-active">
+<div class="w-10 h-10 rounded-full primary-gradient flex items-center justify-center text-on-primary font-bold shadow-[0_0_15px_rgba(0,212,255,0.4)]">1</div>
+<span class="font-label-sm text-primary text-label-sm">Informations</span>
+</div>
+<div class="flex flex-col items-center gap-2 relative z-10 opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold border border-white/10">2</div>
+<span class="font-label-sm text-label-sm">Livraison</span>
+</div>
+<div class="flex flex-col items-center gap-2 relative z-10 opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold border border-white/10">3</div>
+<span class="font-label-sm text-label-sm">Paiement</span>
+</div>
+<div class="flex flex-col items-center gap-2 relative z-10 opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold border border-white/10">4</div>
+<span class="font-label-sm text-label-sm">Récapitulatif</span>
+</div>
+<!-- Progress Line -->
+<div class="absolute top-5 left-0 w-full h-[2px] bg-white/10 -z-0"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Left Column: Form -->
+<div class="lg:col-span-7 space-y-12">
+<section>
+<div class="mb-6">
+<h2 class="font-headline-sm text-headline-sm text-primary neon-text-glow">Coordonnées</h2>
+<p class="text-label-md font-label-md text-on-surface-variant mt-1"><span class="material-symbols-outlined align-middle text-primary text-[18px] mr-1">mail</span>Votre code de suivi vous sera envoyé par e-mail après la commande.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Adresse e-mail</label>
+<input class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface placeholder:text-white/20 transition-all" placeholder="exemple@gmail.com" type="email">
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Numéro de téléphone</label>
+<input class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface placeholder:text-white/20 transition-all" placeholder="+216 -- --- ---" type="tel">
+</div>
+</div>
+</section>
+<section>
+<h2 class="font-headline-sm text-headline-sm text-primary neon-text-glow mb-6">Identité du client</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Prénom</label>
+<input class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface placeholder:text-white/20 transition-all" placeholder="Mohamed" type="text">
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Nom</label>
+<input class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface placeholder:text-white/20 transition-all" placeholder="Ben Salah" type="text">
+</div>
+</div>
+</section>
+<section>
+<h2 class="font-headline-sm text-headline-sm text-primary neon-text-glow mb-6">Adresse de livraison</h2>
+<div class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Gouvernorat</label>
+<select class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface appearance-none cursor-pointer transition-all">
+<option>Tunis</option>
+<option>Ariana</option>
+<option>Ben Arous</option>
+<option>Sousse</option>
+<option>Sfax</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Ville</label>
+<input class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface placeholder:text-white/20 transition-all" placeholder="Précisez votre ville" type="text">
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Adresse complète</label>
+<textarea class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface placeholder:text-white/20 transition-all resize-none" placeholder="Rue, n° d'immeuble, appartement..." rows="3"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="space-y-1 md:col-span-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Code postal</label>
+<input class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface placeholder:text-white/20 transition-all" placeholder="20XX" type="text">
+</div>
+<div class="space-y-1 md:col-span-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Instructions complémentaires (facultatif)</label>
+<input class="w-full bg-surface-deep border border-white/10 rounded-lg p-3 text-on-surface placeholder:text-white/20 transition-all" placeholder="Code d'accès, point de repère, etc." type="text">
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-4 bg-surface-container-low p-6 rounded-xl border border-white/5">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 appearance-none rounded border border-white/20 bg-transparent checked:bg-primary-container checked:border-primary-container transition-all" type="checkbox">
+<span class="material-symbols-outlined absolute text-on-primary scale-0 peer-checked:scale-100 transition-transform pointer-events-none text-sm font-bold">check</span>
+</div>
+<span class="text-on-surface-variant font-label-md group-hover:text-on-surface transition-colors">Enregistrer ces informations pour la prochaine fois</span>
+</label>
+</section>
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-6">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all group font-label-md">
+<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        Retour au panier
+                    </button>
+<button class="w-full md:w-auto px-10 py-4 primary-gradient text-on-primary font-headline-sm text-headline-sm rounded-xl shadow-[0_0_25px_rgba(0,212,255,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        Continuer vers la livraison
+                    </button>
+</div>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="lg:col-span-5 sticky top-28">
+<div class="glass-panel rounded-2xl p-8 space-y-8">
+<h3 class="font-headline-sm text-headline-sm border-b border-white/10 pb-4">Récapitulatif</h3>
+<!-- Products -->
+<div class="space-y-6 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+<div class="flex gap-4">
+<div class="relative w-20 h-20 flex-shrink-0 bg-surface-container rounded-lg overflow-hidden border border-white/10">
+<img alt="Laser Product" class="w-full h-full object-cover" data-alt="A macro close-up photograph of a custom laser-engraved acrylic block featuring intricate glowing geometric patterns. The lighting is low-key with sharp cyan highlights catching the edges of the engraving, creating a futuristic tech aesthetic. The background is deep black and out of focus, emphasizing the precision of the laser craftsmanship. The mood is sophisticated and high-end." src="/assets/images/placeholder.svg">
+<span class="absolute -top-1 -right-1 w-6 h-6 bg-primary-container text-on-primary rounded-full flex items-center justify-center text-[10px] font-bold">1</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md text-on-surface">Lampe Neon Horizon</h4>
+<span class="font-label-md text-primary">145.00 TND</span>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-secondary-container/20 border border-secondary/30 rounded text-[10px] font-label-sm text-secondary uppercase tracking-wider">Personnalisé</span>
+<span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-label-sm text-on-surface-variant">Acrylique</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="relative w-20 h-20 flex-shrink-0 bg-surface-container rounded-lg overflow-hidden border border-white/10">
+<img alt="Tech Wallet" class="w-full h-full object-cover" data-alt="A minimalist tech-style wallet made of brushed dark metal with precision laser-cut openings. The product is shot on a reflective dark surface with neon purple light casting long shadows. The craftsmanship is evident in the sharp, clean edges and the matte texture of the material. The overall visual style is sleek, industrial, and highly modern, reflecting precision engineering." src="/assets/images/placeholder.svg">
+<span class="absolute -top-1 -right-1 w-6 h-6 bg-primary-container text-on-primary rounded-full flex items-center justify-center text-[10px] font-bold">2</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md text-on-surface">Portefeuille tech précision</h4>
+<span class="font-label-md text-primary">85.00 TND</span>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-label-sm text-on-surface-variant">Métal</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Breakdown -->
+<div class="space-y-3 pt-6 border-t border-white/10">
+<div class="flex justify-between text-on-surface-variant font-label-md">
+<span class="">Sous-total</span>
+<span class="text-on-surface">315.00 TND</span>
+</div>
+<div class="flex justify-between text-on-surface-variant font-label-md">
+<span class="">Livraison</span>
+<span class="text-warning italic text-label-sm">Calculée à l'étape suivante</span>
+</div>
+<div class="flex justify-between pt-4 border-t border-white/10">
+<span class="font-headline-sm text-headline-sm">Total</span>
+<div class="text-right">
+<span class="block font-headline-sm text-headline-sm text-primary neon-text-glow">315.00 TND</span>
+<span class="text-[10px] text-on-surface-variant">Taxes incluses</span>
+</div>
+</div>
+</div>
+<!-- Secure Indicators -->
+<div class="bg-surface-container-highest/30 rounded-lg p-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-success/20 flex items-center justify-center text-success">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Paiement sécurisé</p>
+<p class="text-[10px] text-on-surface-variant">Transactions chiffrées SSL</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6 bg-surface-container-lowest border-t border-white/5">
+<div class="flex flex-col items-center md:items-start gap-2">
+<a href="/index.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-80"/>
+<span class="font-bold text-primary-container text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="font-body-md text-body-md text-text-secondary text-center md:text-left">© 2024 Laserya.tn - Savoir-faire numérique de précision</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary-container transition-colors" href="/pages/contact.html">Conditions générales</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary-container transition-colors" href="/pages/contact.html">Politique de confidentialité</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary-container transition-colors" href="/pages/contact.html">Livraison</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary-container transition-colors" href="/pages/contact.html">Nous contacter</a>
+</div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script src="/assets/js/checkout.js"></script>
+<script>
+// ── Nav ────────────────────────────────────────────────────
+const NAV = { 'Accueil':'/index.html','Boutique':'/pages/shop.html','Commande perso':'/pages/custom-order.html','Impression 3D':'/pages/3d-print.html','Idées cadeaux':'/pages/gift-ideas.html','Suivi de commande':'/pages/my-orders.html','Contact':'/pages/contact.html' };
+document.querySelectorAll('nav a').forEach(a => { const t = a.textContent.trim(); if (NAV[t]) a.href = NAV[t]; });
+
+// ── Redirect if cart empty ─────────────────────────────────
+if (Cart.count() === 0) window.location.href = '/pages/cart.html';
+
+// ── Get all form inputs ────────────────────────────────────
+const inputs  = document.querySelectorAll('input, textarea, select');
+const [emailIn, phoneIn, firstIn, lastIn, govIn, cityIn, addrIn, postalIn, notesIn] = inputs;
+
+// ── Pré-remplissage depuis la session précédente ──────────
+const saved = Checkout.getInfo();
+if (saved.email)     emailIn.value  = saved.email;
+if (saved.phone)     phoneIn.value  = saved.phone;
+if (saved.firstName) firstIn.value  = saved.firstName;
+if (saved.lastName)  lastIn.value   = saved.lastName;
+if (saved.city)      cityIn.value   = saved.city;
+if (saved.address)   addrIn.value   = saved.address;
+if (saved.postal)    postalIn.value = saved.postal;
+if (saved.notes)     notesIn.value  = saved.notes;
+
+// ── Render order summary from cart ────────────────────────
+function renderSummary() {
+  const items     = Cart.getAll();
+  const container = document.querySelector('.space-y-6.max-h-\\[400px\\]');
+  if (!container) return;
+  const sub = Cart.subtotal();
+  container.innerHTML = items.map(i => `
+    <div class="flex gap-4">
+      <div class="relative w-20 h-20 flex-shrink-0 bg-surface-container rounded-lg overflow-hidden border border-white/10">
+        <img alt="${i.name}" class="w-full h-full object-cover"
+             src="${i.image_url || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80'}"
+             onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80'">
+        <span class="absolute -top-1 -right-1 w-6 h-6 bg-primary-container text-on-primary rounded-full flex items-center justify-center text-[10px] font-bold">${i.quantity}</span>
+      </div>
+      <div class="flex-grow">
+        <div class="flex justify-between items-start mb-1">
+          <h4 class="font-label-md text-on-surface">${i.name}</h4>
+          <span class="font-label-md text-primary">${formatPrice(i.price * i.quantity)}</span>
+        </div>
+      </div>
+    </div>`).join('');
+  // Update totals
+  const spans = document.querySelectorAll('.space-y-3.pt-6 span.text-on-surface, .space-y-3.pt-6 .text-primary');
+  if (spans[0]) spans[0].textContent = formatPrice(sub);
+  document.querySelectorAll('.neon-text-glow').forEach(el => { el.textContent = formatPrice(sub); });
+}
+renderSummary();
+
+// ── Navigation buttons ─────────────────────────────────────
+document.querySelectorAll('button').forEach(btn => {
+  const t = btn.textContent.trim();
+  if (t === 'Retour au panier') btn.addEventListener('click', () => window.location.href = '/pages/cart.html');
+  if (t === 'Continuer vers la livraison') btn.addEventListener('click', proceed);
+});
+
+function proceed() {
+  const phone = phoneIn?.value.trim();
+  if (!phone) { showToast('Numéro de téléphone requis', 'error'); phoneIn?.focus(); return; }
+  Checkout.setInfo({
+    email:     emailIn?.value.trim(),
+    phone,
+    firstName: firstIn?.value.trim(),
+    lastName:  lastIn?.value.trim(),
+    city:      cityIn?.value.trim(),
+    address:   addrIn?.value.trim(),
+    postal:    postalIn?.value.trim(),
+    notes:     notesIn?.value.trim()
+  });
+  window.location.href = '/pages/checkout-delivery.html';
+}
+
+// ── Focus micro-interactions ───────────────────────────────
+document.querySelectorAll('input, textarea, select').forEach(el => {
+  el.addEventListener('focus',  () => el.parentElement.querySelector('label')?.classList.add('text-primary'));
+  el.addEventListener('blur',   () => el.parentElement.querySelector('label')?.classList.remove('text-primary'));
+});
+</script>
+
+
+</body></html>

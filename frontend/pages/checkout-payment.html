@@ -1,0 +1,243 @@
+<!DOCTYPE html><html class="" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Paiement | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        .neon-border-cyan {
+            border: 1px solid rgba(0, 212, 255, 0.4);
+        }
+        .glass-acrylic {
+            backdrop-filter: blur(12px);
+            background: rgba(22, 27, 34, 0.7);
+        }
+        input:focus {
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            outline: none;
+            border-color: #00d4ff !important;
+        }
+        .step-completed { color: #22C55E; }
+        .primary-gradient {
+            background: linear-gradient(135deg, #00d4ff 0%, #d0bcff 100%);
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md min-h-screen">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[rgba(7,10,15,0.85)] backdrop-blur-[16px] border-b border-border-glass h-20 shadow-sm">
+<div class="flex justify-between items-center h-full px-gutter max-w-container-max-width mx-auto"><!-- Left: Logo and Icon -->
+<div class="flex items-center gap-3">
+  <a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+</div>
+
+<!-- Center: Navigation Links -->
+<div class="hidden xl:flex items-center gap-8">
+  <a href="/index.html" class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container transition-colors">Accueil</a>
+  <a href="shop.html" class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container transition-colors">Boutique</a>
+  <a href="custom-order.html" class="font-label-md text-label-md text-primary-container border-b-2 border-primary-container pb-1 transition-colors font-bold">Commande sur mesure</a>
+  <a href="gift-ideas.html" class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container transition-colors">Idées cadeaux</a>
+  <a href="my-orders.html" class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container transition-colors">Suivi de commande</a>
+  <a href="contact.html" class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container transition-colors">Contact</a>
+</div>
+
+<!-- Right: Actions and CTA -->
+<div class="flex items-center gap-6">
+  <div class="flex items-center gap-4 text-on-surface-variant">
+    <span class="material-symbols-outlined cursor-pointer hover:text-primary-container transition-colors" title="Search">search</span>
+    <span class="material-symbols-outlined cursor-pointer hover:text-primary-container transition-colors" title="Wishlist">favorite</span>
+    <div class="relative">
+      <span class="material-symbols-outlined cursor-pointer hover:text-primary-container transition-colors" title="Cart">shopping_cart</span>
+      <span class="absolute -top-1 -right-1 bg-primary-container text-on-primary-fixed text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+    </div>
+    <span class="material-symbols-outlined cursor-pointer hover:text-primary-container transition-colors" title="Account">person</span>
+  </div>
+  
+  <div class="h-8 w-[1px] bg-border-glass hidden sm:block"></div>
+
+  <button class="hidden sm:flex primary-gradient text-on-primary-fixed px-6 py-2.5 rounded-lg font-bold text-label-md shadow-lg hover:scale-105 transition-transform items-center gap-2">
+    <span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+    Créer mon produit
+  </button>
+</div></div>
+</nav>
+<main class="pt-32 pb-section-gap px-gutter max-w-container-max-width mx-auto">
+<!-- Progress Stepper -->
+<div class="flex items-center justify-center mb-16 space-x-4">
+<div class="flex items-center space-x-2 text-success">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md">Informations</span>
+</div>
+<div class="h-[1px] w-12 bg-border-glass"></div>
+<div class="flex items-center space-x-2 text-success">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md">Livraison</span>
+</div>
+<div class="h-[1px] w-12 bg-border-glass"></div>
+<div class="flex items-center space-x-2 text-primary-container neon-glow-cyan p-2 rounded-lg bg-surface-container-low border border-primary-container/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-label-md text-label-md font-bold">Paiement</span>
+</div>
+<div class="h-[1px] w-12 bg-border-glass"></div>
+<div class="flex items-center space-x-2 text-on-surface-variant">
+<span class="material-symbols-outlined">rate_review</span>
+<span class="font-label-md text-label-md">Récapitulatif</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Left Column: Payment Details -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Info Alert -->
+<div class="bg-surface-card border border-border-glass p-6 rounded-xl flex gap-4 items-start shadow-sm">
+<span class="material-symbols-outlined text-tertiary-container">info</span>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                        Pour les produits très personnalisés, <span class="text-primary">Laserya.tn</span> peut vous contacter afin de confirmer le design avant production et garantir une découpe laser précise.
+                    </p>
+</div>
+<!-- Paiement à la livraison (seul moyen) -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-6 text-primary">Moyen de paiement</h3>
+<div class="glass-acrylic p-6 rounded-xl border border-primary-container neon-glow-cyan flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container text-3xl" style="font-variation-settings: 'FILL' 1;">payments</span>
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">Paiement à la livraison</div>
+<div class="text-body-md text-on-surface-variant mt-1">Vous réglez en espèces à la réception de votre commande. Aucun paiement en ligne requis.</div>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-3 p-4 rounded-xl bg-success/10 border border-success/30">
+<span class="material-symbols-outlined text-success">local_shipping</span>
+<p class="font-body-md text-on-surface"><b class="text-success">Livraison gratuite</b> partout en Tunisie.</p>
+</div>
+</section>
+<!-- Footer Nav Buttons -->
+<div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors px-6 py-3 font-bold group">
+<span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
+                        Retour à la livraison
+                    </button>
+<button class="primary-gradient text-on-primary-fixed px-10 py-4 rounded-xl font-bold text-body-lg shadow-lg hover:scale-105 transition-transform">
+                        Continuer vers le récapitulatif
+                    </button>
+</div>
+</div>
+<!-- Right Column: Sticky Order Summary -->
+<div class="lg:col-span-4 sticky top-28">
+<div class="bg-surface-card border border-border-glass rounded-2xl overflow-hidden shadow-xl">
+<div class="p-6 border-b border-border-glass bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Récapitulatif</h3>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-surface-deep rounded-lg border border-border-glass overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of a CNC machine laser cutting an intricate acrylic floral pattern. The laser beam is a bright electric cyan point of light, throwing sparks and illuminating the translucent material with a neon glow. The background is a dark industrial workshop with deep shadows and metallic textures, perfectly aligned with a futuristic artisan aesthetic." src="/assets/images/placeholder.svg">
+</div>
+<div class="flex-grow">
+<div class="font-bold text-on-surface text-sm">Lampe de bureau acrylique personnalisée</div>
+<div class="text-xs text-on-surface-variant">Motif gravé • Base RGB</div>
+</div>
+<div class="font-bold text-sm">180.00 TND</div>
+</div>
+<div class="h-[1px] bg-border-glass my-4"></div>
+<div class="space-y-3">
+<div class="flex justify-between text-body-md text-on-surface-variant">
+<span class="">Sous-total</span>
+<span class="text-on-surface">180.00 TND</span>
+</div>
+<div class="flex justify-between text-body-md text-on-surface-variant">
+<span class="">Frais de personnalisation</span>
+<span class="text-on-surface">45.00 TND</span>
+</div>
+<div class="flex justify-between text-body-md text-on-surface-variant">
+<span class="">Frais de livraison</span>
+<span class="text-success font-bold">GRATUIT</span>
+</div>
+</div>
+<div class="h-[1px] bg-border-glass my-4"></div>
+<div class="flex justify-between items-center py-2">
+<span class="text-headline-sm font-bold text-on-surface">Total</span>
+<span class="text-headline-sm font-bold text-primary-container">225.00 TND</span>
+</div>
+<div class="mt-6 p-4 bg-primary-container/5 border border-primary-container/10 rounded-lg">
+<div class="flex items-center gap-2 text-primary-container font-bold text-sm mb-1">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                                Paiement sécurisé
+                            </div>
+<p class="text-[11px] text-on-surface-variant leading-tight">
+                                Vos informations de paiement sont chiffrées et traitées via des canaux sécurisés selon les standards numériques les plus exigeants.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-surface-deep w-full py-section-gap mt-32 border-t border-border-glass">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-container-max-width mx-auto">
+<div class="col-span-1 md:col-span-1">
+<a href="/index.html" class="flex items-center gap-2">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover opacity-80 flex-shrink-0"/>
+<span class="font-bold text-primary text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-label-sm text-text-secondary leading-relaxed">
+                    © 2024 Laserya.tn. Savoir-faire numérique &amp; précision artisanale.
+                </p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-bold text-on-surface">Entreprise</span>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/checkout-info.html">Informations</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">Récapitulatif</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">Politique de confidentialité</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-bold text-on-surface">Aide</span>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/checkout-delivery.html">Livraison</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">Paiement</a>
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors" href="/pages/contact.html">FAQ</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-bold text-on-surface">Newsletter</span>
+<p class="text-label-sm text-text-secondary">Recevez nos nouveautés matières et technologies laser.</p>
+<div class="flex mt-2">
+<input class="bg-surface-container-low border border-border-glass rounded-l-lg px-4 py-2 w-full focus:outline-none focus:border-primary-container" placeholder="E-mail" type="text">
+<button class="bg-primary-container text-on-primary-fixed px-4 rounded-r-lg font-bold">OK</button>
+</div>
+</div>
+</div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script src="/assets/js/checkout.js"></script>
+<script>
+if (Cart.count() === 0) window.location.href = '/pages/cart.html';
+
+// Un seul moyen de paiement : à la livraison.
+Checkout.setPayment({ method: 'cash', label: 'Paiement à la livraison' });
+
+// ── Buttons ────────────────────────────────────────────────
+document.querySelectorAll('button').forEach(btn => {
+    const t = btn.textContent.trim();
+    if (t.includes('Retour à la livraison')) btn.addEventListener('click', () => window.location.href = '/pages/checkout-delivery.html');
+    if (t.includes('Continuer vers le récapitulatif')) btn.addEventListener('click', () => {
+        Checkout.setPayment({ method: 'cash', label: 'Paiement à la livraison' });
+        window.location.href = '/pages/checkout-review.html';
+    });
+});
+</script>
+
+
+</body></html>

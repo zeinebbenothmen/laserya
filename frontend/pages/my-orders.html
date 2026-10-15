@@ -1,0 +1,172 @@
+<!DOCTYPE html><html class="" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Suivi de commande | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+  body { background-color: #070A0F; color: #e0e2ea; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .glass-card { background: rgba(22, 27, 34, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+</style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-[100] bg-surface-dim/80 backdrop-blur-xl border-b border-border-glass shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+    <div class="max-w-7xl mx-auto px-gutter h-20 flex items-center justify-between">
+        <a href="/index.html" class="flex items-center gap-3">
+            <img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+            <span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+        </a>
+        <div class="hidden xl:flex items-center gap-6">
+            <a href="/index.html" class="text-on-surface-variant font-label-md hover:text-primary transition-all">Accueil</a>
+            <a href="/pages/shop.html" class="text-on-surface-variant font-label-md hover:text-primary transition-all">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+            <a href="/pages/custom-order.html" class="text-on-surface-variant font-label-md hover:text-primary transition-all">Commande sur mesure</a>
+            <a href="/pages/gift-ideas.html" class="text-on-surface-variant font-label-md hover:text-primary transition-all">Idées cadeaux</a>
+            <a href="/pages/my-orders.html" class="text-primary font-label-md border-b-2 border-primary pb-1 transition-all">Suivi commande</a>
+            <a href="/pages/contact.html" class="text-on-surface-variant font-label-md hover:text-primary transition-all">Contact</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 border-r border-border-glass pr-4 mr-2">
+                <button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2 transition-all">search</button>
+                <button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2 transition-all">favorite</button>
+                <button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2 relative transition-all">
+                    shopping_cart
+                    <span data-cart-badge class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary text-[10px] font-bold rounded-full flex items-center justify-center" style="display:none">0</span>
+                </button>
+            </div>
+            <button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+        </div>
+    </div>
+</nav>
+
+<main class="pt-20 min-h-screen">
+  <div class="max-w-2xl mx-auto px-gutter py-12">
+    <header class="text-center mb-8">
+      <span class="material-symbols-outlined text-5xl text-primary mb-3 block">local_shipping</span>
+      <h1 class="font-display-lg text-headline-md mb-2">Suivi de commande</h1>
+      <p class="text-on-surface-variant">Entrez le <b>code de suivi</b> reçu par e-mail juste après votre commande.</p>
+    </header>
+
+    <form id="track-form" class="glass-card rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row gap-3">
+      <input id="code-input" class="flex-1 bg-surface-deep border border-border-glass rounded-xl px-5 py-4 text-on-surface focus:border-primary outline-none uppercase tracking-[0.2em] text-center sm:text-left" placeholder="EX : AB12CD34" maxlength="12" autocomplete="off">
+      <button type="submit" class="px-8 py-4 bg-primary text-on-primary rounded-xl font-bold hover:scale-105 transition-all whitespace-nowrap flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">search</span> Suivre
+      </button>
+    </form>
+
+    <div id="result"></div>
+
+    <p class="text-center text-on-surface-variant text-label-sm mt-10">
+      Vous n'avez pas reçu votre code ? <a href="/pages/contact.html" class="text-primary hover:underline">Contactez-nous</a>.
+    </p>
+  </div>
+</main>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script>
+const STATUS_LABELS = { pending:'En attente', confirmed:'Confirmée', in_production:'En production', ready:'Prête', delivered:'Livrée', cancelled:'Annulée' };
+const DELIVERY_FR = { home:'Domicile', pickup:'Retrait', express:'Express' };
+const PAYMENT_FR  = { cash:'À la livraison', card:'Carte', transfer:'Virement', pickup:'Au retrait' };
+const STEPS = [
+  { id:'pending',       label:'En attente',   icon:'schedule' },
+  { id:'confirmed',     label:'Confirmée',    icon:'task_alt' },
+  { id:'in_production', label:'En production',icon:'build' },
+  { id:'ready',         label:'Prête',        icon:'inventory_2' },
+  { id:'delivered',     label:'Livrée',       icon:'local_shipping' },
+];
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtDate(d){ return new Date(d).toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'}); }
+
+function timeline(status){
+  const cur = STEPS.findIndex(s => s.id === status);
+  return `<div class="flex items-start justify-between mb-8 mt-2">${STEPS.map((s,i)=>{
+    const done = i <= cur;
+    const line = i < STEPS.length-1
+      ? `<div class="flex-1 h-0.5 mt-4 ${i < cur ? 'bg-primary' : 'bg-border-glass'}"></div>` : '';
+    return `<div class="flex flex-col items-center text-center" style="flex:0 0 auto;width:56px">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center ${done?'bg-primary text-on-primary':'bg-surface-deep border border-border-glass text-on-surface-variant'}">
+          <span class="material-symbols-outlined text-[18px]">${done && i<cur ? 'check' : s.icon}</span>
+        </div>
+        <span class="text-[10px] mt-1.5 leading-tight ${done?'text-primary':'text-on-surface-variant'}">${s.label}</span>
+      </div>${line}`;
+  }).join('')}</div>`;
+}
+
+function renderOrder(o){
+  const items = Array.isArray(o.items) ? o.items : [];
+  const code  = (o.id||'').slice(0,8).toUpperCase();
+  const cancelled = o.status === 'cancelled';
+  const itemsHtml = items.map(i => `
+    <div class="flex items-center gap-3 py-2">
+      <div class="w-12 h-12 rounded-lg overflow-hidden border border-border-glass flex-shrink-0 bg-surface-container">
+        <img src="${i.image_url || '/assets/images/placeholder.svg'}" onerror="this.src='/assets/images/placeholder.svg'" class="w-full h-full object-cover" alt="${esc(i.name)}">
+      </div>
+      <div class="flex-1 min-w-0"><p class="font-label-md text-on-surface truncate">${esc(i.name)}</p>
+      <p class="text-on-surface-variant text-[12px]">× ${i.quantity}</p></div>
+      <p class="text-on-surface text-label-md">${formatPrice(i.price * i.quantity)}</p>
+    </div>`).join('');
+
+  return `<div class="glass-card rounded-2xl p-6">
+    <div class="flex items-center justify-between flex-wrap gap-3 mb-2">
+      <div>
+        <p class="text-on-surface-variant text-[11px] uppercase tracking-widest">Commande</p>
+        <h2 class="font-headline-sm text-headline-sm text-primary">#${code}</h2>
+      </div>
+      <span class="px-3 py-1 rounded-full border text-[12px] font-bold uppercase tracking-wider ${cancelled?'border-error/30 bg-error/10 text-error':'border-primary/30 bg-primary/10 text-primary'}">${STATUS_LABELS[o.status]||o.status}</span>
+    </div>
+    <p class="text-on-surface-variant text-[12px] mb-6">Passée le ${fmtDate(o.created_at)}</p>
+
+    ${cancelled
+      ? `<div class="rounded-xl border border-error/30 bg-error/10 p-4 text-center text-error mb-6">Cette commande a été annulée. Contactez-nous pour toute question.</div>`
+      : timeline(o.status)}
+
+    <div class="border-t border-border-glass pt-4">${itemsHtml}</div>
+
+    <div class="border-t border-border-glass mt-4 pt-4 grid grid-cols-2 gap-3 text-label-md">
+      <div><p class="text-on-surface-variant text-[12px]">Livraison</p><p>${DELIVERY_FR[o.delivery_method]||o.delivery_method||'—'} · Gratuite</p></div>
+      <div class="text-right"><p class="text-on-surface-variant text-[12px]">Paiement</p><p>${PAYMENT_FR[o.payment_method]||o.payment_method||'—'}</p></div>
+      <div class="col-span-2 flex justify-between items-center border-t border-border-glass pt-3 mt-1">
+        <span class="text-on-surface-variant">Total</span>
+        <span class="font-headline-sm text-headline-sm text-primary">${formatPrice(o.total)}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+async function track(code){
+  code = (code||'').trim();
+  const result = document.getElementById('result');
+  if (!code) { result.innerHTML = ''; return; }
+  result.innerHTML = '<div class="text-center py-10 text-on-surface-variant"><span class="material-symbols-outlined text-4xl block mb-2 animate-spin">progress_activity</span>Recherche…</div>';
+  try {
+    const o = await OrdersAPI.track(code);
+    result.innerHTML = renderOrder(o);
+  } catch {
+    result.innerHTML = `<div class="glass-card rounded-2xl p-8 text-center">
+        <span class="material-symbols-outlined text-4xl text-error block mb-2">search_off</span>
+        <h3 class="font-headline-sm mb-1">Aucune commande pour ce code</h3>
+        <p class="text-on-surface-variant">Vérifiez le code reçu dans votre e-mail de confirmation (8 caractères).</p>
+      </div>`;
+  }
+}
+
+document.getElementById('track-form').addEventListener('submit', e => {
+  e.preventDefault();
+  track(document.getElementById('code-input').value);
+});
+
+// Pré-remplissage depuis le lien de l'e-mail : ?id=CODE
+const urlCode = new URLSearchParams(location.search).get('id');
+if (urlCode) {
+  document.getElementById('code-input').value = urlCode.toUpperCase();
+  track(urlCode);
+}
+</script>
+</body></html>

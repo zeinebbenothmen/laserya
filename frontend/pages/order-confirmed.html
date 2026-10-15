@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Commande confirmée | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #101419;
+            color: #e0e2ea;
+            font-family: 'Geist', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass-card {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: #a8e8ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+
+        .neon-gradient-button {
+            background: linear-gradient(135deg, #00d4ff 0%, #d0bcff 100%);
+            color: #001f27;
+            transition: all 0.3s ease;
+        }
+
+        .neon-gradient-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .step-active {
+            background: #a8e8ff;
+            box-shadow: 0 0 15px rgba(168, 232, 255, 0.6);
+        }
+
+        .step-pulse {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(168, 232, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(168, 232, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(168, 232, 255, 0); }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-surface-deep/80 border-b border-border-glass shadow-sm">
+<div class="max-w-container-max-width mx-auto px-gutter flex justify-between items-center h-20">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary drop-shadow-[0_0_8px_rgba(0,212,255,0.5)]" href="/index.html">
+                    Laserya.tn
+                </a>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="/">Accueil</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="/shop">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="/custom-order">Commande sur mesure</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="/gift-ideas">Idées cadeaux</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-border-glass">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-32 xl:w-48 text-on-surface" placeholder="Rechercher un design..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">shopping_cart</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">account_circle</button>
+<button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap px-gutter max-w-4xl mx-auto">
+<!-- Success Section -->
+<section class="text-center mb-12">
+<div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary/10 border-2 border-primary/30 mb-8 relative">
+<div class="absolute inset-0 rounded-full bg-primary/20 blur-xl animate-pulse"></div>
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'wght' 600;">check_circle</span>
+</div>
+<h1 class="font-headline-md text-display-lg-mobile md:text-display-lg text-text-primary mb-4">Commande confirmée</h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-lg mx-auto">
+                Merci ! Votre commande personnalisée a bien été reçue et entre dans notre atelier numérique.
+            </p>
+</section>
+<!-- Order Info Card -->
+<div class="glass-card rounded-2xl p-card-padding mb-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<p class="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-widest">Numéro de commande</p>
+<p class="font-headline-sm text-headline-sm text-text-primary">#LSR-2024-8842</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-widest">Délai de production estimé</p>
+<p class="font-headline-sm text-headline-sm text-text-primary">3 à 5 jours ouvrés</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-widest">Mode de livraison</p>
+<p class="font-headline-sm text-headline-sm text-text-primary">Livraison à domicile</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-widest">Statut du paiement</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-success"></span>
+<p class="font-headline-sm text-headline-sm text-text-primary">Payé en ligne</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Custom Order Note -->
+<div class="bg-secondary-container/20 border border-secondary/30 rounded-xl p-6 flex gap-4 items-start mb-12">
+<span class="material-symbols-outlined text-secondary">info</span>
+<div>
+<p class="font-body-md text-body-md text-secondary font-bold mb-1">Personalization Review</p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Because your order contains a personalized product, our artisans may contact you via WhatsApp or Email to confirm the final design mockups before we start the laser engraving process.
+                </p>
+</div>
+</div>
+<!-- Production Timeline -->
+<section class="mb-12">
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-8 text-center md:text-left">Track Progress</h3>
+<div class="relative px-4">
+<!-- Line -->
+<div class="absolute top-5 left-10 right-10 h-0.5 bg-surface-container-highest hidden md:block"></div>
+<div class="flex flex-col md:flex-row justify-between relative z-10 gap-8 md:gap-0">
+<!-- Step 1 -->
+<div class="flex flex-row md:flex-col items-center gap-4 md:gap-2 text-center flex-1">
+<div class="w-10 h-10 rounded-full step-active flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Order Received</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">Today, 14:30</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-row md:flex-col items-center gap-4 md:gap-2 text-center flex-1">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border-2 border-primary/50 step-pulse flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">draw</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-text-primary">Design Review</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">Pending</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-row md:flex-col items-center gap-4 md:gap-2 text-center flex-1">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border-glass flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">precision_manufacturing</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Production</p>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-row md:flex-col items-center gap-4 md:gap-2 text-center flex-1">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border-glass flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">verified</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Quality Check</p>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-row md:flex-col items-center gap-4 md:gap-2 text-center flex-1">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border-glass flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">local_shipping</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Delivery</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Account CTA (injected) -->
+<div id="account-cta" class="max-w-2xl mx-auto px-gutter"></div>
+<!-- Actions -->
+<div class="flex flex-col items-center gap-6 mt-12">
+<button class="w-full md:w-auto px-12 py-4 rounded-full neon-gradient-button font-label-md text-label-md font-bold uppercase tracking-widest">
+                Suivre ma commande
+            </button>
+<div class="flex flex-wrap justify-center gap-4">
+<button class="px-6 py-2.5 rounded-full border border-border-glass hover:border-primary/50 transition-all font-label-md text-label-md text-on-surface-variant hover:text-primary">
+                    Continue Shopping
+                </button>
+<button class="px-6 py-2.5 rounded-full border border-border-glass hover:border-primary/50 transition-all font-label-md text-label-md text-on-surface-variant hover:text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">download</span> Download Invoice
+                </button>
+<button class="px-6 py-2.5 rounded-full border border-border-glass hover:border-primary/50 transition-all font-label-md text-label-md text-on-surface-variant hover:text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">support_agent</span> Contact Support
+                </button>
+</div>
+</div>
+</main>
+<!-- Recommendations -->
+<section class="max-w-container-max-width mx-auto px-gutter py-section-gap border-t border-border-glass">
+<h2 class="font-headline-md text-headline-md text-text-primary mb-10 text-center">Vous aimerez aussi</h2>
+<div id="reco-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-deep dark:bg-surface-container-lowest w-full mt-section-gap border-t border-border-glass">
+<div class="max-w-container-max-width mx-auto px-gutter py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1 md:col-span-1">
+<a href="/index.html" class="flex items-center gap-2 mb-4"><img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-8 w-8 rounded-md object-cover flex-shrink-0 opacity-80"/><span class="hidden sm:inline font-bold text-on-surface text-lg" style="font-family:Sora,sans-serif">Laserya.tn</span></a>
+<p class="font-body-md text-body-md text-on-surface-variant">Precision digital craftsmanship for the modern creator. Custom-made in Tunisia.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold text-text-primary mb-4 uppercase">Resources</h4>
+<div class="flex flex-col gap-2">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="/pages/contact.html">Technical Specs</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="/pages/contact.html">Material Guide</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="/pages/contact.html">Shipping Policy</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold text-text-primary mb-4 uppercase">Company</h4>
+<div class="flex flex-col gap-2">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="/pages/contact.html">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="/pages/contact.html">Contact Us</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="/pages/contact.html">About Brand</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold text-text-primary mb-4 uppercase">Connect</h4>
+<div class="flex gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-border-glass flex items-center justify-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">public</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-border-glass flex items-center justify-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">chat</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-border-glass flex items-center justify-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">share</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max-width mx-auto px-gutter py-6 border-t border-border-glass/5 text-center">
+<p class="font-label-md text-label-md text-on-surface-variant opacity-60">© 2024 Laserya.tn - Laser Precision Digital Craftsmanship</p>
+</div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script>
+// ── Read order ID from URL ─────────────────────────────────
+const params  = new URLSearchParams(location.search);
+const orderId = params.get('id') || '';
+const total   = params.get('total') || '';
+
+// ── Fill order number & total ──────────────────────────────
+if (orderId) {
+  document.querySelectorAll('p').forEach(p => {
+    if (p.textContent.trim() === '#LSR-2024-8842') p.textContent = '#' + orderId.slice(0, 8).toUpperCase();
+    if (p.textContent.trim() === 'Paid via Gateway') p.textContent = 'Confirmé';
+  });
+}
+if (total) {
+  document.querySelectorAll('[class*="text-primary"]').forEach(el => {
+    if (el.textContent.match(/^\d+[\.,]/)) el.textContent = formatPrice(parseFloat(total));
+  });
+}
+
+// ── Buttons ────────────────────────────────────────────────
+document.querySelectorAll('button, a').forEach(el => {
+  const t = el.textContent.trim();
+  if (t.includes('Track') || t.includes('Suivre'))    el.addEventListener('click', e => { e.preventDefault(); window.location.href = `/pages/my-orders.html?id=${orderId}`; });
+  if (t.includes('Shopping') || t.includes('Continuer')) el.addEventListener('click', e => { e.preventDefault(); window.location.href = '/pages/shop.html'; });
+});
+
+// ── Recommandations : vrais produits du catalogue ─────────
+(async function loadReco() {
+  const grid = document.getElementById('reco-grid');
+  if (!grid || typeof ProductsAPI === 'undefined') return;
+  try {
+    let list = (await ProductsAPI.getAll()) || [];
+    if (Array.isArray(list.products)) list = list.products;        // selon le format de l'API
+    // 4 produits au hasard
+    list = list.filter(p => p && p.id).sort(() => Math.random() - 0.5).slice(0, 4);
+    if (!list.length) { grid.closest('section')?.remove(); return; }
+    const ph = '/assets/images/placeholder.svg';
+    grid.innerHTML = list.map(p => {
+      const cat = (typeof getCategoryLabel === 'function') ? getCategoryLabel(p.category) : (p.category || '');
+      const price = (typeof formatPrice === 'function') ? formatPrice(p.price) : `${p.price} TND`;
+      return `
+      <a href="/pages/product.html?id=${p.id}" class="glass-card rounded-2xl overflow-hidden group block">
+        <div class="aspect-square relative overflow-hidden bg-white">
+          <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+               src="${p.image_url || ph}" alt="${(p.name || '').replace(/"/g, '&quot;')}"
+               onerror="this.src='${ph}'"/>
+          ${cat ? `<span class="absolute top-3 left-3 px-3 py-1 bg-secondary-container rounded-full font-label-sm text-label-sm">${cat}</span>` : ''}
+        </div>
+        <div class="p-5">
+          <h4 class="font-headline-sm text-[18px] text-text-primary mb-1 truncate">${p.name || 'Produit'}</h4>
+          <p class="font-body-md text-body-md text-text-secondary mb-4">${price}</p>
+          <span class="block text-center w-full py-2 rounded-lg border border-primary/30 group-hover:bg-primary/10 transition-colors font-label-md text-primary">Voir le produit</span>
+        </div>
+      </a>`;
+    }).join('');
+  } catch { grid.closest('section')?.remove(); }   // pas de catalogue → on masque la section
+})();
+
+// ── Info suivi par e-mail (sans compte) ────────────────────
+(function trackInfo() {
+  const box = document.getElementById('account-cta');
+  if (!box) return;
+  const code = orderId ? orderId.slice(0, 8).toUpperCase() : '';
+  box.innerHTML = `<div class="glass-card rounded-2xl p-6 text-center">
+      <span class="material-symbols-outlined text-3xl text-primary block mb-2">mark_email_read</span>
+      <h3 class="font-headline-sm mb-1">Un e-mail vous a été envoyé</h3>
+      <p class="text-on-surface-variant mb-4">Il contient votre <b>code de suivi</b>${code ? ` — <span class="text-primary font-bold tracking-widest">#${code}</span>` : ''}.
+      Conservez-le pour suivre votre commande à tout moment, <b>aucun compte nécessaire</b>.</p>
+      <a href="/pages/my-orders.html?id=${orderId}" class="inline-block px-6 py-2.5 bg-primary text-on-primary rounded-lg font-bold hover:scale-105 transition-all">Suivre ma commande</a>
+    </div>`;
+})();
+
+// ── Glow effect ────────────────────────────────────────────
+document.addEventListener('mousemove', e => {
+  document.querySelectorAll('.glass-card').forEach(card => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+    card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+  });
+});
+
+function formatPrice(p) { return `${Number(p).toFixed(0)} DT`; }
+</script>
+</body></html>

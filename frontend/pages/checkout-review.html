@@ -1,0 +1,372 @@
+<!DOCTYPE html><html class="" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Récapitulatif de commande | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        .neon-border-cyan {
+            border: 1px solid rgba(0, 212, 255, 0.4);
+        }
+        .gradient-btn {
+            background: linear-gradient(135deg, #00d4ff 0%, #d0bcff 100%);
+            color: #001f27;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #101419;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #32353b;
+            border-radius: 3px;
+        }
+        .active-step-glow {
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+            border-color: #00d4ff;
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md custom-scrollbar selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-surface-deep/80 border-b border-border-glass shadow-sm h-20"><div class="max-w-container-max-width mx-auto px-gutter flex justify-between items-center h-full">
+    <div class="flex items-center gap-8">
+        <a class="flex items-center gap-3 group" href="/index.html">
+<img src="/assets/images/logo.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="hidden sm:inline font-extrabold text-on-surface text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+        </a>
+        <div class="hidden xl:flex gap-6 items-center">
+            <a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="/">Accueil</a>
+            <a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="/shop">Boutique</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md text-label-md" href="/pages/collections.html">Collections</a>
+            <a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="/custom-order">Commande sur mesure</a>
+            <a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="/gift-ideas">Idées cadeaux</a>
+            <a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="/track-order">Suivi de commande</a>
+            <a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="/contact">Contact</a>
+        </div>
+    </div>
+    <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1 md:gap-2">
+            <button class="p-2 rounded-full hover:bg-surface-variant transition-all text-on-surface-variant">
+                <span class="material-symbols-outlined" data-icon="search">search</span>
+            </button>
+            <button class="p-2 rounded-full hover:bg-surface-variant transition-all text-on-surface-variant">
+                <span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+            </button>
+            <button class="relative p-2 rounded-full hover:bg-surface-variant transition-all text-on-surface-variant">
+                <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+                <span class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary text-[10px] font-bold rounded-full flex items-center justify-center">1</span>
+            </button>
+            <button class="p-2 rounded-full hover:bg-surface-variant transition-all text-on-surface-variant">
+                <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+            </button>
+        </div>
+        <button onclick="location.href='/pages/create-design.html'" class="hidden md:block bg-primary text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all font-label-md whitespace-nowrap">Créer mon design</button>
+    </div>
+</div></nav>
+<main class="pt-32 pb-section-gap max-w-container-max-width mx-auto px-gutter">
+<!-- Progress Stepper -->
+<div class="mb-12 flex justify-between items-center max-w-4xl mx-auto relative">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-variant -z-10 -translate-y-1/2"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-success text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-on-surface-variant">Informations</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-success text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-on-surface-variant">Livraison</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-success text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-on-surface-variant">Paiement</span>
+</div>
+<!-- Step 4 Active -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-deep border-2 border-primary active-step-glow flex items-center justify-center text-primary">
+<span class="font-headline-sm text-sm">4</span>
+</div>
+<span class="font-label-sm text-primary font-bold">Récapitulatif</span>
+</div>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary mb-12">Vérifiez votre commande</h1>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Left Column: Review Sections -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Customer Info & Delivery -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass-panel p-card-padding rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-sm text-primary text-lg">Coordonnées client</h3>
+<a class="text-primary-container text-sm font-label-md hover:underline" href="/pages/checkout-info.html">Modifier</a>
+</div>
+<div class="space-y-1">
+<p class="text-on-surface font-bold" id="rv-name">—</p>
+<p class="text-on-surface-variant" id="rv-email">—</p>
+<p class="text-on-surface-variant" id="rv-phone">—</p>
+</div>
+</div>
+<div class="glass-panel p-card-padding rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-sm text-primary text-lg">Adresse de livraison</h3>
+<a class="text-primary-container text-sm font-label-md hover:underline" href="/pages/checkout-info.html">Modifier</a>
+</div>
+<p class="text-on-surface-variant" id="rv-address">—</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass-panel p-card-padding rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-sm text-primary text-lg">Mode de livraison</h3>
+<a class="text-primary-container text-sm font-label-md hover:underline" href="/pages/checkout-delivery.html">Modifier</a>
+</div>
+<p class="text-on-surface font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="local_shipping">local_shipping</span>
+<span id="rv-delivery-method">Livraison à domicile (gratuite)</span>
+                        </p>
+</div>
+<div class="glass-panel p-card-padding rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-sm text-primary text-lg">Moyen de paiement</h3>
+<a class="text-primary-container text-sm font-label-md hover:underline" href="/pages/checkout-payment.html">Modifier</a>
+</div>
+<p class="text-on-surface font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="payments">payments</span>
+                            Paiement à la livraison
+                        </p>
+</div>
+</div>
+<!-- Products List -->
+<div class="space-y-4">
+<h2 class="font-headline-sm text-primary">Articles commandés</h2>
+<div class="glass-panel p-6 rounded-xl flex flex-col md:flex-row gap-6 relative overflow-hidden">
+<!-- Main Product Image -->
+<div class="w-full md:w-48 h-48 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Product" class="w-full h-full object-cover" data-alt="A futuristic acrylic LED lamp shaped like a stylized anime character, glowing intensely with vibrant electric cyan light. The lamp sits on a sleek dark base in a high-contrast dark room with subtle purple atmospheric haze. The sharp edges of the acrylic are highlighted by the internal light source, showcasing precision laser cutting. Professional product photography for a high-end tech brand." src="/assets/images/placeholder.svg">
+</div>
+<!-- Product Details -->
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-xl text-primary mb-2">Lampe LED acrylique anime personnalisée</h3>
+<span class="text-primary-container font-headline-sm">70 TND</span>
+</div>
+<div class="grid grid-cols-2 gap-4 text-sm mt-4">
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase mb-1">Personnalisation</p>
+<p class="text-on-surface">Taille : moyenne</p>
+<p class="text-on-surface">Base : RGB connectée</p>
+<p class="text-on-surface">Couleur : cyan électrique</p>
+</div>
+<div class="flex flex-col items-start">
+<p class="text-on-surface-variant font-label-sm uppercase mb-1">Visuel envoyé</p>
+<div class="w-16 h-16 rounded border border-border-glass overflow-hidden mt-1 hover:border-primary transition-colors cursor-zoom-in">
+<img alt="Artwork Thumbnail" class="w-full h-full object-cover" data-alt="A clean, minimalist anime character sketch drawn with sharp black lines on a white background. The illustration shows a futuristic hero with intricate mechanical details on their armor. The style is sharp and ready for laser engraving, reflecting high-end craftsmanship." src="/assets/images/placeholder.svg">
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="inventory_2">inventory_2</span>
+<span class="">Quantité : 1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Custom Order Confirmation -->
+<div class="glass-panel p-8 rounded-xl bg-gradient-to-br from-surface-card to-surface-container-low border-primary/20">
+<h3 class="font-headline-sm text-primary mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-warning" data-icon="warning">warning</span>
+                        Confirmation de production
+                    </h3>
+<div class="space-y-4">
+<label class="flex items-start gap-4 cursor-pointer group">
+<div class="mt-1 relative flex items-center">
+<input class="w-5 h-5 rounded border-border-glass bg-surface-deep text-primary focus:ring-primary focus:ring-offset-surface-deep" type="checkbox">
+</div>
+<span class="text-on-surface-variant group-hover:text-on-surface transition-colors">Je confirme que tous les détails de personnalisation sont corrects et correspondent à l'aperçu de mon design.</span>
+</label>
+<label class="flex items-start gap-4 cursor-pointer group">
+<div class="mt-1 relative flex items-center">
+<input class="w-5 h-5 rounded border-border-glass bg-surface-deep text-primary focus:ring-primary focus:ring-offset-surface-deep" type="checkbox">
+</div>
+<span class="text-on-surface-variant group-hover:text-on-surface transition-colors">Je comprends que la production démarre dès la validation du design et ne peut plus être modifiée.</span>
+</label>
+<label class="flex items-start gap-4 cursor-pointer group">
+<div class="mt-1 relative flex items-center">
+<input class="w-5 h-5 rounded border-border-glass bg-surface-deep text-primary focus:ring-primary focus:ring-offset-surface-deep" type="checkbox">
+</div>
+<span class="text-on-surface-variant group-hover:text-on-surface transition-colors">J'accepte les conditions générales et la politique de retour propre aux produits personnalisés.</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Right Column: Summary Sticky -->
+<div class="lg:col-span-4 lg:sticky lg:top-28">
+<div class="glass-panel p-8 rounded-2xl neon-glow-cyan">
+<h3 class="font-headline-sm text-primary mb-6">Récapitulatif</h3>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="">Sous-total</span>
+<span id="rv-subtotal">—</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="">Livraison</span>
+<span id="rv-delivery" class="text-success font-bold">Gratuite</span>
+</div>
+<div class="h-[1px] bg-border-glass my-4"></div>
+<div class="flex justify-between items-end">
+<span class="font-headline-sm text-primary">Total</span>
+<div class="text-right">
+<p id="rv-total" class="text-primary text-4xl font-extrabold tracking-tight drop-shadow-[0_0_12px_rgba(0,212,255,0.4)]">—</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1">Paiement à la livraison</p>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<button class="w-full gradient-btn py-4 rounded-xl font-headline-sm text-base uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl">
+                            Passer la commande
+                        </button>
+<button class="w-full py-4 rounded-xl border border-border-glass text-on-surface-variant font-label-md hover:bg-surface-variant transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
+                            Retour au paiement
+                        </button>
+</div>
+<div class="mt-8 p-4 rounded-lg bg-surface-container/50 border border-border-glass flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="lock">lock</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                            Votre transaction est sécurisée par un chiffrement de bout en bout. Laserya.tn ne conserve pas vos coordonnées bancaires complètes.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-deep border-t border-border-glass">
+<div class="max-w-container-max-width mx-auto px-gutter py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1">
+<a href="/index.html" class="flex items-center gap-2 group">
+<img src="/assets/images/logo-white.png" alt="Laserya.tn" class="h-9 w-9 rounded-lg object-cover flex-shrink-0"/>
+<span class="font-extrabold text-primary text-xl tracking-tight" style="font-family:Sora,sans-serif">Laserya.tn</span>
+</a>
+<p class="text-on-surface-variant font-body-md">Objets personnalisés façonnés avec précision. Du pixel à la matière.</p>
+</div>
+<div>
+<h4 class="text-primary font-label-md mb-4 uppercase">Navigation</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="/pages/contact.html">Spécifications techniques</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="/pages/contact.html">Guide des matières</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="/pages/contact.html">Politique de livraison</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-label-md mb-4 uppercase">Entreprise</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="/pages/contact.html">Politique de confidentialité</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="/pages/contact.html">Nous contacter</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="/pages/contact.html">À propos</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-label-md mb-4 uppercase">Suivez-nous</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-border-glass flex items-center justify-center hover:border-primary transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="share">share</span>
+</a>
+</div>
+</div>
+</div>
+<div class="border-t border-border-glass/30 py-6 text-center">
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Laserya.tn - Savoir-faire laser de précision</p>
+</div>
+</footer>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/shared.js"></script>
+<script src="/assets/js/checkout.js"></script>
+<script>
+if (Cart.count() === 0) window.location.href = '/pages/cart.html';
+
+const info     = Checkout.getInfo();
+const delivery = Checkout.getDelivery();
+const payment  = Checkout.getPayment();
+const items    = Cart.getAll();
+
+// ── Fill review summary ────────────────────────────────────
+function setText(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+
+function fillSummary() {
+  // Coordonnées client
+  setText('rv-name', `${info.firstName || ''} ${info.lastName || ''}`.trim() || info.phone || 'Client');
+  setText('rv-email', info.email || '—');
+  setText('rv-phone', info.phone || '—');
+  setText('rv-address', `${info.address || ''}${info.city ? ', ' + info.city : ''}`.trim().replace(/^,\s*/, '') || '—');
+  // Livraison & paiement
+  setText('rv-delivery-method', `${delivery.label || 'Livraison à domicile'} (gratuite)`);
+  // Totaux : livraison gratuite → total = sous-total
+  const sub = Cart.subtotal();
+  setText('rv-subtotal', formatPrice(sub));
+  setText('rv-delivery', 'Gratuite');
+  setText('rv-total', formatPrice(sub + (delivery.cost || 0)));
+}
+fillSummary();
+
+// ── Checkbox micro-interactions ────────────────────────────
+document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', function() {
+    this.parentElement.parentElement.classList.toggle('text-primary', this.checked);
+    this.parentElement.parentElement.classList.toggle('text-on-surface-variant', !this.checked);
+  });
+});
+
+// ── Place Order ────────────────────────────────────────────
+document.querySelectorAll('button').forEach(btn => {
+  const t = btn.textContent.trim();
+  if (t.includes('Retour au paiement')) btn.addEventListener('click', () => window.location.href = '/pages/checkout-payment.html');
+  if (t.includes('Passer la commande')) btn.addEventListener('click', placeOrder);
+});
+
+async function placeOrder() {
+  document.querySelectorAll('button').forEach(b => { if (b.textContent.includes('Passer la commande')) { b.disabled = true; b.textContent = 'Traitement...'; }});
+
+  try {
+    const payload = Checkout.buildOrder(items);
+    const result  = await OrdersAPI.create(payload);
+    Cart.clear();
+    Checkout.clear();
+    window.location.href = `/pages/order-confirmed.html?id=${result.id}&total=${result.total}`;
+  } catch (e) {
+    showToast(e.message || 'Erreur lors de la commande', 'error');
+    document.querySelectorAll('button').forEach(b => { if (b.disabled && b.textContent.includes('Traitement')) { b.disabled = false; b.textContent = 'Passer la commande'; }});
+  }
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html><html class="dark" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Analyses des ventes | Laserya.tn Admin</title>
+<link rel="stylesheet" href="/assets/css/tailwind-admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+  body { background-color: #070A0F; color: #e0e2ea; -webkit-font-smoothing: antialiased; }
+  .glass-panel { background: rgba(17,24,39,.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.08); }
+  .glow-cyan { box-shadow: 0 0 15px rgba(0,212,255,.15); }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b0e13; }
+  ::-webkit-scrollbar-thumb { background: #3c494e; border-radius: 10px; }
+</style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Sidebar (injectée par admin-nav.js) -->
+<aside id="admin-sidebar" data-active="analytics"></aside>
+
+<!-- Topbar -->
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+  <div>
+    <h2 class="font-headline-sm text-headline-sm text-on-surface">Analyses des ventes</h2>
+    <p class="font-label-sm text-label-sm text-on-surface-variant">Vos produits les plus vendus, en temps réel</p>
+  </div>
+  <button id="refresh-btn" class="flex items-center gap-2 px-4 py-2 bg-surface-container-high border border-outline-variant/20 text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-colors">
+    <span class="material-symbols-outlined text-lg">refresh</span> Actualiser
+  </button>
+</header>
+
+<!-- Main -->
+<main class="ml-[260px] pt-[88px] min-h-screen p-container_padding">
+
+  <!-- Stat cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack_md mb-stack_lg">
+    <div class="glass-panel p-5 rounded-xl">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Chiffre d'affaires</p>
+          <h3 id="stat-revenue" class="font-display-lg text-display-lg mt-1 text-primary">—</h3>
+        </div>
+        <div class="bg-primary/10 p-2 rounded"><span class="material-symbols-outlined text-primary">payments</span></div>
+      </div>
+      <p class="text-xs text-on-surface-variant mt-3">Commandes livrées</p>
+    </div>
+    <div class="glass-panel p-5 rounded-xl">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Commandes</p>
+          <h3 id="stat-orders" class="font-display-lg text-display-lg mt-1">—</h3>
+        </div>
+        <div class="bg-secondary/10 p-2 rounded"><span class="material-symbols-outlined text-secondary">shopping_bag</span></div>
+      </div>
+      <p class="text-xs text-on-surface-variant mt-3">Toutes commandes confondues</p>
+    </div>
+    <div class="glass-panel p-5 rounded-xl">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Panier moyen</p>
+          <h3 id="stat-avg" class="font-display-lg text-display-lg mt-1">—</h3>
+        </div>
+        <div class="bg-primary/10 p-2 rounded"><span class="material-symbols-outlined text-primary">monitoring</span></div>
+      </div>
+      <p class="text-xs text-on-surface-variant mt-3">Par commande</p>
+    </div>
+    <div class="glass-panel p-5 rounded-xl">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Produits actifs</p>
+          <h3 id="stat-products" class="font-display-lg text-display-lg mt-1">—</h3>
+        </div>
+        <div class="bg-success/10 p-2 rounded"><span class="material-symbols-outlined text-success">inventory_2</span></div>
+      </div>
+      <p class="text-xs text-on-surface-variant mt-3"><span id="stat-featured">0</span> épinglé(s) à l'accueil</p>
+    </div>
+  </div>
+
+  <!-- Best sellers -->
+  <div class="glass-panel rounded-xl overflow-hidden">
+    <div class="px-6 py-4 border-b border-outline-variant/10 flex justify-between items-center">
+      <div>
+        <h4 class="font-headline-sm text-headline-sm">Produits les plus vendus</h4>
+        <p class="text-body-sm text-on-surface-variant">Épinglez vos best-sellers pour les afficher sur la page d'accueil</p>
+      </div>
+      <span class="material-symbols-outlined text-primary">trending_up</span>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-surface-container-high/50 border-b border-outline-variant/20">
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider w-12">#</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Produit</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Quantité vendue</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Chiffre d'affaires</th>
+            <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Accueil</th>
+          </tr>
+        </thead>
+        <tbody id="best-tbody" class="divide-y divide-outline-variant/10">
+          <tr><td colspan="5" class="p-10 text-center text-on-surface-variant">Chargement…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin-nav.js"></script>
+<script>
+if (!Auth.isAdmin()) window.location.href = '/admin/dashboard.html';
+
+let MAX_UNITS = 1;
+
+function rowHtml(p, i) {
+  const rank = i + 1;
+  const medal = rank === 1 ? 'text-yellow-400' : rank === 2 ? 'text-gray-300' : rank === 3 ? 'text-amber-600' : 'text-on-surface-variant';
+  const pct = Math.max(4, Math.round((p.units / MAX_UNITS) * 100));
+  const img = p.image_url || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=48';
+  const canPin = p.exists && p.id;
+  const pinBtn = canPin
+    ? `<button onclick="togglePin('${p.id}', ${p.featured ? 1 : 0}, this)" title="${p.featured ? 'Retirer de l\\'accueil' : 'Épingler à l\\'accueil'}"
+         class="pin-btn material-symbols-outlined text-2xl transition-colors ${p.featured ? 'text-primary' : 'text-on-surface-variant hover:text-primary'}"
+         style="font-variation-settings:'FILL' ${p.featured ? 1 : 0}">star</button>`
+    : `<span class="text-[10px] text-on-surface-variant italic">produit supprimé</span>`;
+  return `<tr class="hover:bg-surface-variant/20 transition-colors">
+    <td class="p-4 font-bold ${medal}">${rank}</td>
+    <td class="p-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded bg-surface-container-highest overflow-hidden flex-shrink-0">
+          <img src="${img}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=48'">
+        </div>
+        <div class="min-w-0">
+          <p class="font-label-md text-label-md text-on-surface truncate">${p.name}</p>
+          <div class="w-32 h-1 bg-surface-container-highest rounded-full overflow-hidden mt-1.5">
+            <div class="h-full bg-primary" style="width:${pct}%"></div>
+          </div>
+        </div>
+      </div>
+    </td>
+    <td class="p-4 text-right font-mono-ui font-bold text-on-surface">${p.units}</td>
+    <td class="p-4 text-right font-mono-ui font-bold text-primary">${formatPrice(p.revenue)}</td>
+    <td class="p-4 text-center">${pinBtn}</td>
+  </tr>`;
+}
+
+async function togglePin(id, current, el) {
+  const next = current ? 0 : 1;
+  try {
+    await ProductsAPI.setFeatured(id, next);
+    showToast(next ? 'Produit épinglé à l\'accueil' : 'Produit retiré de l\'accueil', 'success');
+    load();
+  } catch (e) { showToast(e.message, 'error'); }
+}
+
+async function load() {
+  const tbody = document.getElementById('best-tbody');
+  try {
+    const [best, orders, products] = await Promise.all([
+      StatsAPI.bestSellers(),
+      OrdersAPI.getAll().catch(() => []),
+      ProductsAPI.getAll({ active: 'all' }).catch(() => [])
+    ]);
+
+    // Stat cards
+    const delivered = orders.filter(o => o.status === 'delivered');
+    const revenue   = delivered.reduce((s, o) => s + (Number(o.total) || 0), 0);
+    const nbOrders  = orders.length;
+    const allTotal  = orders.reduce((s, o) => s + (Number(o.total) || 0), 0);
+    const avg       = nbOrders ? allTotal / nbOrders : 0;
+    const activeProducts = products.filter(p => p.active).length;
+    const featuredCount  = products.filter(p => p.featured).length;
+
+    document.getElementById('stat-revenue').textContent  = formatPrice(revenue);
+    document.getElementById('stat-orders').textContent   = nbOrders;
+    document.getElementById('stat-avg').textContent      = formatPrice(avg);
+    document.getElementById('stat-products').textContent = activeProducts;
+    document.getElementById('stat-featured').textContent = featuredCount;
+
+    // Best sellers table
+    if (!best.length) {
+      tbody.innerHTML = `<tr><td colspan="5" class="p-12 text-center text-on-surface-variant">
+        <span class="material-symbols-outlined text-5xl block mb-3 opacity-50">bar_chart</span>
+        Aucune vente enregistrée pour le moment.<br>
+        <span class="text-body-sm">Dès qu'une commande sera passée, vos best-sellers apparaîtront ici.</span>
+      </td></tr>`;
+      return;
+    }
+    MAX_UNITS = best[0].units || 1;
+    tbody.innerHTML = best.map(rowHtml).join('');
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="5" class="p-10 text-center text-error">${e.message}</td></tr>`;
+  }
+}
+
+document.getElementById('refresh-btn').addEventListener('click', load);
+load();
+</script>
+</body></html>

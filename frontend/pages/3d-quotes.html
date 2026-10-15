@@ -1,0 +1,455 @@
+<!DOCTYPE html><html class="" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>3D Print Quote Manager | Laserya.tn</title>
+<link rel="stylesheet" href="/assets/css/tailwind-public.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            background-color: #101419;
+            color: #e0e2ea;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+        .blueprint-bg {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<link href="/assets/css/theme.css" rel="stylesheet"/>
+<script src="/assets/js/theme.js"></script>
+</head>
+<body class="bg-background">
+<!-- Side Navigation Bar -->
+<aside class="w-sidebar_width h-screen fixed left-0 top-0 bg-surface-container-low/80 backdrop-blur-xl border-r border-outline-variant/20 shadow-lg flex flex-col py-gutter px-4 z-50">
+<div class="mb-10">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Laserya.tn Admin</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Management Suite</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto pr-2 custom-scrollbar"><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/orders.html">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/custom-requests.html">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-label-md text-label-md">Custom Requests</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary font-bold border-l-2 border-primary bg-primary/10 shadow-[0_0_15px_rgba(168,232,255,0.2)]" href="/pages/3d-print.html">
+<span class="material-symbols-outlined">3d_rotation</span>
+<span class="font-label-md text-label-md">3D Print Requests</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/production-board.html">
+<span class="material-symbols-outlined">view_kanban</span>
+<span class="font-label-md text-label-md">Production Board</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/products.html">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/products.html">
+<span class="material-symbols-outlined">category</span>
+<span class="font-label-md text-label-md">Categories</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/orders.html">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/dashboard.html">
+<span class="material-symbols-outlined">sell</span>
+<span class="font-label-md text-label-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/dashboard.html">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/pages/checkout-delivery.html">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md text-label-md">Delivery</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/dashboard.html">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/dashboard.html">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-md text-label-md">Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/products.html">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="font-label-md text-label-md">Media Library</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/dashboard.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/dashboard.html">
+<span class="material-symbols-outlined">web</span>
+<span class="font-label-md text-label-md">Website Content</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant/50 hover:text-on-surface transition-all duration-200" href="/admin/dashboard.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a></nav>
+<div class="mt-auto pt-4 border-t border-outline-variant/10">
+<button class="flex items-center gap-3 px-3 py-2 w-full text-on-surface-variant font-medium hover:text-error transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="h-topbar_height fixed top-0 right-0 w-[calc(100%-260px)] z-40 bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/10 flex items-center justify-between px-gutter">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-full py-2 pl-10 pr-4 text-body-sm focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all outline-none" placeholder="Search projects or .STL files..." type="text">
+<kbd class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono-ui bg-surface-variant px-1.5 py-0.5 rounded text-on-surface-variant opacity-60">⌘K</kbd>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">
+                Create
+            </button>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3 border-l border-outline-variant/20 pl-4">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface">Alex Tech</p>
+<p class="font-label-sm text-label-sm text-primary">Senior Admin</p>
+</div>
+<img class="w-9 h-9 rounded-full object-cover border border-primary/20" data-alt="A professional portrait of a senior technical administrator for a high-tech manufacturing firm. He has a focused expression, wearing modern glasses and a dark tech-style minimalist shirt. The lighting is dramatic and cool-toned, with subtle cyan rim light reflecting off his shoulder, echoing a futuristic laboratory or workshop environment." src="/assets/images/placeholder.svg">
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-sidebar_width mt-topbar_height p-container_padding min-h-[calc(100vh-64px)]">
+<!-- Dashboard Header -->
+<div class="flex items-end justify-between mb-8">
+<div>
+<nav class="flex items-center gap-2 mb-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="hover:text-primary cursor-pointer">Admin</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">3D Quote Manager</span>
+</nav>
+<h2 class="font-display-lg text-display-lg text-on-surface">3D Print Quote Manager</h2>
+</div>
+<div class="flex gap-3">
+<button class="border border-outline-variant/30 px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-surface-variant/30 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+                    Batch Upload
+                </button>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                    Generate &amp; Send Quote
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: STL Processing View -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Model Preview Area -->
+<section class="bg-surface-container-low border border-outline-variant/10 rounded-xl overflow-hidden shadow-2xl relative h-[500px] blueprint-bg group" style="background-position: 2.89844px 4.89189px;">
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<img class="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="A highly detailed 3D model of a complex mechanical engine part rendered in a technical wireframe and solid mesh hybrid style. The model is displayed against a dark digital blueprint background with glowing cyan grid lines and mathematical annotations. The lighting is cinematic, highlighting the intricate geometries and engineering precision of the component." src="/assets/images/placeholder.svg">
+</div>
+<!-- Overlay Controls -->
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<div class="bg-surface-container-highest/90 border border-outline-variant/30 p-3 rounded-lg backdrop-blur-md">
+<h3 class="font-label-md text-label-md text-primary mb-1">Cyborg_Arm_Joint_V4.stl</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Size: 142 x 88 x 210 mm</p>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div class="flex gap-2">
+<button class="bg-surface-container-highest/90 p-2 rounded border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">rotate_90_degrees_cw</span>
+</button>
+<button class="bg-surface-container-highest/90 p-2 rounded border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">straighten</span>
+</button>
+<button class="bg-surface-container-highest/90 p-2 rounded border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+<div class="bg-surface-container-highest/90 border border-outline-variant/30 p-3 rounded-lg backdrop-blur-md flex gap-6">
+<div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Volume</p>
+<p class="font-mono-ui text-primary">342.50 <span class="text-[11px] text-on-surface-variant">cm³</span></p>
+</div>
+<div class="border-l border-outline-variant/20 pl-6">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Surface Area</p>
+<p class="font-mono-ui text-primary">1,204.1 <span class="text-[11px] text-on-surface-variant">cm²</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- Configuration Tools -->
+<section class="bg-surface-container-low border border-outline-variant/10 rounded-xl p-6 glass-panel">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span>
+                        Technical Specification
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Material Choice</label>
+<select class="w-full bg-surface-container-highest border border-outline-variant/30 rounded-lg p-2.5 text-body-sm focus:ring-1 focus:ring-primary/50 outline-none">
+<option>PLA - Matte Black (Premium)</option>
+<option>PETG - Industrial Grey</option>
+<option>Resin - High Detail (Grey)</option>
+<option>TPU - Flexible 95A</option>
+<option>Nylon - Carbon Fiber Reinforced</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Infill Density (%)</label>
+<div class="flex items-center gap-4">
+<input class="flex-1 accent-primary h-1.5 bg-surface-container-highest rounded-full" max="100" min="0" type="range" value="20">
+<span class="font-mono-ui text-primary w-8 text-right">20%</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Layer Height (mm)</label>
+<select class="w-full bg-surface-container-highest border border-outline-variant/30 rounded-lg p-2.5 text-body-sm focus:ring-1 focus:ring-primary/50 outline-none">
+<option>0.05 mm (Super Fine)</option>
+<option selected="">0.12 mm (Fine Detail)</option>
+<option>0.20 mm (Standard)</option>
+<option>0.30 mm (Draft)</option>
+</select>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/10 grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="p-4 bg-surface-container-highest/30 rounded-lg border border-outline-variant/20">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Print Duration</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">14h 22m</p>
+</div>
+<div class="p-4 bg-surface-container-highest/30 rounded-lg border border-outline-variant/20">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Estimated Filament</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">412g</p>
+</div>
+<div class="p-4 bg-surface-container-highest/30 rounded-lg border border-outline-variant/20">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Success Rate Estimate</p>
+<p class="font-headline-sm text-headline-sm text-primary">94.2%</p>
+</div>
+<div class="p-4 bg-primary/5 rounded-lg border border-primary/20">
+<p class="font-label-sm text-label-sm text-primary mb-1">Production Cost</p>
+<p class="font-headline-sm text-headline-sm text-primary">48.50 TND</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Queue & Customer Details -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- Customer Card -->
+<section class="bg-surface-container-low border border-outline-variant/10 rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-4">Customer Details</h3>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 bg-surface-variant rounded-full flex items-center justify-center font-bold text-primary border border-primary/20">
+                            SM
+                        </div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Sami Mansour</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">smansour.eng@gmail.com</p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Account Type</span>
+<span class="text-on-surface font-semibold">Enterprise (Gold)</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Previous Orders</span>
+<span class="text-on-surface font-semibold">12 Projects</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Default Margin</span>
+<span class="text-primary font-semibold">+15.00%</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border border-outline-variant/30 rounded-lg font-label-md text-label-md hover:border-primary hover:text-primary transition-all">
+                        View History
+                    </button>
+</section>
+<!-- Processing Queue -->
+<section class="bg-surface-container-low border border-outline-variant/10 rounded-xl overflow-hidden">
+<div class="p-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/50">
+<h3 class="font-label-md text-label-md text-on-surface">Pending Queue (4)</h3>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">Awaiting Technical</span>
+</div>
+<div class="divide-y divide-outline-variant/10 max-h-[480px] overflow-y-auto pr-1">
+<!-- Queue Item 1 -->
+<div class="p-4 hover:bg-surface-variant/20 transition-colors cursor-pointer border-l-4 border-primary bg-primary/5">
+<div class="flex justify-between items-start mb-2">
+<p class="font-label-md text-label-md text-on-surface">Cyborg_Arm_Joint_V4.stl</p>
+<span class="text-[10px] font-mono-ui text-on-surface-variant">Today, 09:41</span>
+</div>
+<div class="flex gap-4">
+<div class="w-16 h-12 bg-black/40 rounded border border-outline-variant/20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Small thumbnail preview of a mechanical 3D component with cyan lighting highlights." src="/assets/images/placeholder.svg">
+</div>
+<div class="flex-1 space-y-1">
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<p class="text-[10px] text-primary">Technical Analysis 65%</p>
+</div>
+</div>
+</div>
+<!-- Queue Item 2 -->
+<div class="p-4 hover:bg-surface-variant/20 transition-colors cursor-pointer border-l-4 border-transparent">
+<div class="flex justify-between items-start mb-2">
+<p class="font-label-md text-label-md text-on-surface">Medical_Support_Plate.obj</p>
+<span class="text-[10px] font-mono-ui text-on-surface-variant">Today, 08:22</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">inventory_2</span>
+<span class="text-body-sm text-on-surface-variant">Resin High Detail</span>
+</div>
+</div>
+<!-- Queue Item 3 -->
+<div class="p-4 hover:bg-surface-variant/20 transition-colors cursor-pointer border-l-4 border-transparent">
+<div class="flex justify-between items-start mb-2">
+<p class="font-label-md text-label-md text-on-surface">Drone_Propeller_Guard_x4.stl</p>
+<span class="text-[10px] font-mono-ui text-on-surface-variant">Yesterday</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">inventory_2</span>
+<span class="text-body-sm text-on-surface-variant">PETG Industrial</span>
+</div>
+</div>
+<!-- Queue Item 4 -->
+<div class="p-4 hover:bg-surface-variant/20 transition-colors cursor-pointer border-l-4 border-transparent opacity-60">
+<div class="flex justify-between items-start mb-2">
+<p class="font-label-md text-label-md text-on-surface">Architectural_Scale_Model.stl</p>
+<span class="text-[10px] font-mono-ui text-on-surface-variant">Jan 14</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">inventory_2</span>
+<span class="text-body-sm text-on-surface-variant">PLA Matte</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Quote Summary Table -->
+<section class="mt-gutter bg-surface-container-low border border-outline-variant/10 rounded-xl overflow-hidden shadow-lg">
+<div class="p-6 border-b border-outline-variant/10">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Quote Line Items</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-highest/50">
+<tr>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Model Name</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Volume (cm³)</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Material</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Infill</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Est. Cost</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-variant/10 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">architecture</span>
+<span class="font-body-md text-body-md text-on-surface">Cyborg_Arm_Joint_V4.stl</span>
+</div>
+</td>
+<td class="px-6 py-4 font-mono-ui text-on-surface">342.50</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">PLA Premium Black</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">20% Gyroid</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-[10px] font-bold uppercase">
+<span class="w-1 h-1 bg-primary rounded-full animate-pulse"></span>
+                                    In Analysis
+                                </span>
+</td>
+<td class="px-6 py-4 font-label-md text-label-md text-primary">48.50 TND</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/10 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">architecture</span>
+<span class="font-body-md text-body-md text-on-surface">Base_Mount_Connector.stl</span>
+</div>
+</td>
+<td class="px-6 py-4 font-mono-ui text-on-surface">88.12</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">PLA Premium Black</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">40% Cubic</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-tertiary/30 bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase">
+                                    Ready
+                                </span>
+</td>
+<td class="px-6 py-4 font-label-md text-label-md text-on-surface">12.20 TND</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-highest/20 flex justify-between items-center">
+<div class="text-on-surface-variant text-body-sm">
+                    Total Estimated Production: <span class="text-on-surface font-bold ml-2">60.70 TND</span>
+</div>
+<div class="flex gap-4">
+<button class="px-4 py-2 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all">
+                        Reset All Values
+                    </button>
+<button class="bg-primary text-on-primary px-8 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20">
+                        Finalize Quote
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Simple micro-interaction for the range slider
+        const range = document.querySelector('input[type="range"]');
+        const rangeValue = range.nextElementSibling;
+        range.addEventListener('input', (e) => {
+            rangeValue.textContent = `${e.target.value}%`;
+        });
+
+        // Atmospheric grid mouse tracking (subtle effect)
+        document.addEventListener('mousemove', (e) => {
+            const blueprint = document.querySelector('.blueprint-bg');
+            if (blueprint) {
+                const x = (e.clientX / window.innerWidth) * 10;
+                const y = (e.clientY / window.innerHeight) * 10;
+                blueprint.style.backgroundPosition = `${x}px ${y}px`;
+            }
+        });
+    </script>
+
+
+</body></html>
